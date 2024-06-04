@@ -1,5 +1,4 @@
 import { useAuth } from "../context/AuthContext";
-import { Navigate } from "react-router-dom";
 export function LoginForm() {
   const { login, state, logout } = useAuth();
   const { isAuthenticated } = state;
@@ -14,3 +13,20 @@ export function LoginForm() {
     </div>
   );
 }
+
+/*
+    return (
+      <Container className="d-flex">
+        <Button>
+          <Nav.Link to="/login" as={NavLink}>
+            Login
+          </Nav.Link>
+        </Button>
+        <Button>
+          <Nav.Link to="/register" as={NavLink}>
+            Create account
+          </Nav.Link>
+        </Button>
+      </Container>
+    );
+  */

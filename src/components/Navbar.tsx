@@ -5,17 +5,24 @@ import {
   Nav,
   Navbar as NavbarBs,
   Dropdown,
+  Button,
 } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { NavbarCartButton } from "./NavbarCartButton";
 import { useAuth } from "../context/AuthContext";
-import { Account } from "../pages/Account";
+import { useTheme } from "../context/ThemeContext";
 export function Navbar() {
   const { cartQuantity } = useShoppingCart();
+  const { theme, setTheme } = useTheme();
   const { state, logout } = useAuth();
   const { isAuthenticated } = state;
-  console.log(isAuthenticated);
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+  //Check this later
+  //console.log(isAuthenticated);
   return (
     <NavbarBs sticky="top" className="bg-white shadow-sm mb-3 ">
       <Container className="d-flex justify-content-between">
@@ -34,6 +41,8 @@ export function Navbar() {
           </Nav.Link>
         </Nav>{" "}
         <Container className="d-flex justify-content-end align-items-center">
+          <Button onClick={toggleTheme}>{theme}</Button>
+
           <Container
             className="d-flex justify-content-end align-items-center"
             style={{ position: "relative" }}

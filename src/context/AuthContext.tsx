@@ -50,12 +50,15 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
 
   const login = (token: string) => {
     dispatch({ type: "LOGIN", token });
-    console.log("AuthContext: ", location?.state?.from);
-    navigate("/account", { state: { from: location } });
+    //https://chatgpt.com/c/edc267dc-8dd5-466d-9417-15fff536481e
+    console.log("[AuthState]-LOGIN: ", location);
+
+    const redirectTo = location.state?.from?.pathname || "/account";
+    navigate(redirectTo, { replace: true });
   };
   const logout = () => {
     dispatch({ type: "LOGOUT" });
-    navigate("/", { state: { from: location } });
+    navigate("/", { replace: true });
   };
 
   return (
