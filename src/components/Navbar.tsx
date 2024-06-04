@@ -13,7 +13,7 @@ import { useAuth } from "../context/AuthContext";
 import { Account } from "../pages/Account";
 export function Navbar() {
   const { cartQuantity } = useShoppingCart();
-  const { state } = useAuth();
+  const { state, logout } = useAuth();
   const { isAuthenticated } = state;
   console.log(isAuthenticated);
   return (
@@ -44,12 +44,8 @@ export function Navbar() {
                   Account
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item>
-                    <Nav.Link to="/account" as={NavLink}>
-                      Profile
-                    </Nav.Link>
-                  </Dropdown.Item>
-                  <Dropdown.Item>Logout</Dropdown.Item>
+                  <Dropdown.Item href="/account">Profile</Dropdown.Item>
+                  <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             ) : (

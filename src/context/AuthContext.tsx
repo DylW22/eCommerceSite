@@ -1,5 +1,7 @@
-import React, { Children, createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { ReactNode } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 type AuthCartProviderProps = {
   children: ReactNode;
 };
@@ -31,13 +33,30 @@ const authReducer = (state: AuthState, action: AuthAction) => {
 };
 
 const AuthProvider = ({ children }: AuthCartProviderProps) => {
-  const [state, dispatch] = useReducer(authReducer, {
-    isAuthenticated: false,
-    token: null,
-  });
+  const [persistedState, setPersistedState] = useLocalStorage<AuthState>(
+    "authState",
+    {
+      isAuthenticated: false,
+      token: null,
+    }
+  );
+  const [state, dispatch] = useReducer(authReducer, persistedState);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const login = (token: string) => dispatch({ type: "LOGIN", token });
-  const logout = () => dispatch({ type: "LOGOUT" });
+  useEffect(() => {
+    setPersistedState(state);
+  }, [state, persistedState]);
+
+  const login = (token: string) => {
+    dispatch({ type: "LOGIN", token });
+    console.log("AuthContext: ", location?.state?.from);
+    navigate("/account", { state: { from: location } });
+  };
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/", { state: { from: location } });
+  };
 
   return (
     <AuthContext.Provider value={{ state, login, logout }}>

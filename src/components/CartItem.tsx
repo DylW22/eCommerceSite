@@ -6,6 +6,7 @@ type CartItemsProps = {
   id: number;
   quantity: number;
 };
+
 export function CartItem({ id, quantity }: CartItemsProps) {
   const { removeFromCart } = useShoppingCart();
   const item = storeItems.find((i) => i.id === id);
