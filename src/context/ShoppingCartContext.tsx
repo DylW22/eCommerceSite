@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import { ShoppingCart } from "../components/ShoppingCart";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useLocation } from "react-router-dom";
 type ShoppingCartProviderProps = {
   children: ReactNode;
 };
@@ -32,6 +33,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     "shopping-cart",
     []
   );
+  //Method 2
+  const location = useLocation();
 
   function getItemQuantity(id: number) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
@@ -71,7 +74,11 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       return currItems.filter((item) => item.id !== id);
     });
   }
-  const openCart = () => setIsOpen(true);
+  const openCart = () => {
+    //Method 2:
+    if (location.pathname === "/checkout") return;
+    setIsOpen(true);
+  };
   const closeCart = () => setIsOpen(false);
 
   const cartQuantity = cartItems.reduce(
