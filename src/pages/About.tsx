@@ -1,6 +1,4 @@
-import React from "react";
 import Moon from "../assets/moon.svg";
-
 import Sun from "../assets/sun.svg";
 export function About() {
   return (

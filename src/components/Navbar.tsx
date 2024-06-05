@@ -1,6 +1,4 @@
 import {
-  Col,
-  Row,
   Container,
   Nav,
   Navbar as NavbarBs,
@@ -12,6 +10,7 @@ import { useShoppingCart } from "../context/ShoppingCartContext";
 import { NavbarCartButton } from "./NavbarCartButton";
 import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
+import { SearchBar } from "./SearchBar";
 export function Navbar() {
   const { cartQuantity } = useShoppingCart();
   const { theme, setTheme } = useTheme();
@@ -42,6 +41,7 @@ export function Navbar() {
         </Nav>{" "}
         <Container className="d-flex justify-content-end align-items-center">
           <Button onClick={toggleTheme}>{theme}</Button>
+          {/*<SearchBar />*/}
 
           <Container
             className="d-flex justify-content-end align-items-center"

@@ -12,6 +12,8 @@ import { Account } from "./pages/Account";
 import { Register } from "./pages/Register";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import AppProviders from "./context/AppProviders";
+import { Payment } from "./pages/Payment";
+//https://github.com/remix-run/react-router/issues/9398
 function App() {
   return (
     <AppProviders>
@@ -36,6 +38,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Checkout />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/payment"
+            element={
+              <ProtectedRoute>
+                <Payment />
               </ProtectedRoute>
             }
           />

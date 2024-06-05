@@ -1,5 +1,6 @@
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { DisplayCartItems } from "../components/DisplayCartItems";
+
 //Auth state persistence
 //https://stackoverflow.com/questions/71718724/react-context-data-is-empty-after-routed-to-next-page
 export function Checkout() {
@@ -7,5 +8,9 @@ export function Checkout() {
 
   if (!cartQuantity) return <div>Cart is empty!</div>;
 
-  return <DisplayCartItems />;
+  return (
+    <>
+      <DisplayCartItems />
+    </>
+  );
 }

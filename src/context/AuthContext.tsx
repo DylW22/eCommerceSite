@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { ReactNode } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 type AuthCartProviderProps = {
   children: ReactNode;
 };
@@ -51,7 +51,7 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
   const login = (token: string) => {
     dispatch({ type: "LOGIN", token });
     //https://chatgpt.com/c/edc267dc-8dd5-466d-9417-15fff536481e
-    console.log("[AuthState]-LOGIN: ", location);
+    // console.log("[AuthState]-LOGIN: ", location);
 
     const redirectTo = location.state?.from?.pathname || "/account";
     navigate(redirectTo, { replace: true });

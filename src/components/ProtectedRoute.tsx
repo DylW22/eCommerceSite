@@ -1,6 +1,6 @@
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { ReactNode, useEffect } from "react";
+import { Children, ReactNode } from "react";
 
 //stackoverflow.com/questions/69864165/error-privateroute-is-not-a-route-component-all-component-children-of-rou
 
@@ -18,6 +18,21 @@ export function ProtectedRoute(props: ProtectedProps) {
   if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
+  if (
+    location.pathname === "/payment" &&
+    location?.state?.from !== "/checkout"
+  ) {
+    return <Navigate to="/" replace />;
+  }
+  return <>{props.children}</>;
 
-  return props.children;
+  /*
+  if (
+    location.pathname === "/payment" &&
+    location?.state?.from !== "/checkout"
+  ) {
+    return <Navigate to="/" replace />;
+  } else {
+    return props.children;
+  }*/
 }

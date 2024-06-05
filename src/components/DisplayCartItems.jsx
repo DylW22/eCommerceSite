@@ -5,11 +5,11 @@ import storeItems from "../data/items.json";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+
 export function DisplayCartItems() {
   const { cartItems, closeCart } = useShoppingCart();
   const location = useLocation();
 
-  console.log("location: ", location.pathname);
   return (
     <Stack gap={3}>
       {cartItems.map((item) => (
@@ -26,9 +26,15 @@ export function DisplayCartItems() {
       </div>
       {/*Need to determine how to redirect to /checkout if shopping cart is clicked and already on /checkout */}
       {location.pathname === "/checkout" ? (
-        <Nav.Link to="/payment" as={NavLink}>
-          Payment
-        </Nav.Link>
+        <Button style={{ maxWidth: "200px" }}>
+          <Nav.Link
+            to="/payment"
+            as={NavLink}
+            state={{ from: location?.pathname }}
+          >
+            Payment
+          </Nav.Link>
+        </Button>
       ) : (
         <Button onClick={closeCart}>
           <Nav.Link to="/checkout" as={NavLink}>
