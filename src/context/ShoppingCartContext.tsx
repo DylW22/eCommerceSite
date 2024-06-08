@@ -18,6 +18,7 @@ type ShoppingCartContext = {
   increaseCartQuantity: (id: number) => void;
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
+  emptyCart: () => void;
   cartQuantity: number;
   cartItems: CartItem[];
 };
@@ -33,6 +34,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     "shopping-cart",
     []
   );
+
   //Method 2
   const location = useLocation();
 
@@ -74,6 +76,10 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       return currItems.filter((item) => item.id !== id);
     });
   }
+
+  function emptyCart() {
+    setCartItems([]);
+  }
   const openCart = () => {
     //Method 2:
     if (location.pathname === "/checkout") return;
@@ -94,6 +100,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         removeFromCart,
         openCart,
         closeCart,
+        emptyCart,
         cartItems,
         cartQuantity,
       }}

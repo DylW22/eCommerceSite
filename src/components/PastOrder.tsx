@@ -10,7 +10,6 @@ type PastOrderProps = {
 
 export const PastOrder: React.FC<PastOrderProps> = ({ order }) => {
   const { orderId, orderDate, items } = order;
-
   const totalPrice = items.reduce((total, item) => {
     const foundItem = getItemById(item.id);
     if (!foundItem) return total;
@@ -18,7 +17,7 @@ export const PastOrder: React.FC<PastOrderProps> = ({ order }) => {
     return total + foundItem.price * item.quantity;
   }, 0);
   return (
-    <Container className="shadow-lg w-75 my-4">
+    <Container className="shadow-lg" style={{ height: "300px" }}>
       <Row style={{ backgroundColor: "yellow" }} className="fs-2 p-2">
         <Col className="text-center">Order ID: {orderId}</Col>
         <Col className="text-center">Date: {orderDate}</Col>
@@ -30,12 +29,12 @@ export const PastOrder: React.FC<PastOrderProps> = ({ order }) => {
       </Row>
       <OrderedItemsList items={items} />
 
-      <Row className="mt-5 text-end p-5">
-        <Col sm={5} />
-        <Col sm={3} className="fs-2">
+      <Row className="mt-5 text-end py-5">
+        <Col sm={4} />
+        <Col sm={4} className="fs-2">
           Total price:
         </Col>
-        <Col sm={3} className="fs-2 text-end ">
+        <Col sm={4} className="fs-2 fw-bold text-end ">
           ${totalPrice.toFixed(2)}
         </Col>
       </Row>

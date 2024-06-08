@@ -29,6 +29,7 @@ export function Navbar() {
       <NavbarBs
         sticky="top"
         className="bg-white shadow-sm mb-3"
+
         /*className={`navbar ${
           theme === "dark" ? "dark-theme" : " "
         } shadow-sm mb-3`}*/
@@ -48,7 +49,7 @@ export function Navbar() {
               TestPage
             </Nav.Link>
           </Nav>
-          <Container className="d-flex justify-content-end align-items-center ">
+          <Container className="d-flex justify-content-end align-items-center">
             <Button
               onClick={toggleTheme}
               style={{ height: "auto", width: "70px" }}
@@ -77,7 +78,7 @@ export function Navbar() {
                 </Dropdown>
               ) : (
                 <Nav.Link to="/login" as={NavLink}>
-                  Login
+                  <Button>Login</Button>
                 </Nav.Link>
               )}
             </Container>
