@@ -3,3 +3,19 @@ Redirect cases:
 1) After logging in successfully, redirect to /account
 2) Navigating to /checkout without being logged in will redirect to /login, after successful login
 will then redirect to checkout
+
+
+
+AuthContext:
+
+//https://chatgpt.com/c/edc267dc-8dd5-466d-9417-15fff536481e
+    // console.log("[AuthState]-LOGIN: ", location);
+    //FIX NAVIGATION BEHAVIOUR
+    //console.log("Going to login in");
+
+    //const redirectTo = location.state?.from?.pathname || "/account";
+    //  navigate(redirectTo, { replace: true });
+
+
+
+     //navigate("/", { replace: true });

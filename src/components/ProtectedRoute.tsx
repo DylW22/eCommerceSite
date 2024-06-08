@@ -14,7 +14,7 @@ export function ProtectedRoute(/*props: ProtectedProps*/) {
   const { state } = useAuth();
   const { isAuthenticated } = state;
   const location = useLocation();
-  const navigate = useNavigation();
+  //const navigate = useNavigation();
 
   if (!isAuthenticated) {
     const referrer = location?.pathname; //?.state?.from?.pathname;

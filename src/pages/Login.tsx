@@ -34,15 +34,18 @@ export const action =
 
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
-    console.log("action data: ", data);
+    //console.log("action data: ", data);
 
+    /*
     const fakeNetwork = (delay: number) => {
       return new Promise((resolve) => setTimeout(resolve, delay));
     };
 
     await fakeNetwork(3000);
-
-    login("12345");
+    */
+    //console.log("about to run");
+    await login("12345", "testuser1@gmail.com", "ABC123");
+    //console.log("should not run yet");
     let success = true;
 
     if (success && data?.referrer) {
