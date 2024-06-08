@@ -35,7 +35,7 @@ export function SearchBar() {
 
   return (
     <div>
-      <Form role="search" method="get" action="/store">
+      <Form className="px-4" role="search" method="get" action="/store">
         <input
           placeholder="Search"
           type="Search"
@@ -43,6 +43,7 @@ export function SearchBar() {
           id="q"
           defaultValue={q}
           onChange={handleSearchChange}
+          className="rounded-pill px-3"
         />
         {isLoading && <div>Loading..</div>}
         {/*<div>Spare</div>*/}

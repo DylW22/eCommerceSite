@@ -4,13 +4,17 @@ import {
   Navbar as NavbarBs,
   Dropdown,
   Button,
+  Image,
 } from "react-bootstrap";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { NavbarCartButton } from "./NavbarCartButton";
 import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
 import { SearchBar } from "./SearchBar";
+import Moon from "../assets/moon.svg";
+import Sun from "../assets/sun2.svg";
+
 export function Navbar() {
   const { cartQuantity } = useShoppingCart();
   const { theme, setTheme } = useTheme();
@@ -22,7 +26,13 @@ export function Navbar() {
   };
   return (
     <>
-      <NavbarBs sticky="top" className="bg-white shadow-sm mb-3 ">
+      <NavbarBs
+        sticky="top"
+        className="bg-white shadow-sm mb-3"
+        /*className={`navbar ${
+          theme === "dark" ? "dark-theme" : " "
+        } shadow-sm mb-3`}*/
+      >
         <Container className="d-flex justify-content-between">
           <Nav className="">
             <Nav.Link to="/" as={NavLink}>
@@ -37,9 +47,17 @@ export function Navbar() {
             <Nav.Link to="/testpage" as={NavLink}>
               TestPage
             </Nav.Link>
-          </Nav>{" "}
-          <Container className="d-flex justify-content-end align-items-center">
-            <Button onClick={toggleTheme}>{theme}</Button>
+          </Nav>
+          <Container className="d-flex justify-content-end align-items-center ">
+            <Button
+              onClick={toggleTheme}
+              style={{ height: "auto", width: "70px" }}
+            >
+              <Image
+                style={{ height: "100%", width: "100%", objectFit: "contain" }}
+                src={theme === "light" ? Moon : Sun}
+              />
+            </Button>
             {<SearchBar />}
 
             <Container
@@ -53,6 +71,7 @@ export function Navbar() {
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Dropdown.Item href="/account">Profile</Dropdown.Item>
+                    <Dropdown.Item href="/history">Past orders</Dropdown.Item>
                     <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>

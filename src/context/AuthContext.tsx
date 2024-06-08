@@ -2,23 +2,43 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 import { ReactNode } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 //import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  signOut,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../utilities/firebaseConfig.js";
 type AuthCartProviderProps = {
   children: ReactNode;
 };
 
+interface UserData {
+  uid: string | null;
+  email: string | null;
+  displayName: string | null;
+}
+
+interface Tokens {
+  accessToken: string | null;
+  refreshToken: string | null;
+}
+
 type AuthState = {
   isAuthenticated: boolean;
-  token: string | null;
+  token: Tokens;
+  userData: UserData | null;
 };
 
-type AuthAction = { type: "LOGIN"; token: string } | { type: "LOGOUT" };
+type AuthAction =
+  | { type: "LOGIN"; token: string; userData: UserData; userTokens: Tokens }
+  | { type: "LOGOUT" }
+  | { type: "REGISTER"; userData: UserData };
 
 type AuthContextType = {
   state: AuthState;
-  login: (token: string) => void;
+  login: (token: string, username: string, password: string) => void;
   logout: () => void;
+  createAccount: () => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -26,14 +46,24 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const authReducer = (state: AuthState, action: AuthAction) => {
   switch (action.type) {
     case "LOGIN": {
-      return { ...state, isAuthenticated: true, token: action.token };
+      return {
+        ...state,
+        isAuthenticated: true,
+        token: action.userTokens,
+        userData: action.userData,
+      };
     }
     case "LOGOUT": {
       return {
         ...state,
         isAuthenticated: false,
-        token: null,
+        token: { accessToken: null, refreshToken: null },
+        userData: null,
       };
+    }
+    case "REGISTER": {
+      //Update state
+      return { ...state, isAuthenticated: true, userData: action.userData };
     }
     default:
       return state;
@@ -45,16 +75,17 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
     "authState",
     {
       isAuthenticated: false,
-      token: "null",
+      token: {
+        accessToken: null,
+        refreshToken: null,
+      },
+      userData: null,
     }
   );
   const [state, dispatch] = useReducer(authReducer, persistedState);
-  //const navigate = useNavigate();
-  //const location = useLocation();
 
   useEffect(() => {
     setPersistedState(state);
-    console.log("Current state: ", state);
   }, [state, persistedState]);
 
   const login = async (token: string, username: string, password: string) => {
@@ -74,13 +105,10 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
         refreshToken: userCredentials.user.stsTokenManager.refreshToken,
       };
 
-      console.log("userData: ", userData);
-      console.log("userTokens: ", userTokens);
+      dispatch({ type: "LOGIN", token, userData, userTokens });
     } catch (error) {
       //Error signing in
     }
-
-    dispatch({ type: "LOGIN", token });
   };
 
   const logout = async () => {
@@ -92,8 +120,27 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
     dispatch({ type: "LOGOUT" });
   };
 
+  const createAccount = async () => {
+    try {
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        "testuser2@gmail.com",
+        "ABCDEF123"
+      );
+      const userData = {
+        uid: userCredentials.user.uid,
+        email: userCredentials.user.email,
+        displayName: userCredentials.user.displayName,
+      };
+      //console.log("createAccount details: ", userData);
+      dispatch({ type: "REGISTER", userData });
+    } catch (error) {
+      //Error creating account
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ state, login, logout }}>
+    <AuthContext.Provider value={{ state, login, logout, createAccount }}>
       {children}
     </AuthContext.Provider>
   );

@@ -9,12 +9,16 @@ import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { InvalidPath } from "../pages/InvalidPath";
 import { action as LoginAction } from "../pages/Login";
+import { action as RegisterAction } from "../pages/Register";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import { Account } from "../pages/Account";
 import { Checkout } from "../pages/Checkout";
 import { Payment } from "../pages/Payment";
+import { RedirectedRoute } from "../components/RedirectedRoute";
+import { OrderHistory, loader as HistoryLoader } from "../pages/OrderHistory";
+
 //22, 23, 24. 78, 79
-export const RoutesConfig = (appContext) => {
+export const RoutesConfig = (appContext: any) => {
   return [
     {
       element: <ShoppingCartProviderLayout />,
@@ -42,13 +46,22 @@ export const RoutesConfig = (appContext) => {
                   path: "/testpage",
                 },
                 {
-                  element: <Login />,
+                  element: (
+                    <RedirectedRoute>
+                      <Login />
+                    </RedirectedRoute>
+                  ),
                   path: "/login",
                   action: LoginAction(appContext),
                 },
                 {
-                  element: <Register />,
+                  element: (
+                    <RedirectedRoute>
+                      <Register />
+                    </RedirectedRoute>
+                  ),
                   path: "/register",
+                  action: RegisterAction(appContext),
                 },
                 {
                   element: <InvalidPath />,
@@ -60,6 +73,11 @@ export const RoutesConfig = (appContext) => {
                     {
                       element: <Account />,
                       path: "/account",
+                    },
+                    {
+                      element: <OrderHistory />,
+                      path: "/history",
+                      loader: HistoryLoader,
                     },
                     { element: <Checkout />, path: "/checkout" },
                     { element: <Payment />, path: "/payment" },

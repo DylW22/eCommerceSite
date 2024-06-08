@@ -1,0 +1,13 @@
+.navbar.dark-theme{
+    --bg-color: #222;
+    --text-color: red;
+}
+
+.navbar {
+    background-color: var(--bg-color);
+color: #FFF;
+}
+.dark-theme{
+    --bg-color: #222;
+    --text-color: white;
+}

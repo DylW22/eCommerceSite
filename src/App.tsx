@@ -2,13 +2,13 @@
 import { useRoutesConfig } from "./hooks/useRoutesConfig";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
+import "./assets/styles/styles.css";
 
 const App = () => {
   const newRoutesConfig = useRoutesConfig();
   const router = createBrowserRouter(newRoutesConfig);
 
-  return <RouterProvider router={router}></RouterProvider>;
+  return <RouterProvider router={router} />;
 };
 
 export default App;
