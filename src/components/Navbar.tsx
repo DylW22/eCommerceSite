@@ -20,8 +20,6 @@ export function Navbar() {
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
-  //Check this later
-  //console.log(isAuthenticated);
   return (
     <>
       <NavbarBs sticky="top" className="bg-white shadow-sm mb-3 ">

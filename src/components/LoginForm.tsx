@@ -1,23 +1,15 @@
-//import { useAuth } from "../context/AuthContext";
+import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import {
-  Form as FormRR,
-  redirect,
-  useActionData,
-  useNavigation,
-} from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { Form as FormRR, useNavigation, useLocation } from "react-router-dom";
 export function LoginForm() {
-  const actionData = useActionData();
+  const location = useLocation();
+  const [referrer, setReferrer] = useState(location?.state?.referrer || "");
+
   const navigate = useNavigation();
   const isSubmitting = navigate.state === "submitting";
 
-  //const { login, state, logout } = useAuth();
-  //const { isAuthenticated } = state;
-  //console.log("actionData: ", actionData);
-
   return (
-    <Form as={FormRR} method="post" action="/login">
+    <Form as={FormRR} method="post">
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" name="email" />
@@ -33,41 +25,10 @@ export function LoginForm() {
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
+      <Form.Control name="referrer" readOnly hidden value={referrer} />
       <Button variant="primary" type="submit">
         {isSubmitting ? "Submitting.." : "Submit"}
       </Button>
     </Form>
   );
 }
-
-export const action =
-  /*(appContext) => {*/
-  async ({ request }) => {
-    const formData = await request.formData();
-    const email = formData.get("email");
-    const password = formData.get("password");
-    const errors = {};
-
-    //Client-side password validation;
-    /*
-  if (typeof email !== "string" || !email.includes("@")) {
-    errors.email = "That is not an email address.";
-  }
-  console.log("keys: ", Object.keys(errors));
-  if (Object.keys(errors).length) {
-    return errors;
-  }
-  */
-    const fakeNetwork = async (delay: number) =>
-      new Promise(() => {
-        setTimeout(() => {}, delay);
-      });
-    await fakeNetwork(2000);
-    console.log("faked");
-    //Login!
-
-    //return redirect("/");
-    return [10];
-  };
-
-//};

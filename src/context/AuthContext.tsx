@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { ReactNode } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 type AuthCartProviderProps = {
   children: ReactNode;
 };
@@ -41,24 +41,28 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
     }
   );
   const [state, dispatch] = useReducer(authReducer, persistedState);
-  const navigate = useNavigate();
-  const location = useLocation();
+  //const navigate = useNavigate();
+  //const location = useLocation();
 
   useEffect(() => {
     setPersistedState(state);
+    console.log("Current state: ", state);
   }, [state, persistedState]);
 
   const login = (token: string) => {
     dispatch({ type: "LOGIN", token });
+    console.log("Logged in!!!!!!!!!!!!!!!!");
     //https://chatgpt.com/c/edc267dc-8dd5-466d-9417-15fff536481e
     // console.log("[AuthState]-LOGIN: ", location);
+    //FIX NAVIGATION BEHAVIOUR
+    //console.log("Going to login in");
 
-    const redirectTo = location.state?.from?.pathname || "/account";
-    navigate(redirectTo, { replace: true });
+    //const redirectTo = location.state?.from?.pathname || "/account";
+    //  navigate(redirectTo, { replace: true });
   };
   const logout = () => {
     dispatch({ type: "LOGOUT" });
-    navigate("/", { replace: true });
+    //navigate("/", { replace: true });
   };
 
   return (

@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { AuthProvider } from "./AuthContext";
 import { ShoppingCartProvider } from "./ShoppingCartContext";
 import { ThemeProvider } from "./ThemeContext";
+
 export const AuthLayout = () => {
   return (
     <AuthProvider>

@@ -1,5 +1,3 @@
-import { AuthLayout } from "../context/Layouts";
-import { createBrowserRouter } from "react-router-dom";
 import { ShoppingCartProviderLayout } from "../context/Layouts";
 import { ThemeProviderLayout } from "../context/Layouts";
 import { Root } from "../pages/Root";
@@ -10,65 +8,61 @@ import { TestPage } from "../pages/TestPage";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { InvalidPath } from "../pages/InvalidPath";
-import { action as LoginAction } from "../components/LoginForm";
+import { action as LoginAction } from "../pages/Login";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import { Account } from "../pages/Account";
 import { Checkout } from "../pages/Checkout";
 import { Payment } from "../pages/Payment";
-export const routesConfig = (appContext) => {
+//22, 23, 24. 78, 79
+export const RoutesConfig = (appContext) => {
   return [
     {
-      element: <AuthLayout />,
+      element: <ShoppingCartProviderLayout />,
       children: [
         {
-          element: <ShoppingCartProviderLayout />,
+          element: <ThemeProviderLayout />,
           children: [
             {
-              element: <ThemeProviderLayout />,
+              path: "/",
+              element: <Root />,
+              loader: SearchBarLoader,
+              id: "root",
               children: [
                 {
-                  path: "/",
-                  element: <Root />,
-                  loader: SearchBarLoader,
-                  id: "root",
+                  element: <Store />,
+                  path: "/store",
+                },
+
+                {
+                  element: <About />,
+                  path: "/about",
+                },
+                {
+                  element: <TestPage />,
+                  path: "/testpage",
+                },
+                {
+                  element: <Login />,
+                  path: "/login",
+                  action: LoginAction(appContext),
+                },
+                {
+                  element: <Register />,
+                  path: "/register",
+                },
+                {
+                  element: <InvalidPath />,
+                  path: "*",
+                },
+                {
+                  element: <ProtectedRoute />,
                   children: [
                     {
-                      element: <Store />,
-                      path: "/store",
+                      element: <Account />,
+                      path: "/account",
                     },
-
-                    {
-                      element: <About />,
-                      path: "/about",
-                    },
-                    {
-                      element: <TestPage />,
-                      path: "/testpage",
-                    },
-                    {
-                      element: <Login />,
-                      path: "/login",
-                      action: LoginAction(appContext),
-                    },
-                    {
-                      element: <Register />,
-                      path: "/register",
-                    },
-                    {
-                      element: <InvalidPath />,
-                      path: "*",
-                    },
-                    {
-                      element: <ProtectedRoute />,
-                      children: [
-                        {
-                          element: <Account />,
-                          path: "/account",
-                        },
-                        { element: <Checkout />, path: "/checkout" },
-                        { element: <Payment />, path: "/payment" },
-                      ],
-                    },
+                    { element: <Checkout />, path: "/checkout" },
+                    { element: <Payment />, path: "/payment" },
                   ],
                 },
               ],

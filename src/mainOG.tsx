@@ -1,12 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
-/*import {
-  BrowserRouter,
-  Router,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import { Root } from "./pages/Root.tsx";
 import { About } from "./pages/About.tsx";
@@ -20,16 +15,12 @@ import { ProtectedRoute } from "./components/ProtectedRoute.tsx";
 import { Payment } from "./pages/Payment.tsx";
 import { Checkout } from "./pages/Checkout.tsx";
 import { InvalidPath } from "./pages/InvalidPath.tsx";
-import { AuthLayout, RouterLayout } from "./context/Layouts.tsx";
+import { AuthLayout } from "./context/Layouts.tsx";
 import { ShoppingCartProviderLayout } from "./context/Layouts.tsx";
 import { ThemeProviderLayout } from "./context/Layouts.tsx";
 import { loader as SearchBarLoader } from "./components/SearchBar.tsx";
 import { action as LoginAction } from "./components/LoginForm.tsx";
-*/
 import App from "./App.tsx";
-import { AuthProvider } from "./context/AuthContext.tsx";
-
-/*
 const router = createBrowserRouter([
   {
     element: <AuthLayout />,
@@ -93,12 +84,21 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-*/
+
+//import { AuthProvider } from "./context/AuthContext";
+//import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+//import { ThemeProvider } from "./context/ThemeContext";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-    {/*<RouterProvider router={router} />*/}
+    {/* <AuthProvider>
+      <ShoppingCartProvider>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </ShoppingCartProvider>
+    </AuthProvider>*/}
+
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

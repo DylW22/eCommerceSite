@@ -1,6 +1,6 @@
 import { useAuth } from "../context/AuthContext";
-import { routesConfig } from "../data/routesConfig";
+import { RoutesConfig } from "../data/RoutesConfig";
 export const useRoutesConfig = () => {
   const appContext = useAuth();
-  return routesConfig(appContext);
+  return RoutesConfig(appContext);
 };

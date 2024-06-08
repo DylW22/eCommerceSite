@@ -1,0 +1,5 @@
+Redirect cases:
+
+1) After logging in successfully, redirect to /account
+2) Navigating to /checkout without being logged in will redirect to /login, after successful login
+will then redirect to checkout

@@ -19,6 +19,13 @@ If you are developing a production application, we recommend updating the config
 
 //https://stackoverflow.com/questions/70491774/usenavigate-may-be-used-only-in-the-context-of-a-router-component
 //https://medium.com/@ravipatel.it/building-a-layout-with-react-router-v6-step-by-step-guide-75b9637f1fbe
+
+//VERY USEFUL AUTH
+//https://www.dennyscott.io/blog/react-hooks-authentication
+
+//https://stackoverflow.com/questions/74296504/invoke-hook-from-react-router-data-router-action
+//https://stackoverflow.com/questions/75806705/is-there-a-way-of-accessing-react-context-data-in-react-router-6-action-function
+
 export default {
   // other rules...
   parserOptions: {

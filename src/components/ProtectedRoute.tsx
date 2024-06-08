@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Children, ReactNode } from "react";
 import { Outlet } from "react-router-dom";
@@ -14,10 +14,14 @@ export function ProtectedRoute(/*props: ProtectedProps*/) {
   const { state } = useAuth();
   const { isAuthenticated } = state;
   const location = useLocation();
+  const navigate = useNavigation();
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    const referrer = location?.pathname; //?.state?.from?.pathname;
+
+    return <Navigate to="/login" state={{ referrer }} replace />;
   }
+
   if (
     location.pathname === "/payment" &&
     location?.state?.from !== "/checkout"
