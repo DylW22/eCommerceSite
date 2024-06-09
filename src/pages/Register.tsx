@@ -1,5 +1,6 @@
 import { RegisterForm } from "../components/RegisterForm";
-import { redirect } from "react-router-dom";
+import { ActionFunction, redirect } from "react-router-dom";
+import { ActionRequestProps } from "../types";
 export function Register() {
   return (
     <>
@@ -8,10 +9,10 @@ export function Register() {
   );
 }
 
-export const action =
+export const action: ActionFunction =
   (appContext) =>
-  async ({ request }) => {
-    const { createAccount } = appContext;
+  async ({ request }: ActionRequestProps) => {
+    const { createAccount } = appContext as any;
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
 
@@ -20,7 +21,7 @@ export const action =
     //if valid, create account
     const { email, password } = data;
     await createAccount(email, password);
-    let success = true;
+    //let success = true;
 
     /* if (success && data?.referrer) {
       return redirect(data?.referrer);

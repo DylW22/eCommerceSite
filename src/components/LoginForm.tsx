@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { Form as FormRR, useNavigation, useLocation } from "react-router-dom";
 export function LoginForm() {
   const location = useLocation();
-  const [referrer, setReferrer] = useState(location?.state?.referrer || "");
+  const [referrer] = useState(location?.state?.referrer || "");
 
   const navigate = useNavigation();
   const isSubmitting = navigate.state === "submitting";

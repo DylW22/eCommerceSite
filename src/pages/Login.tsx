@@ -1,10 +1,12 @@
 import { LoginForm } from "../components/LoginForm";
 //import { Button } from "react-bootstrap";
-import { useAuth } from "../context/AuthContext";
-import { NavLink, redirect } from "react-router-dom";
+
+import { ActionFunction, NavLink, redirect } from "react-router-dom";
 //import { useNavigation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+
+import { ActionRequestProps } from "../types";
 //import { useEffect } from "react";
+
 export function Login() {
   //const actionData = useActionData();
   //const navigate = useNavigation();
@@ -19,22 +21,23 @@ export function Login() {
       <p>
         Don't have an account? Register <NavLink to="/register">here</NavLink>
       </p>
-      {/*isAuthenticated ? (
-        <Button onClick={logout}>Logout</Button>
-      ) : (
-        <Button onClick={() => login("12345")}>Login</Button>
-      )*/}
     </div>
   );
 }
 
-export const action =
+/*
+interface AppContext {
+  login: (userId: string, email: string, password: string) => Promise<void>;
+  // Other context properties/methods if needed
+}*/
+
+export const action: ActionFunction /*<AppContext>*/ =
   (appContext) =>
-  async ({ request }) => {
-    const { login } = appContext;
+  async ({ request }: ActionRequestProps) => {
+    const { login } = appContext as any;
 
     const formData = await request.formData();
-    const data = Object.fromEntries(formData);
+    const data = Object.fromEntries(formData) as Record<string, string>;
 
     await login("12345", "testuser1@gmail.com", "ABC123");
 

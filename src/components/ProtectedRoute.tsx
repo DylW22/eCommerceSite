@@ -13,11 +13,7 @@ export function ProtectedRoute(/*props: ProtectedProps*/) {
   const { emptyCart } = useShoppingCart();
   const location = useLocation();
   const nav = useNavigate();
-  if (!isAuthenticated) {
-    const referrer = location?.pathname;
 
-    return <Navigate to="/login" state={{ referrer }} replace />;
-  }
   useEffect(() => {
     if (
       location.pathname === "/payment" &&
@@ -26,7 +22,12 @@ export function ProtectedRoute(/*props: ProtectedProps*/) {
       emptyCart();
       nav("/");
     }
-  }, [location]);
+  }, [location, emptyCart, nav]);
+
+  if (!isAuthenticated) {
+    const referrer = location?.pathname;
+    return <Navigate to="/login" state={{ referrer }} replace />;
+  }
 
   return (
     <>

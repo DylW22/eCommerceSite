@@ -1,7 +1,7 @@
 import { useAuth } from "../context/AuthContext";
 import { RoutesConfig } from "../data/routesConfig";
-
-export const useRoutesConfig = () => {
+import { RouteObject } from "react-router-dom";
+export const useRoutesConfig = (): RouteObject[] => {
   const appContext = useAuth();
 
   return RoutesConfig(appContext);

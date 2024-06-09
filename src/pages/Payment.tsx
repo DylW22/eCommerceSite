@@ -4,7 +4,7 @@ import { generateOrderDetails } from "../utilities/generateOrderDetails";
 import { Form as FormRR } from "react-router-dom";
 import { writeToDatabase } from "../utilities/writeTransactions.js";
 import type { ActionFunction } from "react-router-dom";
-
+import type { ActionRequestProps } from "../types.js";
 export function Payment() {
   const { cartItems } = useShoppingCart();
   const cartItemsJSON = JSON.stringify(cartItems);
@@ -38,9 +38,9 @@ export function Payment() {
 
 export const action: ActionFunction =
   () =>
-  async ({ request }): Promise<PaymentDetails> => {
+  async ({ request }: ActionRequestProps): Promise<PaymentDetails> => {
     const formData = await request.formData();
-    const data = Object.fromEntries(formData);
+    const data = Object.fromEntries(formData) as Record<string, string>;
     const cartItemsParsed = JSON.parse(data.cartItems);
     const order = generateOrderDetails(cartItemsParsed);
     let errors: Record<string, string> = {};

@@ -6,8 +6,9 @@ import {
   signInWithEmailAndPassword,
   signOut,
   createUserWithEmailAndPassword,
+  UserCredential,
 } from "firebase/auth";
-import { auth } from "../utilities/firebaseConfig.js";
+import { auth } from "../utilities/firebaseConfig.ts";
 type AuthCartProviderProps = {
   children: ReactNode;
 };
@@ -34,7 +35,7 @@ type AuthAction =
   | { type: "LOGOUT" }
   | { type: "REGISTER"; userData: UserData };
 
-type AuthContextType = {
+export type AuthContextType = {
   state: AuthState;
   login: (token: string, username: string, password: string) => void;
   logout: () => void;
@@ -90,20 +91,24 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
 
   const login = async (token: string, username: string, password: string) => {
     try {
-      const userCredentials = await signInWithEmailAndPassword(
+      const userCredentials: UserCredential = await signInWithEmailAndPassword(
         auth,
         username,
         password
       );
+      const user = userCredentials.user;
+
       const userData = {
-        uid: userCredentials.user.uid,
-        email: userCredentials.user.email,
-        displayName: userCredentials.user.displayName,
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
       };
+
       const userTokens = {
-        accessToken: userCredentials.user.stsTokenManager.accessToken,
-        refreshToken: userCredentials.user.stsTokenManager.refreshToken,
+        accessToken: await user.getIdToken(),
+        refreshToken: user.refreshToken,
       };
+      //console.log("User tokens: ", userTokens);
 
       dispatch({ type: "LOGIN", token, userData, userTokens });
     } catch (error) {

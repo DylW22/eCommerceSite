@@ -1,3 +1,4 @@
+import { CartItem } from "./context/ShoppingCartContext";
 export type Item = {
   id: number;
   name: string;
@@ -13,4 +14,20 @@ export type PastOrderCard = {
   orderDate: string;
   orderId: number;
   items: PastOrderItem[];
+};
+
+export interface ActionRequestProps {
+  request: Request;
+}
+
+export type OrderData = {
+  orderDate: string;
+  orderId: number;
+  items: CartItem[];
+};
+
+export type HistoryLoaderObject = {
+  data: PastOrderCard[];
+  status: "success" | "failure";
+  errors: Record<string, string>;
 };

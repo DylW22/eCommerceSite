@@ -1,6 +1,6 @@
 import { Offcanvas } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import { DisplayCartItems } from "./DisplayCartItems";
+import { DisplayCartItems } from "./DisplayCartItems.tsx";
 type ShoppingCartProps = {
   isOpen: boolean;
 };

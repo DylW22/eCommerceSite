@@ -1,15 +1,12 @@
 import { Form, useLoaderData, useNavigation } from "react-router-dom";
 import { useSubmit } from "react-router-dom";
-import { useDebounce } from "../hooks/useDebounce.tsx";
+import { useDebounce } from "../hooks/useDebounce";
 
 //https://molly1024.medium.com/%E5%A6%82%E4%BD%95%E5%9C%A8react%E5%B0%88%E6%A1%88%E4%BD%BF%E7%94%A8lodash-debounce-how-to-use-lodash-debounce-in-react-project-e56d85e0474f
 //https://github.com/remix-run/react-router/issues/10263
 
 interface LoaderData {
   q: string;
-}
-interface Event {
-  target: HTMLInputElement;
 }
 
 export function SearchBar() {

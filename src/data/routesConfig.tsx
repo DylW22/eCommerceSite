@@ -15,15 +15,18 @@ import { Account } from "../pages/Account";
 import { Checkout } from "../pages/Checkout";
 import { Payment } from "../pages/Payment";
 import { RedirectedRoute } from "../components/RedirectedRoute";
-import { loader as HistoryLayoutLoader } from "../components/HistoryLayout";
+import {
+  loader as HistoryLayoutLoader,
+  HistoryLayout,
+} from "../components/HistoryLayout";
 //import { OrderHistory, loader as HistoryLoader } from "../pages/OrderHistory";
 import { action as PaymentAction } from "../pages/Payment";
 import { Home } from "../pages/Home";
-import { HistoryLayout } from "../components/HistoryLayout";
 import { Transaction } from "../components/Transaction";
 import { HistoryIndex } from "../components/HistoryIndex";
+import { ActionFunction, RouteObject } from "react-router-dom";
 //22, 23, 24. 78, 79
-export const RoutesConfig = (appContext: any) => {
+export const RoutesConfig = (appContext: any): RouteObject[] => {
   return [
     {
       element: <ShoppingCartProviderLayout />,
@@ -62,7 +65,7 @@ export const RoutesConfig = (appContext: any) => {
                     </RedirectedRoute>
                   ),
                   path: "/login",
-                  action: LoginAction(appContext),
+                  action: LoginAction(appContext) as ActionFunction,
                 },
                 {
                   element: (
@@ -71,7 +74,7 @@ export const RoutesConfig = (appContext: any) => {
                     </RedirectedRoute>
                   ),
                   path: "/register",
-                  action: RegisterAction(appContext),
+                  action: RegisterAction(appContext) as ActionFunction,
                 },
                 {
                   element: <InvalidPath />,
@@ -105,7 +108,7 @@ export const RoutesConfig = (appContext: any) => {
                     {
                       element: <Payment />,
                       path: "/payment",
-                      action: PaymentAction(appContext),
+                      action: PaymentAction(appContext) as ActionFunction,
                     },
                   ],
                 },

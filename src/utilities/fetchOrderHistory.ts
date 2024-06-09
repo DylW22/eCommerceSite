@@ -1,22 +1,13 @@
 import { ref, get } from "firebase/database";
-import { database } from "./firebaseConfig.js";
-import { PastOrderCard } from "../types.js";
-
-type ErrorsObject = {
-  errors: Record<string, string>;
-};
-
-export const fetchOrderHistory = async (): Promise<
-  PastOrderCard[] | ErrorsObject
-> => {
+import { database } from "./firebaseConfig.ts";
+export const fetchOrderHistory = async () => {
   let errors: Record<string, string> = {};
   try {
     const dbRef = ref(database, "/transactions");
     const snapshot = await get(dbRef);
-
     if (snapshot.exists()) {
       const data = snapshot.val();
-      return data as PastOrderCard[];
+      return data;
     } else {
       return [];
     }
