@@ -17,7 +17,7 @@ export const PastOrder: React.FC<PastOrderProps> = ({ order }) => {
     return total + foundItem.price * item.quantity;
   }, 0);
   return (
-    <Container className="shadow-lg" style={{ height: "300px" }}>
+    <Container className="shadow-lg" style={{ height: "400px" }}>
       <Row style={{ backgroundColor: "yellow" }} className="fs-2 p-2">
         <Col className="text-center">Order ID: {orderId}</Col>
         <Col className="text-center">Date: {orderDate}</Col>

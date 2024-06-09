@@ -1,8 +1,8 @@
-import { useLocation, useNavigation } from "react-router-dom";
+import { Container } from "react-bootstrap";
 export function Home() {
-  const location = useLocation();
-  const navigate = useNavigation();
-  console.log("Home location: ", location);
-  console.log("Navigate: ", navigate);
-  return <div>Home</div>;
+  return (
+    <Container>
+      <p> This is a fake e-commerce site.</p>
+    </Container>
+  );
 }

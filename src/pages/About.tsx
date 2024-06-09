@@ -1,11 +1,9 @@
-import Moon from "../assets/moon.svg";
-import Sun from "../assets/sun.svg";
+import { Container } from "react-bootstrap";
+
 export function About() {
   return (
-    <div className="">
-      <div>About</div>
-      <img src={Moon} />
-      <img src={Sun} />
-    </div>
+    <Container>
+      <p> This is a fake e-commerce site.</p>
+    </Container>
   );
 }

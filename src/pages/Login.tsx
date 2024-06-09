@@ -1,22 +1,17 @@
 import { LoginForm } from "../components/LoginForm";
 //import { Button } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
-import {
-  NavLink,
-  redirect,
-  useActionData,
-  useLocation,
-} from "react-router-dom";
+import { NavLink, redirect } from "react-router-dom";
 //import { useNavigation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 //import { useEffect } from "react";
 export function Login() {
-  const actionData = useActionData();
+  //const actionData = useActionData();
   //const navigate = useNavigation();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   //const isSubmitting = navigate.state === "submitting";
-  const { state } = useAuth();
-  const { isAuthenticated } = state;
+  //const { state } = useAuth();
+  //const { isAuthenticated } = state;
 
   return (
     <div>
@@ -40,14 +35,6 @@ export const action =
 
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
-
-    /*
-    const fakeNetwork = (delay: number) => {
-      return new Promise((resolve) => setTimeout(resolve, delay));
-    };
-
-    await fakeNetwork(3000);
-    */
 
     await login("12345", "testuser1@gmail.com", "ABC123");
 

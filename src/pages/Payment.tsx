@@ -1,21 +1,29 @@
 import { Button, Row, Form } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { generateOrderDetails } from "../utilities/generateOrderDetails";
-import {
-  Form as FormRR,
-  Navigate,
-  redirect,
-  useActionData,
-} from "react-router-dom";
+import { Form as FormRR } from "react-router-dom";
 import { writeToDatabase } from "../utilities/writeTransactions.js";
-import { useEffect, useState } from "react";
+import type { ActionFunction } from "react-router-dom";
 
-//import { useState, useEffect } from "react";
 export function Payment() {
   const { cartItems } = useShoppingCart();
-
-  //generateOrderDetails(cartItems);
   const cartItemsJSON = JSON.stringify(cartItems);
+  /*
+  const location = useLocation();
+  const nav = useNavigate();
+
+  
+  useEffect(() => {
+    if (
+      location.pathname === "/payment" &&
+      location?.state?.from !== "/checkout"
+    ) {
+      console.log("Will empty cart");
+      emptyCart();
+      nav("/");
+    }
+  }, [location?.state?.from]);
+*/
   return (
     <div>
       <Row>Hello</Row>
@@ -28,22 +36,33 @@ export function Payment() {
   );
 }
 
-export const action =
-  (appContext) =>
-  async ({ request }) => {
-    //Perform payment action
-    //Successful?
+export const action: ActionFunction =
+  () =>
+  async ({ request }): Promise<PaymentDetails> => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
     const cartItemsParsed = JSON.parse(data.cartItems);
     const order = generateOrderDetails(cartItemsParsed);
-
+    let errors: Record<string, string> = {};
+    let status: "success" | "failure" = "success";
     try {
+      //Perform payment action
+      //Successful?
       await writeToDatabase(order);
-    } catch (error) {
-      console.log("An error occurred");
+      status = "success";
+    } catch (error: any) {
+      status = "failure";
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      errors[errorCode] = errorMessage;
     }
-    //Write to database
-
-    return "ABC"; //<Navigate to="/" state={} />; //redirect("/");
+    return {
+      status,
+      errors,
+    };
   };
+
+type PaymentDetails = {
+  status: "success" | "failure";
+  errors: Record<string, string>;
+};

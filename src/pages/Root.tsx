@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import { Navbar } from "../components/Navbar";
+import { Header } from "../components/Header";
 import { Container } from "react-bootstrap";
 
 export function Root() {
   return (
     <div>
-      <Navbar />
+      <Header />
       <Container className="mb-4">
         <Outlet />
       </Container>

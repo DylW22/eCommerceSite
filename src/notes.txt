@@ -19,3 +19,14 @@ AuthContext:
 
 
      //navigate("/", { replace: true });
+
+
+
+     
+    /*
+    const fakeNetwork = (delay: number) => {
+      return new Promise((resolve) => setTimeout(resolve, delay));
+    };
+
+    await fakeNetwork(3000);
+    */

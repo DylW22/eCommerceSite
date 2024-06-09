@@ -1,18 +1,15 @@
-import React from "react";
-import { Container, ListGroup, Stack, Row, Col } from "react-bootstrap";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Container, ListGroup, Row, Col } from "react-bootstrap";
+import { Link, Outlet } from "react-router-dom";
 import { LoaderFunction } from "react-router-dom";
 import { PastOrderCard } from "../types";
 import { fetchOrderHistory } from "../utilities/fetchOrderHistory";
 import { useLoaderData } from "react-router-dom";
 export const HistoryLayout = () => {
   const listItems = useLoaderData() as PastOrderCard[];
-  const location = useLocation();
-  console.log("location: ", location);
 
   return (
     <Container>
-      <Row style={{ height: "300px" }}>
+      <Row style={{ height: "400px" }}>
         <Col
           className="shadow-lg"
           xs={2}
@@ -46,17 +43,19 @@ export const HistoryLayout = () => {
   );
 };
 
-export const loader: LoaderFunction = async ({
-  params,
-}): Promise<PastOrderCard[]> => {
+export const loader: LoaderFunction = async ({}): Promise<PastOrderCard[]> => {
   //get orders from firebase
   //get past data
+  let status: "success" | "failure" = "success";
+  let errors: Record<string, string> = {};
   try {
     const orders = await fetchOrderHistory();
-    console.log("orders: ", orders);
+    status = "success";
+
     return orders;
-  } catch (error) {
-    console.log("Could not load transaction history.");
+  } catch (error: any) {
+    status = "failure";
+    errors[error.code] = error.message;
   }
   return [];
   // return pastOrders as PastOrderCard[];

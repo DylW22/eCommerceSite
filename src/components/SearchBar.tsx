@@ -43,10 +43,9 @@ export function SearchBar() {
           id="q"
           defaultValue={q}
           onChange={handleSearchChange}
-          className="rounded-pill px-3"
+          className="rounded-pill px-3 w-100"
         />
         {isLoading && <div>Loading..</div>}
-        {/*<div>Spare</div>*/}
       </Form>
     </div>
   );
