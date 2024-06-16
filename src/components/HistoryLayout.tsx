@@ -10,7 +10,7 @@ export const HistoryLayout = () => {
   const { data: listItems } = loadedData;
 
   return (
-    <Container>
+    <Container fluid className="shadow-lg" style={{ padding: 0, margin: 0 }}>
       <Row style={{ height: "400px" }}>
         <Col
           className="shadow-lg"
@@ -21,7 +21,8 @@ export const HistoryLayout = () => {
             backgroundColor: "white",
           }}
         >
-          <ListGroup defaultActiveKey={``} className="p-2">
+          <ListGroup defaultActiveKey={``} className="px-2">
+            <div>Transactions</div>
             {Object.values(listItems).length > 0 &&
               Object.values(listItems).map((item, index) => (
                 <ListGroup.Item
@@ -37,9 +38,11 @@ export const HistoryLayout = () => {
               ))}
           </ListGroup>
         </Col>
-        <Col xs={10} md={10} lg={10}>
-          <Outlet />
-        </Col>
+        {
+          <Col xs={10} md={10} lg={10}>
+            <Outlet />
+          </Col>
+        }
       </Row>
     </Container>
   );
@@ -64,3 +67,12 @@ export const loader: LoaderFunction =
     return { data: orders, status, errors };
     // return pastOrders as PastOrderCard[];
   };
+
+/*
+ return (
+    <Container fluid className="shadow-lg" style={{ padding: 0, margin: 0 }}>
+      <Row style={{ margin: 0 }}>Hello</Row>
+    </Container>
+  );
+
+  */

@@ -9,6 +9,7 @@ import {
   UserCredential,
 } from "firebase/auth";
 import { auth } from "../utilities/firebaseConfig.ts";
+
 type AuthCartProviderProps = {
   children: ReactNode;
 };
@@ -28,12 +29,14 @@ type AuthState = {
   isAuthenticated: boolean;
   token: Tokens;
   userData: UserData | null;
+  error: string | null;
 };
 
 type AuthAction =
-  | { type: "LOGIN"; token: string; userData: UserData; userTokens: Tokens }
+  | { type: "LOGIN"; userData: UserData; userTokens: Tokens }
   | { type: "LOGOUT" }
-  | { type: "REGISTER"; userData: UserData };
+  | { type: "REGISTER"; userData: UserData }
+  | { type: "SET_ERROR"; error: string };
 
 export type AuthContextType = {
   state: AuthState;
@@ -52,6 +55,7 @@ const authReducer = (state: AuthState, action: AuthAction) => {
         isAuthenticated: true,
         token: action.userTokens,
         userData: action.userData,
+        error: null,
       };
     }
     case "LOGOUT": {
@@ -60,11 +64,23 @@ const authReducer = (state: AuthState, action: AuthAction) => {
         isAuthenticated: false,
         token: { accessToken: null, refreshToken: null },
         userData: null,
+        error: null,
       };
     }
     case "REGISTER": {
       //Update state
-      return { ...state, isAuthenticated: true, userData: action.userData };
+      return {
+        ...state,
+        isAuthenticated: true,
+        userData: action.userData,
+        error: null,
+      };
+    }
+    case "SET_ERROR": {
+      return {
+        ...state,
+        error: action.error,
+      };
     }
     default:
       return state;
@@ -81,6 +97,7 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
         refreshToken: null,
       },
       userData: null,
+      error: null,
     }
   );
   const [state, dispatch] = useReducer(authReducer, persistedState);
@@ -89,7 +106,7 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
     setPersistedState(state);
   }, [state, persistedState]);
 
-  const login = async (token: string, username: string, password: string) => {
+  const login = async (username: string, password: string) => {
     try {
       const userCredentials: UserCredential = await signInWithEmailAndPassword(
         auth,
@@ -108,10 +125,19 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
         accessToken: await user.getIdToken(),
         refreshToken: user.refreshToken,
       };
-      //console.log("User tokens: ", userTokens);
+      //  console.log("TOKEN: ", token);
+      dispatch({ type: "LOGIN", userData, userTokens });
+      return userData;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        dispatch({ type: "SET_ERROR", error: error.message });
+      } else {
+        dispatch({
+          type: "SET_ERROR",
+          error: "An unknown error occurred when logging in.",
+        });
+      }
 
-      dispatch({ type: "LOGIN", token, userData, userTokens });
-    } catch (error) {
       //Error signing in
     }
   };
@@ -119,8 +145,16 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
   const logout = async () => {
     try {
       await signOut(auth);
-    } catch (error) {
+    } catch (error: unknown) {
       //Error signing out
+      if (error instanceof Error) {
+        dispatch({ type: "SET_ERROR", error: error.message });
+      } else {
+        dispatch({
+          type: "SET_ERROR",
+          error: "An unknown error occurred when signing out.",
+        });
+      }
     }
     dispatch({ type: "LOGOUT" });
   };
@@ -139,8 +173,16 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
       };
       //console.log("createAccount details: ", userData);
       dispatch({ type: "REGISTER", userData });
-    } catch (error) {
+    } catch (error: unknown) {
       //Error creating account
+      if (error instanceof Error) {
+        dispatch({ type: "SET_ERROR", error: error.message });
+      } else {
+        dispatch({
+          type: "SET_ERROR",
+          error: "An unknown error occurred when creating your account.",
+        });
+      }
     }
   };
 

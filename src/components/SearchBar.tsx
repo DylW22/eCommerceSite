@@ -31,20 +31,18 @@ export function SearchBar() {
   );
 
   return (
-    <div>
-      <Form className="px-4" role="search" method="get" action="/store">
-        <input
-          placeholder="Search"
-          type="Search"
-          name="q"
-          id="q"
-          defaultValue={q}
-          onChange={handleSearchChange}
-          className="rounded-pill px-3 w-100"
-        />
-        {isLoading && <div>Loading..</div>}
-      </Form>
-    </div>
+    <Form className="px-4 w-50" role="search" method="get" action="/store">
+      <input
+        placeholder="Search"
+        type="Search"
+        name="q"
+        id="q"
+        defaultValue={q}
+        onChange={handleSearchChange}
+        className="rounded-pill px-3 w-100"
+      />
+      {isLoading && <div>Loading..</div>}
+    </Form>
   );
 }
 

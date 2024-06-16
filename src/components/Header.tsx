@@ -15,11 +15,40 @@ export function Header() {
   const { isAuthenticated } = state;
 
   return (
-    <Container fluid className="bg-white shadow-sm mb-3 p-0 px-md-5">
+    //mb-3 bg-white px-md-5
+    <Container fluid className="bg-white p-0">
       <NavbarBs expand sticky="top" className="">
         <Container fluid className="d-flex justify-content-between">
           <Navbar />
-          <div className="d-none d-md-flex align-items-center">
+          <Container fluid className="bg-white p-0">
+            <div className="d-flex align-items-center justify-content-end">
+              <div className="d-none d-md-flex align-items-center justify-content-end w-100">
+                <ThemeToggle />
+                <SearchBar />
+                {isAuthenticated ? (
+                  <AccountDropDown />
+                ) : (
+                  <Nav.Link to="/login" as={NavLink}>
+                    <Button>Login</Button>
+                  </Nav.Link>
+                )}
+              </div>
+              <div className="text-black">
+                {cartQuantity > 0 ? (
+                  <div
+                    style={{ width: "80px", height: "20px" }}
+                    className="d-flex align-items-center px-2"
+                  >
+                    <NavbarCartButton />
+                  </div>
+                ) : (
+                  <div style={{ width: "80px" }}></div>
+                )}
+              </div>
+            </div>
+          </Container>
+
+          {/*<div className="d-none d-md-flex align-items-center bg-primary">
             <ThemeToggle />
             <SearchBar />
           </div>
@@ -31,61 +60,17 @@ export function Header() {
                 <Button>Login</Button>
               </Nav.Link>
             )}
-            {cartQuantity > 0 && <NavbarCartButton />}
-          </div>
+            {cartQuantity > 0 && (
+              <div
+                style={{ height: "20px" }}
+                className="d-flex align-items-center ml-3"
+              >
+                <NavbarCartButton />
+              </div>
+            )}
+          </div>*/}
         </Container>
       </NavbarBs>
     </Container>
   );
 }
-
-/*
-return (
-    <Container fluid className="bg-white shadow-sm mb-3 p-0 px-md-5">
-      <NavbarBs expand sticky="top" className="">
-        <Container fluid className="d-flex justify-content-between">
-          <Navbar />
-          <ThemeToggle />
-          <SearchBar />
-          {isAuthenticated ? (
-            <AccountDropDown />
-          ) : (
-            <Nav.Link to="/login" as={NavLink}>
-              <Button>Login</Button>
-            </Nav.Link>
-          )}
-          {cartQuantity > 0 && <NavbarCartButton />}
-          {
-          <Container
-            fluid
-            className="d-flex justify-content-end align-items-center"
-          >
-            <Container
-              fluid
-              className="d-none d-md-flex justify-content-start align-items-center"
-            >
-              <ThemeToggle />
-              <SearchBar />
-            </Container>
-            <Container
-              fluid
-              className="d-flex justify-content-end align-items-center"
-              style={{ position: "relative" }}
-            >
-              {isAuthenticated ? (
-                <AccountDropDown />
-              ) : (
-                <Nav.Link to="/login" as={NavLink}>
-                  <Button>Login</Button>
-                </Nav.Link>
-              )}
-            </Container>
-            {cartQuantity > 0 && <NavbarCartButton />}
-          </Container>
-          </Container>
-          </NavbarBs>
-        </Container>
-      );
-    }
-    
-*/

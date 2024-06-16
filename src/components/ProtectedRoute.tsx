@@ -29,9 +29,5 @@ export function ProtectedRoute(/*props: ProtectedProps*/) {
     return <Navigate to="/login" state={{ referrer }} replace />;
   }
 
-  return (
-    <>
-      <Outlet />
-    </>
-  );
+  return <Outlet />;
 }

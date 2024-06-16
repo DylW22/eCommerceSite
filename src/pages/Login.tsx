@@ -5,6 +5,7 @@ import { ActionFunction, NavLink, redirect } from "react-router-dom";
 //import { useNavigation } from "react-router-dom";
 
 import { ActionRequestProps } from "../types";
+import { sanitizeInput } from "../utilities/sanitizeCode";
 //import { useEffect } from "react";
 
 export function Login() {
@@ -38,15 +39,18 @@ export const action: ActionFunction /*<AppContext>*/ =
 
     const formData = await request.formData();
     const data = Object.fromEntries(formData) as Record<string, string>;
+    //const { email, password } = data;
+    // const cleanEmail = sanitizeInput(email);
+    // const cleanPassword = sanitizeInput(password);
 
-    await login("12345", "testuser1@gmail.com", "ABC123");
-
-    let success = true;
-
-    if (success && data?.referrer) {
-      return redirect(data?.referrer);
-    } else if (success) {
+    console.log("Form data: ", data);
+    try {
+      await login("testuser1@gmail.com", "ABC123");
+      //await login("token", cleanEmail, cleanPassword)
+      if (data?.referrer) return redirect(data?.referrer);
       return redirect("/account");
+    } catch (error) {
+      console.log("Login error: ", error);
+      return redirect("/login");
     }
-    return data;
   };

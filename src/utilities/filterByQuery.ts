@@ -1,5 +1,11 @@
 import storeItems from "../data/items.json";
 export const filterByQuery = (searchTerm: string) => {
   if (!searchTerm) return storeItems;
-  return storeItems.filter((item) => item.name.includes(searchTerm)) || null;
+  const lowercasedSearchTerm = searchTerm.toLowerCase();
+  const foundItems = storeItems.filter(
+    (item) =>
+      item.category.toLowerCase().includes(lowercasedSearchTerm) ||
+      item.name.toLowerCase().startsWith(lowercasedSearchTerm)
+  );
+  return foundItems;
 };
