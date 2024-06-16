@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 export const Navbar = () => {
   return (
-    <Nav>
+    <Nav className="bg-white ">
       <Nav.Link to="/" as={NavLink}>
         Home
       </Nav.Link>

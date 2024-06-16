@@ -22,7 +22,7 @@ import {
 //import { OrderHistory, loader as HistoryLoader } from "../pages/OrderHistory";
 import { action as PaymentAction } from "../pages/Payment";
 import { Home } from "../pages/Home";
-import { Transaction } from "../components/Transaction";
+import { Transaction } from "../components/orderHistory/Transaction";
 import { HistoryIndex } from "../components/HistoryIndex";
 import { ActionFunction, RouteObject } from "react-router-dom";
 //22, 23, 24. 78, 79
@@ -36,7 +36,11 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
           children: [
             {
               path: "/",
-              element: <Root />,
+              element: (
+                <div className="">
+                  <Root />
+                </div>
+              ),
               loader: SearchBarLoader,
               id: "root",
 

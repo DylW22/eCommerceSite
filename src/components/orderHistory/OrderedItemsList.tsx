@@ -1,6 +1,6 @@
-import { getItemById } from "../utilities/getItemById";
+import { getItemById } from "../../utilities/getItemById";
 import { Row, Col } from "react-bootstrap";
-import { PastOrderItem } from "../types";
+import { PastOrderItem } from "../../types";
 type OrderedItemsListProps = {
   items: PastOrderItem[];
 };

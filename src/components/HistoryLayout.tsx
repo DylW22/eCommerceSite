@@ -1,39 +1,48 @@
-import { Container, ListGroup, Row, Col } from "react-bootstrap";
-import { Link, Outlet } from "react-router-dom";
+//import { Container, ListGroup, Row, Col } from "react-bootstrap";
+//import { Link, Outlet } from "react-router-dom";
 import { LoaderFunction } from "react-router-dom";
-//import { PastOrderCard } from "../types";
-import { fetchOrderHistory } from "../utilities/fetchOrderHistory";
-import { useLoaderData } from "react-router-dom";
-import { HistoryLoaderObject } from "../types";
-export const HistoryLayout = () => {
-  const loadedData = useLoaderData() as HistoryLoaderObject; //as PastOrderCard[];
-  const { data: listItems } = loadedData;
+import { useLoaderData, Link, Outlet } from "react-router-dom";
+import { TransactionsLoaderObject } from "../types";
+import { GET_TRANSACTIONS } from "../queries";
+import { createQueryPreloader, useReadQuery } from "@apollo/client";
+import { ListGroup, Col, Row, Container } from "react-bootstrap";
 
+import client from "../apolloClient";
+//import { Suspense } from "react";
+
+const preloadQuery = createQueryPreloader(client);
+
+export const HistoryLayout = () => {
+  const { data: queryRef } = useLoaderData() as any; // as CountryLoaderObject; //as PastOrderCard[];
+  const queryData = useReadQuery(queryRef);
+  const { data: transactions } = queryData as any;
+  const { getTransactions } = transactions;
+
+  //const { orderDate, orderItem, items: listItems } = getTransactions;
+  // let listItems = [{ "0": [] }];
+  //console.log("Data: ", getTransactions[0].items);
+  console.log("getTransactions: ", getTransactions);
   return (
     <Container fluid className="shadow-lg" style={{ padding: 0, margin: 0 }}>
-      <Row style={{ height: "400px" }}>
-        <Col
-          className="shadow-lg"
-          xs={2}
-          md={2}
-          lg={2}
-          style={{
-            backgroundColor: "white",
-          }}
-        >
-          <ListGroup defaultActiveKey={``} className="px-2">
+      <Row style={{ height: "600px" }} className="">
+        <Col className="shadow-lg h-100 bg-white" xs={2} md={2} lg={2}>
+          <ListGroup defaultActiveKey={``} className="">
             <div>Transactions</div>
-            {Object.values(listItems).length > 0 &&
-              Object.values(listItems).map((item, index) => (
+            {getTransactions.length > 0 &&
+              getTransactions.map((transaction, index) => (
                 <ListGroup.Item
-                  key={index}
+                  key={transaction.orderId}
                   action
-                  state={item}
-                  href={`${index}`}
-                  to={`/history/${item.orderId}`}
+                  state={transaction}
+                  to={`/history/${transaction.orderId}`}
                   as={Link}
+                  href={`${index}`}
+                  className="text-center"
                 >
-                  {item.orderId}
+                  {transaction.orderDate}
+                  <span className="d-none d-lg-inline">
+                    , orderId: {transaction.orderId}
+                  </span>
                 </ListGroup.Item>
               ))}
           </ListGroup>
@@ -49,30 +58,15 @@ export const HistoryLayout = () => {
 };
 
 export const loader: LoaderFunction =
-  async ({}): Promise<HistoryLoaderObject> => {
-    //get orders from firebase
-    //get past data
-    let status: "success" | "failure" = "success";
-    let errors: Record<string, string> = {};
-    let orders = [];
+  async ({}): Promise<TransactionsLoaderObject> => {
+    let items: any = [];
     try {
-      orders = await fetchOrderHistory();
-      status = "success";
-
-      return { data: orders, status, errors };
+      // let codes = ["US", "MX", "CA"];
+      items = preloadQuery(GET_TRANSACTIONS); ///*, { variables: { codes } }*/);
+      console.log("items: ", items);
+      return { data: items };
     } catch (error: any) {
-      status = "failure";
-      errors[error.code] = error.message;
+      console.log("Error: ", error);
+      throw new Error("NO DATA");
     }
-    return { data: orders, status, errors };
-    // return pastOrders as PastOrderCard[];
   };
-
-/*
- return (
-    <Container fluid className="shadow-lg" style={{ padding: 0, margin: 0 }}>
-      <Row style={{ margin: 0 }}>Hello</Row>
-    </Container>
-  );
-
-  */

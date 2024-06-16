@@ -9,6 +9,7 @@ export type Item = {
 export type PastOrderItem = {
   id: number;
   quantity: number;
+  itemId: number;
 };
 export type PastOrderCard = {
   orderDate: string;
@@ -26,8 +27,27 @@ export type OrderData = {
   items: CartItem[];
 };
 
+export type TransactionsLoaderObject = {
+  data: [OrderData];
+};
+
+export type ItemsLoaderObject = {
+  data: [Item];
+};
+
 export type HistoryLoaderObject = {
   data: PastOrderCard[];
   status: "success" | "failure";
   errors: Record<string, string>;
+};
+
+export type Country = {
+  name: string;
+  capital: string;
+};
+
+export type CountryLoaderObject = {
+  data: Country[];
+  // status: "success" | "failure";
+  // errors: Record<string, string>;
 };

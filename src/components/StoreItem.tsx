@@ -15,9 +15,9 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
     removeFromCart,
   } = useShoppingCart();
   const quantity = getItemQuantity(id);
-  let activeState = true;
+
   return (
-    <Card className="h-100" style={{ height: "380px" }}>
+    <Card className="h-100 w-100" style={{ height: "380px" }}>
       <Card.Img
         variant="top"
         src={imgUrl}
@@ -35,38 +35,7 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
               + Add To Cart
             </Button>
           ) : (
-            /*(
-              <div
-                className="d-flex justify-content-center align-items-center"
-                style={{ gap: ".5rem" }}
-              >
-                <div
-                  className="m-0 p-0 position-absolute bottom-0 bg-secondary rounded d-flex flex-column align-items-center justify-content-center"
-                  style={{ height: "100px", width: "200px", gap: ".5rem" }}
-                >
-                  <div
-                    className="d-flex align-items-center justify-content-center"
-                    style={{ gap: ".5rem" }}
-                  >
-                    <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
-                    <div>
-                      <span className="fs-3">{quantity}</span> in cart
-                    </div>
-                    <Button onClick={() => increaseCartQuantity(id)}>+</Button>
-                  </div>
-                  <div className="d-flex justify-content-evenly w-100">
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      onClick={() => removeFromCart(id)}
-                    >
-                      Remove
-                    </Button>
-                    <Button className="">OK</Button>
-                  </div>
-                </div>
-              </div>
-            )*/ <div
+            <div
               className="d-flex align-items-center 
             flex-column"
               style={{ gap: ".5rem" }}
