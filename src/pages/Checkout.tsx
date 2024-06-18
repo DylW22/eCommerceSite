@@ -1,5 +1,5 @@
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import { DisplayCartItems } from "../components/DisplayCartItems.tsx";
+import { DisplayCartItems } from "../components/cart/containers/DisplayCartItems.tsx";
 
 //Auth state persistence
 //https://stackoverflow.com/questions/71718724/react-context-data-is-empty-after-routed-to-next-page

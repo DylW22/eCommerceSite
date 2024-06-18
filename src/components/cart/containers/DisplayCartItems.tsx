@@ -1,8 +1,8 @@
 import { Stack, Button, Nav } from "react-bootstrap";
 import { CartItem } from "./CartItem";
-import { formatCurrency } from "../utilities/formatCurrency";
-import storeItems from "../data/items.json";
-import { useShoppingCart } from "../context/ShoppingCartContext";
+import { formatCurrency } from "../../../utilities/formatCurrency";
+import storeItems from "../../../data/items.json";
+import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 

@@ -1,9 +1,7 @@
 import { getItemById } from "../../utilities/getItemById";
 import { Row, Col } from "react-bootstrap";
-import { PastOrderItem } from "../../types";
-type OrderedItemsListProps = {
-  items: PastOrderItem[];
-};
+//import { PastOrderItem } from "../../types";
+import { OrderedItemsListProps } from "../../types";
 
 export const OrderedItemsList: React.FC<OrderedItemsListProps> = ({
   items,

@@ -1,7 +1,8 @@
 import { Button, Image } from "react-bootstrap";
-import { useTheme } from "../context/ThemeContext";
-import Moon from "../assets/moon.svg";
-import Sun from "../assets/sun2.svg";
+
+import { useTheme } from "../../context/ThemeContext";
+import Moon from "../../assets/moon.svg";
+import Sun from "../../assets/sun2.svg";
 export const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
 

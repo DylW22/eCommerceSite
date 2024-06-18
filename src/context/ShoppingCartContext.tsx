@@ -1,29 +1,14 @@
-import { ReactNode, createContext, useContext, useState } from "react";
-import { ShoppingCart } from "../components/ShoppingCart";
+import { createContext, useContext, useState } from "react";
+import { ShoppingCart } from "../components/cart/containers/ShoppingCart";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useLocation } from "react-router-dom";
-type ShoppingCartProviderProps = {
-  children: ReactNode;
-};
+import {
+  ShoppingCartProviderProps,
+  ShoppingCartContextType,
+  CartItem,
+} from "../types";
 
-export type CartItem = {
-  id: number;
-  quantity: number;
-};
-
-type ShoppingCartContext = {
-  openCart: () => void;
-  closeCart: () => void;
-  getItemQuantity: (id: number) => number;
-  increaseCartQuantity: (id: number) => void;
-  decreaseCartQuantity: (id: number) => void;
-  removeFromCart: (id: number) => void;
-  emptyCart: () => void;
-  cartQuantity: number;
-  cartItems: CartItem[];
-};
-
-const ShoppingCartContext = createContext({} as ShoppingCartContext);
+const ShoppingCartContext = createContext({} as ShoppingCartContextType);
 
 export function useShoppingCart() {
   return useContext(ShoppingCartContext);

@@ -1,13 +1,16 @@
-import { LoginForm } from "../components/LoginForm";
+import { LoginForm } from "../components/login/LoginForm";
 //import { Button } from "react-bootstrap";
 
-import { ActionFunction, NavLink, redirect } from "react-router-dom";
+import { NavLink, redirect } from "react-router-dom";
+import type { ActionFunction } from "react-router-dom";
 //import { useNavigation } from "react-router-dom";
 
-import { ActionRequestProps } from "../types";
+import { ActionRequestProps, AppAction } from "../types";
+
 import { sanitizeInput } from "../utilities/sanitizeCode";
 //import { useEffect } from "react";
 
+//https://stackoverflow.com/questions/76766824/passing-a-function-to-a-react-router-action-in-typescript
 export function Login() {
   //const actionData = useActionData();
   //const navigate = useNavigation();
@@ -32,11 +35,11 @@ interface AppContext {
   // Other context properties/methods if needed
 }*/
 
-export const action: ActionFunction /*<AppContext>*/ =
-  (appContext) =>
+export const action =
+  (appContext: AppAction): ActionFunction =>
   async ({ request }: ActionRequestProps) => {
-    const { login } = appContext as any;
-
+    console.log(appContext);
+    const { login } = appContext;
     const formData = await request.formData();
     const data = Object.fromEntries(formData) as Record<string, string>;
     //const { email, password } = data;

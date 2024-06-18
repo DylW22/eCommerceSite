@@ -11,8 +11,13 @@ export const fetchOrderHistory = async () => {
     } else {
       return [];
     }
-  } catch (error: any) {
-    errors[error.code] = error.message;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("An error occurred when fetching: ", error.message);
+    } else {
+      console.error("An unknown error occurred: ", error);
+    }
+    //errors[error.code] = error.message;
   }
   return { errors };
 };

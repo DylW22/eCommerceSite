@@ -41,7 +41,7 @@ export const GET_TRANSACTIONS = gql`
     }
   }
 `;
-
+/*
 export interface Country {
   name: String;
   capital: String;
@@ -49,4 +49,4 @@ export interface Country {
 
 export interface GetDataQuery {
   country: Country[];
-}
+}*/

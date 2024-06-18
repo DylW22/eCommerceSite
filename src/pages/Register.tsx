@@ -1,6 +1,6 @@
-import { RegisterForm } from "../components/RegisterForm";
+import { RegisterForm } from "../components/login/RegisterForm";
 import { ActionFunction, redirect } from "react-router-dom";
-import { ActionRequestProps } from "../types";
+import { ActionRequestProps, RegisterAction } from "../types";
 export function Register() {
   return (
     <>
@@ -9,6 +9,32 @@ export function Register() {
   );
 }
 
+export const action = (appContext: RegisterAction): ActionFunction => {
+  return async ({ request }: ActionRequestProps) => {
+    //CHECK: added return
+    const { createAccount } = appContext;
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData) as Record<string, string>;
+    //Registration validation
+
+    //if valid, create account
+    const { email, password1, password2 } = data;
+
+    let isValid = false;
+    if (password1 === password2) {
+      isValid = true;
+    }
+    if (!isValid) {
+      throw new Error("Invalid!!");
+    }
+
+    await createAccount(email, password1);
+    //let success = true;
+    return redirect("/account");
+  };
+};
+
+/*
 export const action: ActionFunction =
   (appContext) =>
   async ({ request }: ActionRequestProps) => {
@@ -23,10 +49,14 @@ export const action: ActionFunction =
     await createAccount(email, password);
     //let success = true;
 
-    /* if (success && data?.referrer) {
-      return redirect(data?.referrer);
-    } else if (success) {
-      return redirect("/account");
-    }*/
+    //  if (success && data?.referrer) {
+    //   return redirect(data?.referrer);
+    // } else if (success) {
+    //   return redirect("/account");
+    // }
     return redirect("/account");
   };
+*/
+
+//
+//Viewing login action for typing

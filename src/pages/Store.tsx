@@ -1,15 +1,13 @@
 import { Row, Col } from "react-bootstrap";
-import { StoreItem } from "../components/StoreItem";
+import { StoreItem } from "../components/cart/containers/StoreItem.tsx";
 import { filterByQuery } from "../utilities/filterByQuery.ts";
 import { useRouteLoaderData } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import { GET_DATA, GetDataQuery } from "../queries.ts";
-import { useQuery, createQueryPreloader, useReadQuery } from "@apollo/client";
-import client from "../apolloClient.ts";
+//import { GET_DATA, GetDataQuery } from "../queries.ts";
+//import { useQuery, createQueryPreloader, useReadQuery } from "@apollo/client";
+//import client from "../apolloClient.ts";
+import { locationObject } from "../types.ts";
 import "./../assets/styles/styles.css";
-type locationObject = {
-  q: string;
-};
 
 //const preloadQuery = createQueryPreloader(client);
 //const preloadedQueryRef = preloadQuery(GET_DATA);

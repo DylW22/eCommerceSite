@@ -50,11 +50,17 @@ export const action: ActionFunction =
       //Successful?
       await writeToDatabase(order);
       status = "success";
-    } catch (error: any) {
+    } catch (error: unknown) {
       status = "failure";
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      errors[errorCode] = errorMessage;
+      if (error instanceof Error) {
+        console.error("An error occurred: ", error.message);
+      } else {
+        console.error("An unknown error occurred: ", error);
+      }
+
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // errors[errorCode] = errorMessage;
     }
     return {
       status,

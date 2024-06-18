@@ -1,7 +1,7 @@
 import { ShoppingCartProviderLayout } from "../context/Layouts";
 import { ThemeProviderLayout } from "../context/Layouts";
 import { Root } from "../pages/Root";
-import { loader as SearchBarLoader } from "../components/SearchBar";
+import { loader as SearchBarLoader } from "../components/header/SearchBar";
 import { Store } from "../pages/Store";
 import { About } from "../pages/About";
 import { TestPage } from "../pages/TestPage";
@@ -10,11 +10,12 @@ import { Register } from "../pages/Register";
 import { InvalidPath } from "../pages/InvalidPath";
 import { action as LoginAction } from "../pages/Login";
 import { action as RegisterAction } from "../pages/Register";
-import { ProtectedRoute } from "../components/ProtectedRoute";
+import { ProtectedRoute } from "../components/routing/ProtectedRoute";
+//import { ProtectedRoute } from "../components/ProtectedRoute";
 import { Account } from "../pages/Account";
 import { Checkout } from "../pages/Checkout";
 import { Payment } from "../pages/Payment";
-import { RedirectedRoute } from "../components/RedirectedRoute";
+import { RedirectedRoute } from "../components/routing/RedirectedRoute";
 import {
   loader as HistoryLayoutLoader,
   HistoryLayout,
@@ -23,8 +24,9 @@ import {
 import { action as PaymentAction } from "../pages/Payment";
 import { Home } from "../pages/Home";
 import { Transaction } from "../components/orderHistory/Transaction";
-import { HistoryIndex } from "../components/HistoryIndex";
+import { HistoryIndex } from "../pages/HistoryIndex";
 import { ActionFunction, RouteObject } from "react-router-dom";
+
 //22, 23, 24. 78, 79
 export const RoutesConfig = (appContext: any): RouteObject[] => {
   return [

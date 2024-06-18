@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
-import { ReactNode } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 //import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import {
@@ -9,41 +8,12 @@ import {
   UserCredential,
 } from "firebase/auth";
 import { auth } from "../utilities/firebaseConfig.ts";
-
-type AuthCartProviderProps = {
-  children: ReactNode;
-};
-
-interface UserData {
-  uid: string | null;
-  email: string | null;
-  displayName: string | null;
-}
-
-interface Tokens {
-  accessToken: string | null;
-  refreshToken: string | null;
-}
-
-type AuthState = {
-  isAuthenticated: boolean;
-  token: Tokens;
-  userData: UserData | null;
-  error: string | null;
-};
-
-type AuthAction =
-  | { type: "LOGIN"; userData: UserData; userTokens: Tokens }
-  | { type: "LOGOUT" }
-  | { type: "REGISTER"; userData: UserData }
-  | { type: "SET_ERROR"; error: string };
-
-export type AuthContextType = {
-  state: AuthState;
-  login: (token: string, username: string, password: string) => void;
-  logout: () => void;
-  createAccount: () => void;
-};
+import {
+  AuthCartProviderProps,
+  AuthState,
+  AuthAction,
+  AuthContextType,
+} from "../types.ts";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -159,7 +129,7 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
     dispatch({ type: "LOGOUT" });
   };
 
-  const createAccount = async () => {
+  const createAccount = async (email: string, password: string) => {
     try {
       const userCredentials = await createUserWithEmailAndPassword(
         auth,
@@ -201,4 +171,4 @@ const useAuth = () => {
   return context;
 };
 
-export { AuthProvider, useAuth };
+export { AuthProvider, useAuth, AuthContext };

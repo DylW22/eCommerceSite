@@ -1,13 +1,15 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+//import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useShoppingCart } from "../context/ShoppingCartContext";
+import { useShoppingCart } from "../../context/ShoppingCartContext";
+//import { useShoppingCart } from "../context/ShoppingCartContext";
 //stackoverflow.com/questions/69864165/error-privateroute-is-not-a-route-component-all-component-children-of-rou
 //Typescript:
 ///https://blog.logrocket.com/react-children-prop-typescript/
 
-export function ProtectedRoute(/*props: ProtectedProps*/) {
+export function ProtectedRoute() {
   const { state } = useAuth();
   const { isAuthenticated } = state;
   const { emptyCart } = useShoppingCart();

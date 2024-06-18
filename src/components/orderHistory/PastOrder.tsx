@@ -1,12 +1,8 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { OrderedItemsList } from "./OrderedItemsList";
 import { getItemById } from "../../utilities/getItemById";
-import { PastOrderCard } from "../../types";
+import { PastOrderProps } from "../../types";
 import React from "react";
-
-type PastOrderProps = {
-  order: PastOrderCard;
-};
 
 export const PastOrder: React.FC<PastOrderProps> = ({ order }) => {
   const { orderId, orderDate, items: rawItems } = order;

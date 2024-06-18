@@ -1,11 +1,9 @@
-import { useShoppingCart } from "../context/ShoppingCartContext";
-import storeItems from "../data/items.json";
+import { useShoppingCart } from "../../../context/ShoppingCartContext";
+import storeItems from "../../../data/items.json";
 import { Button, Stack } from "react-bootstrap";
-import { formatCurrency } from "../utilities/formatCurrency";
-type CartItemsProps = {
-  id: number;
-  quantity: number;
-};
+import { formatCurrency } from "../../../utilities/formatCurrency";
+import { CartItemsProps } from "../../../types";
+
 export function CartItem({ id, quantity }: CartItemsProps) {
   const { removeFromCart } = useShoppingCart();
   const item = storeItems.find((i) => i.id === id);

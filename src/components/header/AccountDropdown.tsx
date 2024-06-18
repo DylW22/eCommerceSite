@@ -1,4 +1,4 @@
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { Dropdown } from "react-bootstrap";
 export const AccountDropDown = () => {
   const { logout } = useAuth();
