@@ -1,6 +1,12 @@
 import { forwardRef } from "react";
+//import { PopoverRefType } from "../../pages/Home";
+//import {Ref} from "react";
+interface PopoverProps {
+  className?: string;
+}
 
-export const Popover = forwardRef(({ className }, ref) => {
+export const Popover = forwardRef((props: PopoverProps, ref: any) => {
+  const { className } = props;
   return (
     <div
       ref={ref}

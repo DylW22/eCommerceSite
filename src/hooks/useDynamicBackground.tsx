@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDebounce } from "./useDebounce";
 
 export const useDynamicBackground = (type = "linear", delay = 100) => {
@@ -16,6 +16,9 @@ export const useDynamicBackground = (type = "linear", delay = 100) => {
 
   useEffect(() => {
     window.addEventListener("scroll", debouncedHandleScroll);
+    if (type === "lineaar") {
+      console.log("Hello");
+    }
     return () => {
       window.removeEventListener("scroll", debouncedHandleScroll);
     };

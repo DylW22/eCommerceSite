@@ -179,7 +179,9 @@ export interface ChildRefsContext {
 }
 
 export interface ChildRefs {
-  childRefs: HTMLInputElement[]; //React.MutableRefObject<HTMLLIElement[]>;
+  [x: string]: any;
+  childRefs: React.MutableRefObject<HTMLInputElement[]>;
+  //childRefs: HTMLInputElement[]; //React.MutableRefObject<HTMLLIElement[]>;
 }
 
 export type transactionItem = {

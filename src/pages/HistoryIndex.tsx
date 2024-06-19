@@ -21,7 +21,7 @@ export const HistoryIndex = () => {
       {transactions &&
         transactions.map((transaction, index) => (
           <ListGroup.Item
-            ref={(el) => (childRefs.current[index] = el)}
+            ref={(el: any) => (childRefs.current[index] = el)}
             key={transaction.orderId}
             id={`${transaction.orderId}`}
           >

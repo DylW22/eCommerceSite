@@ -12,21 +12,27 @@ import backgroundImg from "../assets/background.jpg";
 import { Testimonials } from "../components/home/Testimonials";
 import { Popover } from "../components/home/Popover";
 import { useDynamicBackground } from "../hooks/useDynamicBackground";
+
+export type PopoverRefType = { current: HTMLElement | null; [x: string]: any };
+
 export function Home() {
-  const popoverRef = useRef(null);
+  const popoverRef = useRef<PopoverRefType>(null);
   const [isOpen, setIsOpen] = useState(true);
   const { styles } = useDynamicBackground();
   console.log("styles: ", styles);
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (popoverRef.current && !popoverRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        popoverRef.current &&
+        !popoverRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
 
     window.addEventListener("click", handleClickOutside);
     return () => {
-      window.addEventListener("click", handleClickOutside);
+      window.removeEventListener("click", handleClickOutside);
     };
   }, [isOpen]);
 
