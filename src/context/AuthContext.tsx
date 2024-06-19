@@ -133,8 +133,10 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
     try {
       const userCredentials = await createUserWithEmailAndPassword(
         auth,
-        "testuser2@gmail.com",
-        "ABCDEF123"
+        email,
+        password
+        //"testuser2@gmail.com",
+        //"ABCDEF123"
       );
       const userData = {
         uid: userCredentials.user.uid,

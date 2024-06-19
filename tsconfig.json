@@ -25,5 +25,6 @@
 
   },
   "include": ["src"],
+  "exclude": ["src/pages/ChildPage"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -1,4 +1,7 @@
-export const ChildPage = ({ items, childRefs }) => {
+export const ChildPage = () => {
+  return <div>ChildPage</div>;
+};
+/*export const ChildPage = ({ items, childRefs }) => {
   return (
     <>
       {items &&
@@ -15,3 +18,4 @@ export const ChildPage = ({ items, childRefs }) => {
     </>
   );
 };
+*/

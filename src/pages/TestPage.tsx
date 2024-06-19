@@ -1,8 +1,10 @@
-import { Navbar, Nav, Pagination, Container, Row, Col } from "react-bootstrap";
-import { useRef } from "react";
-import { ChildPage } from "./ChildPage";
+//import { Navbar, Nav, Pagination, Container, Row, Col } from "react-bootstrap";
+//import { useRef } from "react";
+//import { ChildPage } from "./ChildPage";
 export function TestPage() {
-  const childRefs = useRef([]);
+  return <div>TestPage</div>;
+}
+/* const childRefs = useRef([]);
   const scrollDown = (index: number) => {
     console.log(`Will scroll down to ${index}`);
     if (childRefs.current[index]) {
@@ -42,6 +44,7 @@ export function TestPage() {
     </Container>
   );
 }
+*/
 
 /*
     <Container className="h-100">

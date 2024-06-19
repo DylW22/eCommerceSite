@@ -26,7 +26,6 @@ import { Home } from "../pages/Home";
 //import { Transaction } from "../components/orderHistory/Transaction";
 import { HistoryIndex } from "../pages/HistoryIndex";
 import { ActionFunction, RouteObject } from "react-router-dom";
-import { SmoothScrollProvider } from "../context/SmoothScrollContext";
 //22, 23, 24. 78, 79
 export const RoutesConfig = (appContext: any): RouteObject[] => {
   return [
@@ -94,22 +93,14 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
                       path: "/account",
                     },
                     {
-                      element: (
-                        <SmoothScrollProvider>
-                          <TransactionLayout />
-                        </SmoothScrollProvider>
-                      ),
+                      element: <TransactionLayout />,
                       path: "/history",
                       loader: HistoryLayoutLoader,
                       id: "history",
                       children: [
                         {
                           index: true,
-                          element: (
-                            <SmoothScrollProvider>
-                              <HistoryIndex />
-                            </SmoothScrollProvider>
-                          ),
+                          element: <HistoryIndex />,
                         },
                         /*    {
                           path: "/history/:orderId",
