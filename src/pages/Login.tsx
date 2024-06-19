@@ -8,6 +8,7 @@ import type { ActionFunction } from "react-router-dom";
 import { ActionRequestProps, AppAction } from "../types";
 
 import { sanitizeInput } from "../utilities/sanitizeCode";
+import { measureExecutionTime } from "../utilities/measureExecutionTime";
 //import { useEffect } from "react";
 
 //https://stackoverflow.com/questions/76766824/passing-a-function-to-a-react-router-action-in-typescript
@@ -38,7 +39,6 @@ interface AppContext {
 export const action =
   (appContext: AppAction): ActionFunction =>
   async ({ request }: ActionRequestProps) => {
-    console.log(appContext);
     const { login } = appContext;
     const formData = await request.formData();
     const data = Object.fromEntries(formData) as Record<string, string>;
@@ -46,14 +46,23 @@ export const action =
     // const cleanEmail = sanitizeInput(email);
     // const cleanPassword = sanitizeInput(password);
 
-    console.log("Form data: ", data);
+    //console.log("Form data: ", data);
     try {
       await login("testuser1@gmail.com", "ABC123");
+      /*await measureExecutionTime(
+        async () => await login("testuser1@gmail.com", "ABC123")
+      );*/
+
       //await login("token", cleanEmail, cleanPassword)
       if (data?.referrer) return redirect(data?.referrer);
       return redirect("/account");
-    } catch (error) {
-      console.log("Login error: ", error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.error("Login error: ", error);
+      }
+
       return redirect("/login");
     }
   };

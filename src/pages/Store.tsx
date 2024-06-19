@@ -15,9 +15,7 @@ import "./../assets/styles/styles.css";
 export function Store() {
   const location = useRouteLoaderData("root") as locationObject;
   const itemsToDisplay = filterByQuery(location.q);
-  console.log("itemsToDisplay: ", itemsToDisplay);
-  //const { data } = useReadQuery(preloadedQueryRef);
-  //console.log("Preread data: ", data);
+
   /*  const { loading, error, data } = useQuery<GetDataQuery>(GET_DATA);
 
   if (loading) {

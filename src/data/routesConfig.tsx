@@ -18,15 +18,15 @@ import { Payment } from "../pages/Payment";
 import { RedirectedRoute } from "../components/routing/RedirectedRoute";
 import {
   loader as HistoryLayoutLoader,
-  HistoryLayout,
-} from "../components/HistoryLayout";
+  TransactionLayout,
+} from "../components/orderHistory/TransactionLayout";
 //import { OrderHistory, loader as HistoryLoader } from "../pages/OrderHistory";
 import { action as PaymentAction } from "../pages/Payment";
 import { Home } from "../pages/Home";
-import { Transaction } from "../components/orderHistory/Transaction";
+//import { Transaction } from "../components/orderHistory/Transaction";
 import { HistoryIndex } from "../pages/HistoryIndex";
 import { ActionFunction, RouteObject } from "react-router-dom";
-
+import { SmoothScrollProvider } from "../context/SmoothScrollContext";
 //22, 23, 24. 78, 79
 export const RoutesConfig = (appContext: any): RouteObject[] => {
   return [
@@ -94,18 +94,27 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
                       path: "/account",
                     },
                     {
-                      element: <HistoryLayout />,
+                      element: (
+                        <SmoothScrollProvider>
+                          <TransactionLayout />
+                        </SmoothScrollProvider>
+                      ),
                       path: "/history",
                       loader: HistoryLayoutLoader,
+                      id: "history",
                       children: [
                         {
                           index: true,
-                          element: <HistoryIndex />,
+                          element: (
+                            <SmoothScrollProvider>
+                              <HistoryIndex />
+                            </SmoothScrollProvider>
+                          ),
                         },
-                        {
+                        /*    {
                           path: "/history/:orderId",
                           element: <Transaction />,
-                        },
+                        },*/
                       ],
 
                       //loader: HistoryLoader,

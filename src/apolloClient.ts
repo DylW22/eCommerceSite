@@ -30,7 +30,7 @@ const authLink = setContext(async (_, { headers }) => {
       });
     });
   }
-  console.log("client side: token: ", token);
+  //console.log("client side: token: ", token);
   return {
     headers: {
       ...headers,

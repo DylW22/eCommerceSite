@@ -6,7 +6,6 @@ export const writeToDatabase = async (incomingData: OrderData) => {
   const dbRef = ref(database, `/transactions/${incomingData.orderId}`);
   try {
     await set(dbRef, incomingData);
-    console.log("Success");
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.log("Failure: ", error.message);

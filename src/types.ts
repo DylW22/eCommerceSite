@@ -13,11 +13,14 @@ export type Item = {
   imgUrl: string;
 };
 
+//obsolete
 export type PastOrderItem = {
   id: number;
   quantity: number;
   itemId: number;
 };
+
+//obsolete
 export type PastOrderCard = {
   orderDate: string;
   orderId: number;
@@ -28,6 +31,7 @@ export interface ActionRequestProps {
   request: Request;
 }
 
+//Need to fix
 export type OrderData = {
   orderDate: string;
   orderId: number;
@@ -132,12 +136,18 @@ export type StoreItemProps = {
 
 //OrderedItemsList.tsx
 export type OrderedItemsListProps = {
-  items: PastOrderItem[];
+  items: transactionItem[];
 };
 
 //PastOrder.tsx
+//obsolete
 export type PastOrderProps = {
   order: PastOrderCard;
+};
+
+//TransactionNew.tsx
+export type TransactionProps = {
+  transaction: Transaction;
 };
 
 //Store.tsx
@@ -165,8 +175,10 @@ export interface Transaction {
 }
 
 export type transactionItem = {
+  //reduce(arg0: (total: any, item: any) => any, arg1: number): unknown;
   id: number;
   quantity: number;
+  itemId: number;
 };
 
 /*export class CustomError extends Error {

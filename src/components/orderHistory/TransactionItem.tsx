@@ -1,26 +1,15 @@
-import { Container, Row, Col } from "react-bootstrap";
-import { OrderedItemsList } from "./OrderedItemsList";
-import { getItemById } from "../../utilities/getItemById";
-import { PastOrderProps } from "../../types";
 import React from "react";
+import { Col, Row, Container } from "react-bootstrap";
+import { TransactionProps } from "../../types";
+import { TransactionItemsList } from "./TransactionItemsList";
+import { calculateTotalPrice } from "../../utilities/calculateTotalPrice";
+const TransactionItem: React.FC<TransactionProps> = ({ transaction }) => {
+  const { orderId, orderDate, items } = transaction;
+  let transactionListItems = Object.values(items);
+  const totalPrice = calculateTotalPrice(transactionListItems);
 
-export const PastOrder: React.FC<PastOrderProps> = ({ order }) => {
-  const { orderId, orderDate, items: rawItems } = order;
-  let items = Object.values(rawItems);
-
-  /*console.log("orderId: ", orderId);
-  console.log("orderDate: ", orderDate);
-  console.log("items: ", items);*/
-
-  const totalPrice = items.reduce((total, item) => {
-    const foundItem = getItemById(item.id);
-    if (!foundItem) return total;
-
-    return total + foundItem.price * item.quantity;
-  }, 0);
   return (
-    //style={{ height: "400px" }}
-    <Container fluid className="shadow-lg w-100 ">
+    <Container fluid className="shadow-lg">
       <Row style={{ backgroundColor: "yellow" }} className="fs-2 p-2">
         <Col className="text-center">Order ID: {orderId}</Col>
         <Col className="text-center">Date: {orderDate}</Col>
@@ -31,7 +20,7 @@ export const PastOrder: React.FC<PastOrderProps> = ({ order }) => {
           <Col className="text-center fw-bold">Quantity</Col>
           <Col className="text-center fw-bold">Cost ($)</Col>
         </Row>
-        <OrderedItemsList items={items} />
+        <TransactionItemsList items={transactionListItems} />
 
         <Row className="mt-5 text-end py-5">
           <Col sm={4} />
@@ -46,3 +35,5 @@ export const PastOrder: React.FC<PastOrderProps> = ({ order }) => {
     </Container>
   );
 };
+
+export default TransactionItem;

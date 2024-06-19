@@ -1,9 +1,8 @@
 import { getItemById } from "../../utilities/getItemById";
 import { Row, Col } from "react-bootstrap";
-//import { PastOrderItem } from "../../types";
 import { OrderedItemsListProps } from "../../types";
 
-export const OrderedItemsList: React.FC<OrderedItemsListProps> = ({
+export const TransactionItemsList: React.FC<OrderedItemsListProps> = ({
   items,
 }) => {
   return items.map((item) => {

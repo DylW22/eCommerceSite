@@ -16,8 +16,8 @@ export function Header() {
   const { isAuthenticated } = state;
 
   return (
-    //mb-3 bg-white px-md-5
-    <Container fluid className="bg-white p-0">
+    //mb-3 bg-white px-md-5 //
+    <Container fluid className="bg-white p-0 sticky-top mb-2">
       <NavbarBs expand sticky="top" className="">
         <Container fluid className="d-flex justify-content-between">
           <Navbar />
@@ -48,28 +48,6 @@ export function Header() {
               </div>
             </div>
           </Container>
-
-          {/*<div className="d-none d-md-flex align-items-center bg-primary">
-            <ThemeToggle />
-            <SearchBar />
-          </div>
-          <div className="d-flex align-items-center justify-content-between">
-            {isAuthenticated ? (
-              <AccountDropDown />
-            ) : (
-              <Nav.Link to="/login" as={NavLink}>
-                <Button>Login</Button>
-              </Nav.Link>
-            )}
-            {cartQuantity > 0 && (
-              <div
-                style={{ height: "20px" }}
-                className="d-flex align-items-center ml-3"
-              >
-                <NavbarCartButton />
-              </div>
-            )}
-          </div>*/}
         </Container>
       </NavbarBs>
     </Container>
