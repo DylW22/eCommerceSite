@@ -1,12 +1,13 @@
-import { useLoaderData, Link, Outlet, LoaderFunction } from "react-router-dom";
+import { useLoaderData, Outlet, LoaderFunction } from "react-router-dom";
 import { TransactionsLoaderObject, Transaction } from "../../types";
 import { GET_TRANSACTIONS } from "../../queries";
 import { createQueryPreloader, useReadQuery } from "@apollo/client";
-import { ListGroup, Col, Row, Container } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
 //import { measureExecutionTime } from "../../utilities/measureExecutionTime";
 //import { PreloadQueryFunction } from "@apollo/client";
 import client from "../../apolloClient";
 import { DisplayTransactionsList } from "./DisplayTransactionsList";
+import { useRef } from "react";
 const preloadQuery = createQueryPreloader(client);
 
 interface QueryDataType {
@@ -21,6 +22,16 @@ export const TransactionLayout = () => {
 
   //https://github.com/apollographql/apollo-client-nextjs/blob/e7a59cb26716a77bbfac659f435f89f5af8eff61/packages/client-react-streaming/src/registerApolloClient.tsx#L152
 
+  const childRefs = useRef<HTMLInputElement[]>([]);
+  const scrollDown = (index: number) => {
+    if (childRefs.current[index]) {
+      childRefs.current[index].style.scrollMargin = "50px";
+      childRefs.current[index].scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <Container
       fluid
@@ -34,16 +45,19 @@ export const TransactionLayout = () => {
             top: "56px",
             padding: "0",
             height: "calc(100vh - 64px)",
-          }} //Check these paddings and margins
+          }}
           xs={3}
           md={3}
           lg={3}
         >
-          <DisplayTransactionsList transactions={transactions} />
+          <DisplayTransactionsList
+            transactions={transactions}
+            scrollDown={scrollDown}
+          />
         </Col>
         {
           <Col xs={9} md={9} lg={9}>
-            <Outlet />
+            <Outlet context={childRefs} />
           </Col>
         }
       </Row>

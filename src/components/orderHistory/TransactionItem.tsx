@@ -9,7 +9,7 @@ const TransactionItem: React.FC<TransactionProps> = ({ transaction }) => {
   const totalPrice = calculateTotalPrice(transactionListItems);
 
   return (
-    <Container fluid className="shadow-lg">
+    <Container fluid className="shadow-lg ">
       <Row style={{ backgroundColor: "yellow" }} className="fs-2 p-2">
         <Col className="text-center">Order ID: {orderId}</Col>
         <Col className="text-center">Date: {orderDate}</Col>

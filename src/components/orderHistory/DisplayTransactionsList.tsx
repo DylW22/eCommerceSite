@@ -1,24 +1,20 @@
 import React, { useState } from "react";
 import { ListGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { Transaction } from "../../types";
-import { useSmoothScrollContext } from "../../context/SmoothScrollContext";
 interface DisplayTransactionsListProps {
   transactions: Transaction[];
+  scrollDown: Function;
 }
 
 export const DisplayTransactionsList: React.FC<
   DisplayTransactionsListProps
-> = ({ transactions }) => {
-  const { scrollToCard } = useSmoothScrollContext();
+> = ({ transactions, scrollDown }) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const handleItemClick = (index: number) => {
-    scrollToCard(index);
+    scrollDown(index);
     setActiveIndex(index);
   };
-
-  console.log("Transactions: ", transactions);
   return (
     <>
       <h1 className="text-center pt-2 fs-4 font-weight-bold rounded-md">

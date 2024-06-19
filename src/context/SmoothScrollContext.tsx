@@ -1,4 +1,4 @@
-import React, { createContext, useRef, useContext } from "react";
+import React, { createContext, useRef, useContext, useState } from "react";
 
 const SmoothScrollContext = createContext<any>({});
 
@@ -6,10 +6,12 @@ export const useSmoothScrollContext = () => useContext(SmoothScrollContext);
 
 export const SmoothScrollProvider: React.FC = ({ children }) => {
   const cardRefs = useRef([]);
+  const [testRef, setTestRef] = useState(null);
 
   const scrollToCard = (index: number) => {
     console.log("clicked: ", index);
-    console.log(cardRefs.current);
+    console.log("cardRefs: ", cardRefs.current);
+
     if (cardRefs.current?.[index]) {
       cardRefs.current[index].scrollIntoView({ behavior: "smooth" });
     }
@@ -23,9 +25,14 @@ export const SmoothScrollProvider: React.FC = ({ children }) => {
     }
   };
 
+  const updateRef = (val) => {
+    console.log("Ref will update: ", val);
+    setTestRef(val);
+  };
+
   return (
     <SmoothScrollContext.Provider
-      value={{ cardRefs, scrollToCard, scrollToNextCard }}
+      value={{ cardRefs, scrollToCard, scrollToNextCard, testRef, updateRef }}
     >
       {children}
     </SmoothScrollContext.Provider>

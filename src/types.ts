@@ -174,6 +174,14 @@ export interface Transaction {
   orderId: number;
 }
 
+export interface ChildRefsContext {
+  current: HTMLLIElement | null;
+}
+
+export interface ChildRefs {
+  childRefs: HTMLInputElement[]; //React.MutableRefObject<HTMLLIElement[]>;
+}
+
 export type transactionItem = {
   //reduce(arg0: (total: any, item: any) => any, arg1: number): unknown;
   id: number;

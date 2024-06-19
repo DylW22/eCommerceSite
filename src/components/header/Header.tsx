@@ -17,7 +17,7 @@ export function Header() {
 
   return (
     //mb-3 bg-white px-md-5 //
-    <Container fluid className="bg-white p-0 sticky-top mb-2">
+    <Container fluid className="bg-white p-0 sticky-top">
       <NavbarBs expand sticky="top" className="">
         <Container fluid className="d-flex justify-content-between">
           <Navbar />
