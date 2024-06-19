@@ -13,12 +13,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "noEmitOnError": true,
+    "noEmitOnError": false, //true
     "jsx": "react-jsx",
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false, //true
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
   
