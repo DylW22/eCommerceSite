@@ -1,30 +1,7 @@
-//import { CartItem } from "./context/ShoppingCartContext";
 import { ReactNode } from "react";
 export type CartItem = {
   id: number;
   quantity: number;
-};
-
-export type Item = {
-  //StoreItem
-  id: number;
-  name: string;
-  price: number;
-  imgUrl: string;
-};
-
-//obsolete
-export type PastOrderItem = {
-  id: number;
-  quantity: number;
-  itemId: number;
-};
-
-//obsolete
-export type PastOrderCard = {
-  orderDate: string;
-  orderId: number;
-  items: PastOrderItem[];
 };
 
 export interface ActionRequestProps {
@@ -40,16 +17,6 @@ export type OrderData = {
 
 export type TransactionsLoaderObject = {
   data: [OrderData];
-};
-
-export type ItemsLoaderObject = {
-  data: [Item];
-};
-
-export type HistoryLoaderObject = {
-  data: PastOrderCard[];
-  status: "success" | "failure";
-  errors: Record<string, string>;
 };
 
 export type ShoppingCartProviderProps = {
@@ -132,6 +99,7 @@ export type StoreItemProps = {
   name: string;
   price: number;
   imgUrl: string;
+  category: string;
 };
 
 //OrderedItemsList.tsx
@@ -139,15 +107,9 @@ export type OrderedItemsListProps = {
   items: transactionItem[];
 };
 
-//PastOrder.tsx
-//obsolete
-export type PastOrderProps = {
-  order: PastOrderCard;
-};
-
 //TransactionNew.tsx
 export type TransactionProps = {
-  transaction: Transaction;
+  transaction: Transaction; //CartItem
 };
 
 //Store.tsx
@@ -168,8 +130,9 @@ export interface RegisterAction extends AuthContextType {
 }
 
 //HistoryLayout.tsx
+//To remove
 export interface Transaction {
-  items: transactionItem[];
+  items: transactionItem[]; //try CartItem[]
   orderDate: string;
   orderId: number;
 }
@@ -191,27 +154,7 @@ export type transactionItem = {
   itemId: number;
 };
 
-/*export class CustomError extends Error {
-  constructor(public message: string, public code: string) {
-    super(message);
-    this.name = "CustomError";
-  }
-}
-*/
 export interface IError {
   message: string;
   code?: string;
 }
-
-/*
-export type Country = {
-  name: string;
-  capital: string;
-};
-
-export type CountryLoaderObject = {
-  data: Country[];
-  // status: "success" | "failure";
-  // errors: Record<string, string>;
-};
-*/

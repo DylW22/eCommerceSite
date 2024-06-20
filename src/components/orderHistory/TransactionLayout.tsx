@@ -70,6 +70,7 @@ export const loader: LoaderFunction = async ({}): Promise<
 > => {
   try {
     // let codes = ["US", "MX", "CA"];
+    // await new Promise((res) => setTimeout(() => res("OK"), 1000));
     const transactions = preloadQuery(GET_TRANSACTIONS) as any; //, { variables: { codes } });
 
     /*const [transactions, _] = (await measureExecutionTime(() =>

@@ -25,6 +25,6 @@
 
   },
   "include": ["src"],
-  "exclude": ["src/pages/ChildPage"],
+  "exclude": ["src/utilities/onRender.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

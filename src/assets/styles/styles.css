@@ -11,6 +11,10 @@ color: #FFF;
     --bg-color: #222;
     --text-color: white;
 }
+
+.custom-gray {
+    background-color: #929394; /* Light gray */
+  }
 /*
 .no-scrollbar {
     overflow: hidden;

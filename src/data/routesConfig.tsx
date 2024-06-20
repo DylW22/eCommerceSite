@@ -26,6 +26,8 @@ import { Home } from "../pages/Home";
 //import { Transaction } from "../components/orderHistory/Transaction";
 import { HistoryIndex } from "../pages/HistoryIndex";
 import { ActionFunction, RouteObject } from "react-router-dom";
+//import { Profiler } from "react";
+//import { onRender } from "../utilities/onRender";
 //22, 23, 24. 78, 79
 export const RoutesConfig = (appContext: any): RouteObject[] => {
   return [
@@ -93,14 +95,22 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
                       path: "/account",
                     },
                     {
-                      element: <TransactionLayout />,
+                      element: (
+                        //         <Profiler id="transactionLayout" onRender={onRender}>
+                        <TransactionLayout />
+                        //       </Profiler>
+                      ),
                       path: "/history",
                       loader: HistoryLayoutLoader,
                       id: "history",
                       children: [
                         {
                           index: true,
-                          element: <HistoryIndex />,
+                          element: (
+                            //         <Profiler id="historyIndex" onRender={onRender}>
+                            <HistoryIndex />
+                            //       </Profiler>
+                          ),
                         },
                         /*    {
                           path: "/history/:orderId",

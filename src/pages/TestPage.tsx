@@ -1,9 +1,22 @@
 //import { Navbar, Nav, Pagination, Container, Row, Col } from "react-bootstrap";
 //import { useRef } from "react";
+
+import { Profiler } from "react";
+//import { onRender } from "../utilities/onRender";
+
 //import { ChildPage } from "./ChildPage";
 export function TestPage() {
-  return <div>TestPage</div>;
+  return (
+    // <Profiler id="TestChild" onRender={onRender}>
+    <TestChild />
+    //</Profiler>
+  );
 }
+
+const TestChild = () => {
+  return <div>I am a test Child</div>;
+};
+
 /* const childRefs = useRef([]);
   const scrollDown = (index: number) => {
     console.log(`Will scroll down to ${index}`);

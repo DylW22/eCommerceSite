@@ -69,7 +69,7 @@ export function Home() {
           className="p-4 d-flex flex-column align-items-center my-10 order-md-3"
         >
           <div className="flex-fill bg-danger w-100 text-center">Shop now</div>
-          <div className="flex-fill bg-secondary w-100 text-center">
+          <div className="flex-fill w-100 text-center">
             <SubscribeNewsletter />
           </div>
         </Col>

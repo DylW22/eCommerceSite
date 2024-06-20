@@ -1,6 +1,6 @@
 import { transactionItem } from "../types";
 import { getItemById } from "./getItemById";
-export const calculateTotalPrice = (items: transactionItem[]) => {
+export const calculateTotalPrice = (items: transactionItem[]): number => {
   return items.reduce((total, item) => {
     const foundItem = getItemById(item.id);
     if (!foundItem) return total;
