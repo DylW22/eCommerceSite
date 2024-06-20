@@ -1,10 +1,19 @@
 export const Testimonials = () => {
+  let test = [0, 1, 2];
+
   return (
     <>
-      <h1>Testimonials</h1>
-      <div className="flex-fill bg-danger w-100">Row 1</div>
-      <div className="flex-fill bg-secondary w-100">Row 2</div>
-      <div className="flex-fill bg-info w-100">Row 3</div>
+      <div>
+        <h1>Testimonials</h1>
+      </div>
+      <div className="d-flex flex-md-column flex-fill w-100 text-center">
+        {test &&
+          test.map((item, index) => (
+            <div key={index} className="flex-fill bg-info w-100">
+              Row {item}
+            </div>
+          ))}
+      </div>
     </>
   );
 };
