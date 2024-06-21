@@ -2,7 +2,8 @@ import { Button, Row, Form } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { generateOrderDetails } from "../utilities/generateOrderDetails";
 import { Form as FormRR } from "react-router-dom";
-import { writeToDatabase } from "../utilities/writeTransactions.js";
+import { writeToDatabase } from "../utilities/writeTransactions"; //.js
+
 import type { ActionFunction } from "react-router-dom";
 import type { ActionRequestProps } from "../types.js";
 export function Payment() {

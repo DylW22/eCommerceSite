@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { ListGroup } from "react-bootstrap";
-import { Transaction } from "../../types";
+import { OrderData } from "../../types";
 interface DisplayTransactionsListProps {
-  transactions: Transaction[];
+  transactions: OrderData[];
   scrollDown: Function;
 }
 

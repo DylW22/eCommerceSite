@@ -1,5 +1,5 @@
 import { useLoaderData, Outlet, LoaderFunction } from "react-router-dom";
-import { TransactionsLoaderObject, Transaction } from "../../types";
+import { TransactionsLoaderObject, OrderData } from "../../types";
 import { GET_TRANSACTIONS } from "../../queries";
 import { createQueryPreloader, useReadQuery } from "@apollo/client";
 import { Col, Row, Container } from "react-bootstrap";
@@ -11,7 +11,7 @@ import { useRef } from "react";
 const preloadQuery = createQueryPreloader(client);
 
 interface QueryDataType {
-  getTransactions: Transaction[];
+  getTransactions: OrderData[];
   // Add other properties if needed
 }
 
@@ -22,7 +22,7 @@ export const TransactionLayout = () => {
 
   //https://github.com/apollographql/apollo-client-nextjs/blob/e7a59cb26716a77bbfac659f435f89f5af8eff61/packages/client-react-streaming/src/registerApolloClient.tsx#L152
 
-  const childRefs = useRef<HTMLInputElement[]>([]);
+  const childRefs = useRef<HTMLElement[]>([]);
   const scrollDown = (index: number) => {
     if (childRefs.current[index]) {
       childRefs.current[index].style.scrollMargin = "50px";

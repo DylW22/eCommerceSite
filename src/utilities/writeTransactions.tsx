@@ -1,4 +1,4 @@
-import { database } from "./firebaseConfig.js";
+import { database } from "./firebaseConfig"; //.js ext edit
 import { ref, set } from "firebase/database";
 import { OrderData } from "../types.js";
 

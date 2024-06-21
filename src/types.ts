@@ -109,7 +109,7 @@ export type OrderedItemsListProps = {
 
 //TransactionNew.tsx
 export type TransactionProps = {
-  transaction: Transaction; //CartItem
+  transaction: OrderData; //OrderData
 };
 
 //Store.tsx
@@ -129,14 +129,6 @@ export interface RegisterAction extends AuthContextType {
   createAccount: (email: string, password: string) => Promise<void>;
 }
 
-//HistoryLayout.tsx
-//To remove
-export interface Transaction {
-  items: transactionItem[]; //try CartItem[]
-  orderDate: string;
-  orderId: number;
-}
-
 export interface ChildRefsContext {
   current: HTMLLIElement | null;
 }
@@ -151,7 +143,7 @@ export type transactionItem = {
   //reduce(arg0: (total: any, item: any) => any, arg1: number): unknown;
   id: number;
   quantity: number;
-  itemId: number;
+  //itemId: number;
 };
 
 export interface IError {
