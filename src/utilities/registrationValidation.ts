@@ -8,17 +8,22 @@ export const isValidRegistration = (
   password2: string
 ): validationResult => {
   // Your validation logic here
-  let isValid = false;
-  let errorMessage: string | undefined;
+  //  let isValid = false;
+  // let errorMessage: string | undefined;
 
-  if (password1 === password2) {
-    isValid = true;
-  } else {
-    errorMessage = "Passwords do not match.";
-  }
   if (!username) {
-    errorMessage = "Username issue.";
+    return { isValid: false, errorMessage: "Username is invalid." };
   }
 
-  return { isValid, errorMessage };
+  if (!password1 || !password2) {
+    return { isValid: false, errorMessage: "Please enter a password." };
+  }
+
+  if (password1 !== password2) {
+    return { isValid: false, errorMessage: "Passwords do not match." };
+  }
+
+  // Additional validations can be added here using more guard clauses
+
+  return { isValid: true };
 };

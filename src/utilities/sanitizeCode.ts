@@ -1,4 +1,5 @@
 import DOMPurify from "dompurify";
+
 import parse from "html-react-parser";
 export const sanitizeInput = (
   input: string | null | undefined

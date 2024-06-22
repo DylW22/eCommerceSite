@@ -1,9 +1,12 @@
 import storeItems from "../data/items.json";
 import { StoreItemProps } from "../types";
-export const filterByQuery = (searchTerm: string): StoreItemProps[] => {
-  if (!searchTerm) return storeItems;
+export const filterByQuery = (
+  searchTerm: string,
+  items: StoreItemProps[] = storeItems
+): StoreItemProps[] => {
+  if (!searchTerm) return items;
   const lowercasedSearchTerm = searchTerm.toLowerCase();
-  const foundItems = storeItems.filter(
+  const foundItems = items.filter(
     (item) =>
       item.category.toLowerCase().includes(lowercasedSearchTerm) ||
       item.name.toLowerCase().startsWith(lowercasedSearchTerm)

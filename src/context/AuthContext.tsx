@@ -17,7 +17,7 @@ import {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const authReducer = (state: AuthState, action: AuthAction) => {
+export const authReducer = (state: AuthState, action: AuthAction) => {
   switch (action.type) {
     case "LOGIN": {
       return {
@@ -76,13 +76,23 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
     setPersistedState(state);
   }, [state, persistedState]);
 
-  const login = async (username: string, password: string) => {
+  const login = async (
+    username: string,
+    password: string
+    // authFirebase: any = auth
+  ) => {
     try {
+      if (!username.trim() || !password.trim()) {
+        throw new Error("Username and password are required.");
+      }
+
       const userCredentials: UserCredential = await signInWithEmailAndPassword(
+        //authFirebase,
         auth,
         username,
         password
       );
+
       const user = userCredentials.user;
 
       const userData = {
@@ -95,10 +105,12 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
         accessToken: await user.getIdToken(),
         refreshToken: user.refreshToken,
       };
+      console.log("AuthContext login: ", userCredentials);
       //  console.log("TOKEN: ", token);
       dispatch({ type: "LOGIN", userData, userTokens });
       return userData;
     } catch (error: unknown) {
+      console.log("An error occurred: ", error);
       if (error instanceof Error) {
         dispatch({ type: "SET_ERROR", error: error.message });
       } else {
@@ -107,11 +119,10 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
           error: "An unknown error occurred when logging in.",
         });
       }
-
+      throw error;
       //Error signing in
     }
   };
-
   const logout = async () => {
     try {
       await signOut(auth);
@@ -131,6 +142,9 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
 
   const createAccount = async (email: string, password: string) => {
     try {
+      if (!email.trim() || !password.trim()) {
+        throw new Error("Username and password are required.");
+      }
       const userCredentials = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -147,6 +161,7 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
       dispatch({ type: "REGISTER", userData });
     } catch (error: unknown) {
       //Error creating account
+      console.log("error creating account: ", error);
       if (error instanceof Error) {
         dispatch({ type: "SET_ERROR", error: error.message });
       } else {
@@ -155,6 +170,7 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
           error: "An unknown error occurred when creating your account.",
         });
       }
+      throw error;
     }
   };
 

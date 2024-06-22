@@ -50,12 +50,16 @@ export type AuthAction =
   | { type: "LOGIN"; userData: UserData; userTokens: Tokens }
   | { type: "LOGOUT" }
   | { type: "REGISTER"; userData: UserData }
-  | { type: "SET_ERROR"; error: string };
+  | { type: "SET_ERROR"; error: string }
+  | { type: "DEFAULT" };
 
 export type AuthContextType = {
   state: AuthState;
   //login: (token: string, username: string, password: string) => void;
-  login: (username: string, password: string) => void;
+  login: (
+    username: string,
+    password: string /*, authFirebase: string*/
+  ) => void;
   logout: () => void;
   createAccount: (email: string, password: string) => void;
 };
@@ -149,4 +153,15 @@ export type transactionItem = {
 export interface IError {
   message: string;
   code?: string;
+}
+
+export type GetCurrentDateBasedOnLocale = (locale: string) => string;
+
+export interface LoginFormProps {
+  isSubmitting: Boolean;
+  referrer: string[];
+}
+
+export interface RegisterFormProps {
+  isSubmitting: Boolean;
 }

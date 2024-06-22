@@ -6,6 +6,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "outDir" :  "./dist",
+    "declaration": true,
  //   "types": ["@testing-library/jest-dom"],
   
     /* Bundler mode */
@@ -26,6 +27,6 @@
 
   },
   "include": ["src"],
-  "exclude": ["src/utilities/onRender.ts"],
+  "exclude": ["src/utilities/onRender.ts", "src/pages/tests", "tests/utilities"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

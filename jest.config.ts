@@ -96,8 +96,12 @@ const config: Config = {
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
   },*/
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   moduleNameMapper: {
     "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.js",
+    // "^firebase/auth$": "<rootDir>/__mocks__/firebase/auth.ts",
+    // "^firebase/app$": "<rootDir>/__mocks__/firebaseAppMock.ts",
+    // "^firebase/auth$": "<rootDir>/__mocks__/firebaseAuthMock.ts",
   },
   preset: "ts-jest",
   transform: {
@@ -105,6 +109,7 @@ const config: Config = {
     "^.+\\.(js|jsx)$": "babel-jest",
     "^.+\\.svg$": "<rootDir>/svgTransform.cjs",
     "^.+\\.css$": "jest-transform-css",
+
     //"^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js",
     //"^.+\\.svg$": "<rootDir>/svgTransform.js",
   },

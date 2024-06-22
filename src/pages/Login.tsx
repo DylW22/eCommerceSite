@@ -1,28 +1,31 @@
 import { LoginForm } from "../components/login/LoginForm";
 //import { Button } from "react-bootstrap";
 
-import { NavLink, redirect } from "react-router-dom";
+import {
+  NavLink,
+  redirect,
+  useLocation,
+  useNavigation,
+} from "react-router-dom";
 import type { ActionFunction } from "react-router-dom";
-//import { useNavigation } from "react-router-dom";
 
 import { ActionRequestProps, AppAction } from "../types";
-
+import { useState } from "react";
 import { sanitizeInput } from "../utilities/sanitizeCode";
 import { measureExecutionTime } from "../utilities/measureExecutionTime";
-//import { useEffect } from "react";
 
 //https://stackoverflow.com/questions/76766824/passing-a-function-to-a-react-router-action-in-typescript
 export function Login() {
-  //const actionData = useActionData();
-  //const navigate = useNavigation();
-  //const navigate = useNavigate();
-  //const isSubmitting = navigate.state === "submitting";
-  //const { state } = useAuth();
-  //const { isAuthenticated } = state;
+  const location = useLocation();
+  console.log("LoginForm location: ", location);
+  const [referrer] = useState(location?.state?.referrer || "");
+
+  const navigate = useNavigation();
+  const isSubmitting = navigate.state === "submitting";
 
   return (
     <div>
-      <LoginForm />
+      <LoginForm isSubmitting={isSubmitting} referrer={referrer} />
       <p>
         Don't have an account? Register <NavLink to="/register">here</NavLink>
       </p>
@@ -42,11 +45,14 @@ export const action =
     const { login } = appContext;
     const formData = await request.formData();
     const data = Object.fromEntries(formData) as Record<string, string>;
-    //const { email, password } = data;
+    // const { email, password } = data;
+    // console.log("Dirty: ", email);
+    // console.log("Dirty: ", password);
     // const cleanEmail = sanitizeInput(email);
     // const cleanPassword = sanitizeInput(password);
 
-    //console.log("Form data: ", data);
+    // console.log(`Clean email:`, cleanEmail);
+    // console.log(`Clean password:`, cleanPassword);
     try {
       await login("testuser1@gmail.com", "ABC123");
       /*await measureExecutionTime(

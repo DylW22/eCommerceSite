@@ -1,15 +1,9 @@
-//import { Navbar, Nav, Pagination, Container, Row, Col } from "react-bootstrap";
-//import { useRef } from "react";
-
-import { Profiler } from "react";
-//import { onRender } from "../utilities/onRender";
-
-//import { ChildPage } from "./ChildPage";
 export function TestPage() {
   return (
-    // <Profiler id="TestChild" onRender={onRender}>
-    <TestChild />
-    //</Profiler>
+    <div>
+      <div>Test Page</div>
+      <TestChild />
+    </div>
   );
 }
 
