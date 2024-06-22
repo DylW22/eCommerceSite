@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.64% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/17</span>
+                <span class='fraction'>17/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.64% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/17</span>
+                <span class='fraction'>17/17</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -83,37 +83,37 @@
 <a name='L18'></a><a href='#L18'>18</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useAuth } from "../../context/AuthContext";
 import { Dropdown } from "react-bootstrap";
-export const AccountDropDown = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const { logout } = useAuth();</span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;Dropdown&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;Dropdown.Toggle variant="primary" id="dropdown-basic"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        Account</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/Dropdown.Toggle&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;Dropdown.Menu&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;Dropdown.Item href="/account"&gt;Profile&lt;/Dropdown.Item&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;Dropdown.Item href="/history"&gt;Past orders&lt;/Dropdown.Item&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;Dropdown.Item onClick={logout}&gt;Logout&lt;/Dropdown.Item&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/Dropdown.Menu&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/Dropdown&gt;</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+export const AccountDropDown = () =&gt; {
+  const { logout } = useAuth();
+  return (
+    &lt;Dropdown&gt;
+      &lt;Dropdown.Toggle variant="primary" id="dropdown-basic"&gt;
+        Account
+      &lt;/Dropdown.Toggle&gt;
+      &lt;Dropdown.Menu&gt;
+        &lt;Dropdown.Item href="/account"&gt;Profile&lt;/Dropdown.Item&gt;
+        &lt;Dropdown.Item href="/history"&gt;Past orders&lt;/Dropdown.Item&gt;
+        &lt;Dropdown.Item onClick={logout}&gt;Logout&lt;/Dropdown.Item&gt;
+      &lt;/Dropdown.Menu&gt;
+    &lt;/Dropdown&gt;
+  );
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -121,7 +121,7 @@ export const AccountDropDown = <span class="fstat-no" title="function not covere
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-06-21T04:44:40.619Z
+                at 2024-06-22T07:16:55.352Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
