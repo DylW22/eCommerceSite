@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 src/pages/tests
-tests
+
 coverage
 # Editor directories and files
 .vscode/*
