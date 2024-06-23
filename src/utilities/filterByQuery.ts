@@ -8,7 +8,7 @@ export const filterByQuery = (
   const lowercasedSearchTerm = searchTerm.toLowerCase();
   const foundItems = items.filter(
     (item) =>
-      item.category.toLowerCase().includes(lowercasedSearchTerm) ||
+      item.category?.toLowerCase().includes(lowercasedSearchTerm) ||
       item.name.toLowerCase().startsWith(lowercasedSearchTerm)
   );
   return foundItems;
