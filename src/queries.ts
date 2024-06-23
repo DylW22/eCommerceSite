@@ -28,6 +28,21 @@ export const GET_ITEMS = gql`
   }
 `;
 
+export const GET_PAGINATED_TRANSACTIONS = gql`
+  query GetPaginatedTrans($limit: Int, $startKey: String) {
+    getPaginatedTransactions(limit: $limit, startKey: $startKey) {
+      transactions {
+        orderDate
+        items {
+          quantity
+          itemId
+          id
+        }
+      }
+      lastKey
+    }
+  }
+`;
 export const GET_TRANSACTIONS = gql`
   query Query {
     getTransactions {

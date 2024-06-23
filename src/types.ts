@@ -102,8 +102,8 @@ export type StoreItemProps = {
   id: number;
   name: string;
   price: number;
-  imgUrl: string;
-  category: string;
+  imgUrl?: string;
+  category?: string;
 };
 
 //OrderedItemsList.tsx
@@ -164,4 +164,38 @@ export interface LoginFormProps {
 
 export interface RegisterFormProps {
   isSubmitting: Boolean;
+}
+type Rating = 0 | 1 | 2 | 3 | 4 | 5 | number;
+
+export interface TestimonialItem {
+  id: number;
+  content: string;
+  name: string;
+  title: string;
+  rating: Rating;
+}
+
+//FeaturedProducts.tsx
+export type FeaturedProduct = StoreItemProps & {
+  featuredPrice?: number;
+};
+
+export interface FeaturedItemId {
+  id: number;
+  featuredPrice: number;
+}
+
+export interface TestimonialProps {
+  item: TestimonialItem;
+}
+
+//StarRating.tsx
+export interface StarRatingProps {
+  rating: number;
+}
+
+//getStars.tsx
+export interface GetStarsProps {
+  rating: number;
+  totalStars: number;
 }

@@ -1,10 +1,22 @@
 import { AccountDropDown } from "../components/header/AccountDropdown";
-import { useBackgroundQuery, useReadQuery } from "@apollo/client";
+import { useBackgroundQuery, useReadQuery, useQuery } from "@apollo/client";
 import { GET_PAGINATED_TRANSACTIONS } from "../queries";
 import { Suspense } from "react";
+import { gql } from "@apollo/client";
+import { useTheme } from "../context/ThemeContext";
+import { useDynamicBackground } from "../hooks/useDynamicBackground";
 function SuspenseFallback() {
   return <div>Loading...</div>;
 }
+
+const FEED_QUERY = gql`
+  query Feed($offset: Int, $limit: Int) {
+    feed(offset: $offset, limit: $limit) {
+      id
+      # ...
+    }
+  }
+`;
 
 function Child({ queryRef, moreData }: any) {
   const queryData = useReadQuery(queryRef) as any;
@@ -43,20 +55,52 @@ function Child({ queryRef, moreData }: any) {
   );
 }
 
-export function TestPage() {
-  const [queryRef, moreData] = useBackgroundQuery(GET_PAGINATED_TRANSACTIONS, {
-    variables: { limit: 1 },
+export function TestPage2() {
+  const { styles } = useDynamicBackground();
+  const { loading, data, fetchMore } = useQuery(FEED_QUERY, {
+    variables: {
+      offset: 0,
+      limit: 10,
+    },
   });
 
+  if (loading) return "Loading...";
+  console.log("data.feed: ", data.feed);
   return (
-    <div>
-      <Suspense fallback={<SuspenseFallback />}>
-        <Child queryRef={queryRef} moreData={moreData} />
-      </Suspense>
-      ;
+    <div
+      style={{
+        height: "calc(100vh - 80px)",
+        background: `linear-gradient(to right, ${styles})`,
+      }}
+      className="m-0 p-4 fw-bold fs-1"
+    >
+      <button
+        onClick={() =>
+          fetchMore({
+            variables: {
+              offset: data.feed.length,
+            },
+          })
+        }
+      >
+        Fetch more
+      </button>
     </div>
   );
 }
+
+/*
+    <Container
+      fluid
+      style={{
+        height: "calc(100vh - 80px)",
+        background: `linear-gradient(to right, ${styles})`,
+      }}
+      className="m-0 p-4 fw-bold fs-1"
+    >
+      This is a fake e-commerce site
+    </Container>
+*/
 
 const TestChild = () => {
   return <div>I am a test Child</div>;

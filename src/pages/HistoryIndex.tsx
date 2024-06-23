@@ -2,7 +2,8 @@ import { useRouteLoaderData, useOutletContext } from "react-router-dom";
 import { OrderData, ChildRefs } from "../types";
 import { useReadQuery } from "@apollo/client";
 import { ListGroup } from "react-bootstrap";
-import TransactionItem from "../components/orderHistory/TransactionItem";
+//import TransactionItem from "../components/orderHistory/TransactionItem";
+import TransactionCard from "../components/orderHistory/TransactionCard";
 interface QueryDataType {
   getTransactions: OrderData[];
   // Add other properties if needed
@@ -15,18 +16,19 @@ export const HistoryIndex = () => {
   const transactions = queryData?.data?.getTransactions || [];
 
   const childRefs = useOutletContext() as ChildRefs;
-  console.log(`childRefs: `, childRefs);
-
+  const currentTransactions = transactions.slice(0, 2);
   return (
-    <ListGroup className="">
-      {transactions &&
-        transactions.map((transaction, index) => (
+    <ListGroup className="h-100">
+      {currentTransactions &&
+        currentTransactions.map((transaction, index) => (
           <ListGroup.Item
             ref={(el: HTMLAnchorElement) => (childRefs.current[index] = el)}
             key={transaction.orderId}
             id={`${transaction.orderId}`}
+            className="h-100"
           >
-            <TransactionItem transaction={transaction} />
+            <TransactionCard transaction={transaction} />
+            {/*<TransactionItem transaction={transaction} />*/}
           </ListGroup.Item>
         ))}
     </ListGroup>

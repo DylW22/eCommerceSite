@@ -6,7 +6,7 @@ export function NavbarCartButton() {
   return (
     <Button
       onClick={openCart}
-      style={{ width: "4rem", height: "3rem", position: "relative" }}
+      style={{ width: "3rem", height: "3rem", position: "relative" }}
       variant="outline-primary"
       className="rounded-circle"
     >

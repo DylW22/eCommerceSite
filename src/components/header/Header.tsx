@@ -10,18 +10,24 @@ import { SearchBar } from "./SearchBar";
 import { AccountDropDown } from "./AccountDropdown";
 import { ThemeToggle } from "./ThemeToggle";
 import { Navbar } from "./Navbar";
+import { useTheme } from "../../context/ThemeContext";
 export function Header() {
   const { cartQuantity } = useShoppingCart();
   const { state } = useAuth();
   const { isAuthenticated } = state;
-
+  const { theme } = useTheme();
   return (
-    //mb-3 bg-white px-md-5 //
-    <Container fluid className="bg-white p-0 sticky-top">
+    //mb-3 bg-white px-md-5 //  //{`${theme === "light" ? "bg-white" : "bg-gray"}`}
+    <Container
+      fluid
+      className={`${
+        theme === "light" ? "bg-white" : "bg-midnight"
+      } p-2 sticky-top`}
+    >
       <NavbarBs expand sticky="top" className="">
         <Container fluid className="d-flex justify-content-between">
           <Navbar />
-          <Container fluid className="bg-white p-0">
+          <Container fluid className="p-0">
             <div className="d-flex align-items-center justify-content-end">
               <div className="d-none d-md-flex align-items-center justify-content-end w-100">
                 <ThemeToggle />

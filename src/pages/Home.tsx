@@ -14,13 +14,16 @@ import { Popover } from "../components/home/Popover";
 import { useDynamicBackground } from "../hooks/useDynamicBackground";
 import { FeaturedProducts } from "../components/home/FeaturedProducts";
 import SubscribeNewsletter from "../components/home/SubscribeNewsletter";
+import { CallToAction } from "../components/home/CallToAction";
+//import { useBackgroundQuery } from "@apollo/client";
 //https://stackoverflow.com/questions/63354927/how-to-fix-the-error-property-contains-doesnt-exist-on-type-refobject-using-t
 //export type PopoverRefType = { current?: HTMLElement | null; [x: string]: any }; //OK
-
+//import { GET_TRANSACTIONS } from "../queries";
 export function Home() {
   const popoverRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(true);
   const { styles } = useDynamicBackground();
+
   //console.log("styles: ", styles);
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -44,7 +47,8 @@ export function Home() {
       fluid
       style={{
         zIndex: 1,
-        background: `linear-gradient(to right, ${styles}, #6446fc)`, //#423ffb
+        //background: `linear-gradient(to right, ${styles}, #6446fc, #fccf03)`, //#423ffb
+        background: `linear-gradient(to right, ${styles})`,
       }}
     >
       {isOpen && <Popover className={"d-none"} ref={popoverRef} />}
@@ -66,16 +70,18 @@ export function Home() {
 
         <Col
           md={3}
-          className="p-4 d-flex flex-column align-items-center my-10 order-md-3"
+          className="p-4 my-10 d-flex flex-column align-items-center justify-content-between order-md-3"
         >
-          <div className="flex-fill bg-danger w-100 text-center">Shop now</div>
-          <div className="flex-fill w-100 text-center">
+          <Row className="flex-fill w-100 py-2 h-100">
+            <CallToAction />
+          </Row>
+          <Row className="flex-fill w-100 py-2 h-100">
             <SubscribeNewsletter />
-          </div>
+          </Row>
         </Col>
         <Col
           md={3}
-          className="p-4 d-none d-md-flex flex-column align-items-center my-10 order-md-1"
+          className="p-2 d-none d-md-flex flex-column align-items-center justify-content-center my-10 order-md-1"
         >
           <Testimonials />
         </Col>
@@ -84,7 +90,7 @@ export function Home() {
         <FeaturedProducts />
       </Row>
       <Row className="d-flex d-md-none p-0 m-0">
-        <Col className="p-4 d-flex flex-column align-items-center my-10">
+        <Col className="p-4 d-flex flex-column align-items-center my-10 min-height-200">
           <Testimonials />
         </Col>
       </Row>

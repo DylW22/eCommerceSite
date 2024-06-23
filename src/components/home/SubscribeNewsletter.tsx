@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useFadeout } from "../../hooks/useFadeout";
-
+import greenTickIcon from "../../assets/green-tick.svg";
+import { useTheme } from "../../context/ThemeContext";
 interface Errors {
   [key: string]: string;
 }
@@ -11,10 +12,13 @@ const SubscribeNewsletter = () => {
   const [errors, setErrors] = useState<Errors>({});
   //const [success, setSuccess] = useState(false);
   const { toFade, applyFade } = useFadeout(3000);
+  const { theme } = useTheme();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("e.target.value: ", e.target.value);
     setEmail(e.target.value);
   };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     //Submit
     e.preventDefault();
@@ -33,7 +37,10 @@ const SubscribeNewsletter = () => {
     <>
       <Form
         onSubmit={handleSubmit}
-        className="p-4 custom-gray position-relative"
+        //        theme === "light" ? "custom-lightGray" : "bg-midnight text-white"
+        className={`p-2 ${
+          theme === "light" ? "custom-lightGray" : "bg-midnight text-white"
+        } position-relative rounded-5 min-height-200 text-center d-flex flex-column justify-content-center align-items-center`}
       >
         <Form.Label>Enter your email address.</Form.Label>
         <Form.Control
@@ -41,14 +48,18 @@ const SubscribeNewsletter = () => {
           placeholder="yourname@example.com"
           value={email}
           onChange={handleChange}
+          className="rounded-3"
         />
 
-        <Button type="submit" className="">
+        <Button type="submit" className="w-50 my-2">
           Subscribe
         </Button>
         {toFade && (
-          <Form.Text className="position-absolute left-20">
-            Green tick
+          <Form.Text className="position-absolute bot-10">
+            <div className="d-flex justify-content-center align-items-center text-center">
+              {/* <p style={{ height: "30px" }}>Subscribed!</p> */}
+              <img className="px-2" height={"30px"} src={greenTickIcon} />
+            </div>
           </Form.Text>
         )}
         {errors?.errorMessage && (

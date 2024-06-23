@@ -4,7 +4,7 @@ import { Root } from "../pages/Root";
 import { loader as SearchBarLoader } from "../components/header/SearchBar";
 import { Store } from "../pages/Store";
 import { About } from "../pages/About";
-import { TestPage } from "../pages/TestPage";
+import { TestPage2 } from "../pages/TestPage2";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { InvalidPath } from "../pages/InvalidPath";
@@ -62,7 +62,7 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
                   path: "/about",
                 },
                 {
-                  element: <TestPage />,
+                  element: <TestPage2 />,
                   path: "/testpage",
                 },
                 {

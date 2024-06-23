@@ -9,7 +9,7 @@ import client from "../../apolloClient";
 import { DisplayTransactionsList } from "./DisplayTransactionsList";
 import { useRef } from "react";
 const preloadQuery = createQueryPreloader(client);
-
+//console.log("preloadQuery: ", preloadQuery);
 interface QueryDataType {
   getTransactions: OrderData[];
   // Add other properties if needed
@@ -69,15 +69,10 @@ export const loader: LoaderFunction = async ({}): Promise<
   TransactionsLoaderObject | undefined
 > => {
   try {
-    // let codes = ["US", "MX", "CA"];
-    // await new Promise((res) => setTimeout(() => res("OK"), 1000));
     const transactions = preloadQuery(GET_TRANSACTIONS) as any; //, { variables: { codes } });
+    console.log("transactions: ", transactions);
 
-    /*const [transactions, _] = (await measureExecutionTime(() =>
-      preloadQuery(GET_TRANSACTIONS)
-    )) as any;*/
-
-    return { data: transactions };
+    return { data: transactions }; //fetchMore
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.log("Failed to load data: ", error.message);

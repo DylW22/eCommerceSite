@@ -12,7 +12,7 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
   const quantity = getItemQuantity(id);
 
   return (
-    <Card className="h-100 w-100" style={{ height: "380px" }}>
+    <Card className="h-100 w-100 p-2" style={{ height: "380px" }}>
       <Card.Img
         variant="top"
         src={imgUrl}

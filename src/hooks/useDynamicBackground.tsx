@@ -24,6 +24,7 @@ export const useDynamicBackground = (type = "linear", delay = 100) => {
     };
   }, []);
 
+  /*
   const getGradientColor = () => {
     //const color1 = [255, 138, 0]; // RGB values for initial color
     //const color2 = [229, 46, 113]; // RGB values for final color
@@ -48,8 +49,63 @@ export const useDynamicBackground = (type = "linear", delay = 100) => {
     const blue =
       color1[2] +
       Math.floor((color2[2] - color1[2]) * (scrollY / window.innerHeight));
-    return `rgb(${red}, ${green}, ${blue})`;
+    //return `rgb(${red}, ${green}, ${blue})
+    return `rgb(${red}, ${green}, ${blue}), #6446fc, #fccf03`;
+  };*/
+
+  /*console.log(
+    "ratio: ",
+    scrollY / (document.body.scrollHeight - window.innerHeight)
+  );*/
+  const getGradientColor = () => {
+    const Lmin = [250, 111, 5]; //orange
+    const Lmax = [186, 2, 199]; //purple
+    const Rmin = [186, 2, 199]; //purple
+    const Rmax = [250, 111, 5]; //orange
+
+    const Lred =
+      Lmin[0] +
+      Math.floor(
+        (Lmax[0] - Lmin[0]) *
+          (scrollY / (document.body.scrollHeight - window.innerHeight))
+      );
+    const Lgreen =
+      Lmin[1] +
+      Math.floor(
+        (Lmax[1] - Lmin[1]) *
+          (scrollY / (document.body.scrollHeight - window.innerHeight))
+      );
+    const Lblue =
+      Lmin[2] +
+      Math.floor(
+        (Lmax[2] - Lmin[2]) *
+          (scrollY / (document.body.scrollHeight - window.innerHeight))
+      );
+
+    const Rred =
+      Rmin[0] +
+      Math.floor(
+        (Rmax[0] - Rmin[0]) *
+          (scrollY / (document.body.scrollHeight - window.innerHeight))
+      );
+    const Rgreen =
+      Rmin[1] +
+      Math.floor(
+        (Rmax[1] - Rmin[1]) *
+          (scrollY / (document.body.scrollHeight - window.innerHeight))
+      );
+    const Rblue =
+      Rmin[2] +
+      Math.floor(
+        (Rmax[2] - Rmin[2]) *
+          (scrollY / (document.body.scrollHeight - window.innerHeight))
+      );
+    //  console.log(`Left: rgb(${Lred},${Lgreen},${Lblue})`);
+    //  console.log(`Right: rgb(${Rred},${Rgreen},${Rblue})`);
+    // console.log(`rgb(${Rred},${Rgreen},${Rblue})`);
+    return `rgb(${Lred},${Lgreen},${Lblue}), #6446fc,#fada07,  #6446fc, rgb(${Rred},${Rgreen},${Rblue})`;
   };
+
   useEffect(() => {
     const updateStyles = () => {
       const colorGradient = getGradientColor();

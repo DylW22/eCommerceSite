@@ -8,6 +8,7 @@ import { Container } from "react-bootstrap";
 //import client from "../apolloClient.ts";
 import { locationObject } from "../types.ts";
 import "./../assets/styles/styles.css";
+import { useDynamicBackground } from "../hooks/useDynamicBackground.tsx";
 
 //const preloadQuery = createQueryPreloader(client);
 //const preloadedQueryRef = preloadQuery(GET_DATA);
@@ -15,6 +16,7 @@ import "./../assets/styles/styles.css";
 export function Store() {
   const location = useRouteLoaderData("root") as locationObject;
   const itemsToDisplay = filterByQuery(location.q);
+  const { styles } = useDynamicBackground();
 
   /*  const { loading, error, data } = useQuery<GetDataQuery>(GET_DATA);
 
@@ -26,7 +28,14 @@ export function Store() {
   } */
 
   return (
-    <Container className="">
+    <Container
+      fluid
+      style={{
+        height: "calc(100vh - 80px)",
+        background: `linear-gradient(to right, ${styles})`,
+      }}
+      className="m-0 p-4 fw-bold fs-1 d-flex justify-content-center"
+    >
       <Container style={{ margin: "0px" }} className="p-0 m-0 mt-2">
         <Row md={2} xs={1} lg={3} className="g-3">
           {itemsToDisplay.length ? (
