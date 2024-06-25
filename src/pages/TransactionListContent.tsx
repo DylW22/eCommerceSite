@@ -10,7 +10,7 @@ interface TransactionListProps {
   limit: number;
 }
 
-function TransactionListFinal({
+function TransactionListContent({
   transactions,
   fetchTransactions,
   hasMorePosts,
@@ -74,4 +74,4 @@ function TransactionListFinal({
   );
 }
 
-export default TransactionListFinal;
+export default TransactionListContent;

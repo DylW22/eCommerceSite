@@ -1,7 +1,7 @@
 //import { QueryRef } from "@apollo/client";
 import { useOutletContext } from "react-router-dom";
 //import { OrderData } from "../types";
-import TransactionListFinal from "./TransactionListFinal";
+import TransactionListContent from "./TransactionListContent";
 import { useTransactions } from "../hooks/useTransactions";
 import { OutletContextType } from "../components/routing/ProtectedRoute";
 //const preloadQuery = createQueryPreloader(client);
@@ -22,7 +22,7 @@ export function TestPage4() {
   );
 
   return (
-    <TransactionListFinal
+    <TransactionListContent
       transactions={transactions}
       fetchTransactions={fetchTransactions}
       hasMorePosts={hasMorePosts}

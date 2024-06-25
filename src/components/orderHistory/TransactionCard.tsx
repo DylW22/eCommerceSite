@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import { OrderData, TransactionProps } from "../../types";
 import { calculateTotalPrice } from "../../utilities/calculateTotalPrice";
-import { TransactionItemsListV2 } from "./TransactionItemsListV2";
+import { TransactionItemsList } from "./TransactionItemsList";
 const TransactionCard: React.FC<TransactionProps> = ({
   transaction,
   loading,
@@ -107,7 +107,7 @@ const TransactionCard: React.FC<TransactionProps> = ({
             </Col>
             <Col className="d-flex flex-column">
               <CardTitle>Purchased items</CardTitle>
-              <TransactionItemsListV2 items={transactionListItems} />
+              <TransactionItemsList items={transactionListItems} />
             </Col>
             <Col className="d-flex flex-column justify-content-between">
               <Row className="p-0 m-0">

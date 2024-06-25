@@ -8,12 +8,10 @@ export const TransactionItemsList: React.FC<OrderedItemsListProps> = ({
   return items.map((item) => {
     const foundItem = getItemById(item.id);
     if (!foundItem) return null;
-    const { price, name } = foundItem;
+    const { name } = foundItem;
     return (
-      <Row key={item.id} className="fs-5">
-        <Col className="text-center">{name}</Col>
-        <Col className="text-center">{item.quantity}</Col>
-        <Col className="text-center">{price}</Col>
+      <Row key={item.id} className="fs-8">
+        <Col className="mx-2">{name}</Col>
       </Row>
     );
   });

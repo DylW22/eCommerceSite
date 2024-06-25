@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ListGroup } from "react-bootstrap";
 import { OrderData } from "../../types";
+import { TransactionSidePanelContainerContent } from "./TransactionSidePanelContainerContent";
+import { TransactionSidePanelContainerSkeleton } from "./TransactionSidePanelContainerSkeleton";
 
 interface DisplayTransactionsListProps {
   transactions?: OrderData[];
@@ -24,32 +26,45 @@ export const DisplayTransactionsList: React.FC<
         Transactions
       </h1>
       <ListGroup defaultActiveKey={``} className="h-100 p-2">
-        {loading
-          ? [0, 1, 2, 3].map((item) => (
-              <ListGroup.Item
-                key={item}
-                style={{ height: "40px" }}
-                className="text-center"
-              >
-                {" "}
-              </ListGroup.Item>
-            ))
-          : ((transactions && transactions?.length) ?? 0) > 0 &&
-            (transactions || []).map((transaction, index) => (
-              <ListGroup.Item
-                onClick={() => handleItemClick(index)}
-                key={transaction.orderId}
-                action
-                active={activeIndex === index}
-                className="text-center"
-              >
-                {transaction.orderDate}
-                <span className="d-none d-lg-inline">
-                  , orderId: {transaction.orderId}
-                </span>
-              </ListGroup.Item>
-            ))}
+        {loading ? (
+          <TransactionSidePanelContainerSkeleton />
+        ) : (
+          <TransactionSidePanelContainerContent
+            transactions={transactions}
+            activeIndex={activeIndex}
+            handleItemClick={handleItemClick}
+          />
+        )}
       </ListGroup>
     </>
   );
 };
+
+/* interface TransactionSidePanelContainerContentProps {
+  transactions: OrderData[] | undefined;
+  handleItemClick: (index: number) => void;
+  activeIndex: number | null;
+}
+
+export const TransactionSidePanelContainerContent: React.FC<
+  TransactionSidePanelContainerContentProps
+> = ({ transactions, handleItemClick, activeIndex }) => {
+  return (
+    ((transactions && transactions?.length) ?? 0) > 0 &&
+    (transactions || []).map((transaction, index) => (
+      <ListGroup.Item
+        onClick={() => handleItemClick(index)}
+        key={transaction.orderId}
+        action
+        active={activeIndex === index}
+        className="text-center"
+      >
+        {transaction.orderDate}
+        <span className="d-none d-lg-inline">
+          , orderId: {transaction.orderId}
+        </span>
+      </ListGroup.Item>
+    ))
+  );
+};
+ */

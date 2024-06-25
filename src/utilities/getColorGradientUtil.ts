@@ -23,39 +23,52 @@ export const getColorGradientUtil = ({
   const Lred =
     Lmin[0] +
     Math.floor(
-      (Lmax[0] - Lmin[0]) *
-        (scrollY / (document.body.scrollHeight - window.innerHeight))
+      (Lmax[0] - Lmin[0]) * scrollY > 0
+        ? scrollY / (document.body.scrollHeight - window.innerHeight)
+        : 0
     );
   const Lgreen =
     Lmin[1] +
     Math.floor(
-      (Lmax[1] - Lmin[1]) *
-        (scrollY / (document.body.scrollHeight - window.innerHeight))
+      (Lmax[1] - Lmin[1]) * scrollY > 0
+        ? scrollY / (document.body.scrollHeight - window.innerHeight)
+        : 0
     );
   const Lblue =
     Lmin[2] +
     Math.floor(
-      (Lmax[2] - Lmin[2]) *
-        (scrollY / (document.body.scrollHeight - window.innerHeight))
+      (Lmax[2] - Lmin[2]) * scrollY > 0
+        ? scrollY / (document.body.scrollHeight - window.innerHeight)
+        : 0
     );
 
   const Rred =
     Rmin[0] +
     Math.floor(
-      (Rmax[0] - Rmin[0]) *
-        (scrollY / (document.body.scrollHeight - window.innerHeight))
+      (Rmax[0] - Rmin[0]) * scrollY > 0
+        ? scrollY / (document.body.scrollHeight - window.innerHeight)
+        : 0
     );
+
+  console.group();
+  console.log("Rmax[0]: ", Rmax[0]);
+  console.log("Rmin[0]", Rmin[0]);
+  console.log("scrollY", scrollY);
+  console.log("scrollHeight:", document.body.scrollHeight);
+  console.groupEnd;
   const Rgreen =
     Rmin[1] +
     Math.floor(
-      (Rmax[1] - Rmin[1]) *
-        (scrollY / (document.body.scrollHeight - window.innerHeight))
+      (Rmax[1] - Rmin[1]) * scrollY > 0
+        ? scrollY / (document.body.scrollHeight - window.innerHeight)
+        : 0
     );
   const Rblue =
     Rmin[2] +
     Math.floor(
-      (Rmax[2] - Rmin[2]) *
-        (scrollY / (document.body.scrollHeight - window.innerHeight))
+      (Rmax[2] - Rmin[2]) * scrollY > 0
+        ? scrollY / (document.body.scrollHeight - window.innerHeight)
+        : 0
     );
   //linear-gradient(to right, ${styles})
   //console.log("type: ", type);

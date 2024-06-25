@@ -2,16 +2,18 @@ import { getItemById } from "../../utilities/getItemById";
 import { Row, Col } from "react-bootstrap";
 import { OrderedItemsListProps } from "../../types";
 
-export const TransactionItemsListV2: React.FC<OrderedItemsListProps> = ({
+export const TransactionItemsList: React.FC<OrderedItemsListProps> = ({
   items,
 }) => {
   return items.map((item) => {
     const foundItem = getItemById(item.id);
     if (!foundItem) return null;
-    const { name } = foundItem;
+    const { price, name } = foundItem;
     return (
-      <Row key={item.id} className="fs-8">
-        <Col className="mx-2">{name}</Col>
+      <Row key={item.id} className="fs-5">
+        <Col className="text-center">{name}</Col>
+        <Col className="text-center">{item.quantity}</Col>
+        <Col className="text-center">{price}</Col>
       </Row>
     );
   });
