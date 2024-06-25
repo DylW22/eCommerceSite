@@ -11,8 +11,8 @@ import type { ActionFunction } from "react-router-dom";
 
 import { ActionRequestProps, AppAction } from "../types";
 import { useState } from "react";
-import { sanitizeInput } from "../utilities/sanitizeCode";
-import { measureExecutionTime } from "../utilities/measureExecutionTime";
+//import { sanitizeInput } from "../utilities/sanitizeCode";
+//import { measureExecutionTime } from "../utilities/measureExecutionTime";
 
 //https://stackoverflow.com/questions/76766824/passing-a-function-to-a-react-router-action-in-typescript
 export function Login() {
@@ -27,7 +27,8 @@ export function Login() {
     <div>
       <LoginForm isSubmitting={isSubmitting} referrer={referrer} />
       <p>
-        Don't have an account? Register <NavLink to="/register">here</NavLink>
+        Don&apos;t have an account? Register{" "}
+        <NavLink to="/register">here</NavLink>
       </p>
     </div>
   );

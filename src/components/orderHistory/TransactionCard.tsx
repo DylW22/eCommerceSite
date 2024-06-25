@@ -13,11 +13,15 @@ import { calculateTotalPrice } from "../../utilities/calculateTotalPrice";
 import { TransactionItemsListV2 } from "./TransactionItemsListV2";
 const TransactionCard: React.FC<TransactionProps> = ({ transaction }) => {
   const { orderId, orderDate, items } = transaction;
-  let transactionListItems = Object.values(items);
+  const transactionListItems = Object.values(items);
   const totalPrice = calculateTotalPrice(transactionListItems);
 
   return (
-    <Container fluid className="shadow-lg d-flex flex-column h-100 p-0 m-0">
+    <Container
+      fluid
+      className="shadow-lg d-flex flex-column h-100 p-0 m-0"
+      style={{ minHeight: "calc(50vh - 56px)" }}
+    >
       <Card className="flex-grow-1 d-flex flex-column h-100 flex-fill  p-0 m-0">
         <CardBody className="d-flex flex-column p-0 m-0">
           <Row className="d-flex flex-row justify-items-between bg-light px-2 py-4   m-0">

@@ -44,7 +44,7 @@ export const action: ActionFunction =
     const data = Object.fromEntries(formData) as Record<string, string>;
     const cartItemsParsed = JSON.parse(data.cartItems);
     const order = generateOrderDetails(cartItemsParsed);
-    let errors: Record<string, string> = {};
+    const errors: Record<string, string> = {};
     let status: "success" | "failure" = "success";
     try {
       //Perform payment action

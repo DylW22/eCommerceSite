@@ -4,7 +4,7 @@ import { Root } from "../pages/Root";
 import { loader as SearchBarLoader } from "../components/header/SearchBar";
 import { Store } from "../pages/Store";
 import { About } from "../pages/About";
-import { TestPage2 } from "../pages/TestPage2";
+import { TestPage4 } from "../pages/TestPage4";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { InvalidPath } from "../pages/InvalidPath";
@@ -26,6 +26,9 @@ import { Home } from "../pages/Home";
 //import { Transaction } from "../components/orderHistory/Transaction";
 import { HistoryIndex } from "../pages/HistoryIndex";
 import { ActionFunction, RouteObject } from "react-router-dom";
+import { Suspense } from "react";
+import { TransactionLayoutGutted } from "../components/orderHistory/TransactionLayoutGutted";
+import { NewHistoryIndex } from "../pages/NewHistoryIndex.tsx";
 //import { Profiler } from "react";
 //import { onRender } from "../utilities/onRender";
 //22, 23, 24. 78, 79
@@ -62,8 +65,13 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
                   path: "/about",
                 },
                 {
-                  element: <TestPage2 />,
+                  element: (
+                    <Suspense fallback={<div>Loading..</div>}>
+                      <TestPage4 />
+                    </Suspense>
+                  ),
                   path: "/testpage",
+                  //    loader: loader,
                 },
                 {
                   element: (
@@ -97,7 +105,7 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
                     {
                       element: (
                         //         <Profiler id="transactionLayout" onRender={onRender}>
-                        <TransactionLayout />
+                        <TransactionLayoutGutted />
                         //       </Profiler>
                       ),
                       path: "/history",
@@ -108,7 +116,8 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
                           index: true,
                           element: (
                             //         <Profiler id="historyIndex" onRender={onRender}>
-                            <HistoryIndex />
+                            //<div>Index</div>
+                            <NewHistoryIndex />
                             //       </Profiler>
                           ),
                         },

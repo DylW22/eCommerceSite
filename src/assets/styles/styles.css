@@ -22,6 +22,10 @@ color: #FFF;
 .bg-midnight {
     background-color: #4d4d4d; /*#4f4d4d*/
 }
+.bg-dusk {
+    background-color: #d4d4d4;
+    color: black;
+}
 
 .min-height-200 {
     min-height: 200px;
@@ -42,6 +46,10 @@ color: #FFF;
 
 .cta-link {
     transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .cta-link-light:hover{
+    color: white    ;
+    background-color: #929394
   }
   
 .cta-link:hover {

@@ -1,4 +1,4 @@
-import { transactionItem } from "./../../src/types";
+import { TransactionItem } from "./../../src/types";
 import { getItemById } from "./../../src/utilities/getItemById";
 import { calculateTotalPrice } from "./../../src/utilities/calculateTotalPrice";
 
@@ -9,7 +9,7 @@ describe("calculateTotalPrice function", () => {
     jest.clearAllMocks();
   });
   it("should calculate total price correctly", () => {
-    let items: transactionItem[] = [
+    let items: TransactionItem[] = [
       { id: 1, quantity: 2 },
       { id: 2, quantity: 1 },
     ];
@@ -24,7 +24,7 @@ describe("calculateTotalPrice function", () => {
   });
 
   it("should return 0 if no items are found", () => {
-    const items: transactionItem[] = [
+    const items: TransactionItem[] = [
       {
         id: 5,
         quantity: 2,
@@ -41,7 +41,7 @@ describe("calculateTotalPrice function", () => {
   });
 
   it("should skip items that are not found", () => {
-    const items: transactionItem[] = [
+    const items: TransactionItem[] = [
       { id: 1, quantity: 2 },
       { id: 3, quantity: 1 },
     ];

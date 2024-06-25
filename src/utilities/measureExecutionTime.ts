@@ -1,4 +1,9 @@
-export const measureExecutionTime = async (fn: Function) => {
+type ExecutionResult<T> = [T | null, Error | null];
+
+//export const measureExecutionTime = async (fn: Function) => {
+export const measureExecutionTime = async <T>(
+  fn: () => Promise<T>
+): Promise<ExecutionResult<T>> => {
   const startTime = performance.now();
   try {
     //await new Promise((success) => setTimeout(success, 1000));
@@ -21,9 +26,20 @@ export const measureExecutionTime = async (fn: Function) => {
     const endTime = performance.now();
     const executionTime = endTime - startTime;
     console.log(`Execution time: ${executionTime}ms`);
-    return [null, error];
+    return [null, error as Error];
   }
 };
+
+/*
+   if (error instanceof Error) {
+        dispatch({ type: "SET_ERROR", error: error.message });
+      } else {
+        dispatch({
+          type: "SET_ERROR",
+          error: "An unknown error occurred when creating your account.",
+        });
+      }
+*/
 
 //Basic
 /*export const measureExecutionTime = async (fn: Function) => {

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDebounce } from "./useDebounce";
-
+import { useTheme } from "../context/ThemeContext";
+import { getColorGradientUtil } from "../utilities/getColorGradientUtil";
 export const useDynamicBackground = (type = "linear", delay = 100) => {
   const [styles, setStyles] = useState("");
   const [scrollY, setScrollY] = useState(0);
+  const { theme } = useTheme();
   //const debouncedScrollY = useDebounce(scrollY, delay);
 
   const handleScroll = () => {
@@ -16,106 +18,25 @@ export const useDynamicBackground = (type = "linear", delay = 100) => {
 
   useEffect(() => {
     window.addEventListener("scroll", debouncedHandleScroll);
-    if (type === "lineaar") {
+    /* if (type === "lineaar") {
       console.log("Hello");
-    }
+    }*/
     return () => {
       window.removeEventListener("scroll", debouncedHandleScroll);
     };
   }, []);
 
-  /*
-  const getGradientColor = () => {
-    //const color1 = [255, 138, 0]; // RGB values for initial color
-    //const color2 = [229, 46, 113]; // RGB values for final color
-    //const color1 = [252, 70, 70]; //Premium
-    //const color2 = [229, 46, 113]; //Premium
-
-    const color1 = [245, 177, 30]; //Super premium
-    const color2 = [167, 30, 245]; //Super premium
-
-    //https://mycolor.space/gradient3
-    //https://cssgradient.io/
-    //Linear and radial are different
-    //https://chatgpt.com/c/7e0e9780-508e-4fe6-b8a6-750401afc04a
-
-    // Calculate the RGB values based on scroll position
-    const red =
-      color1[0] +
-      Math.floor((color2[0] - color1[0]) * (scrollY / window.innerHeight));
-    const green =
-      color1[1] +
-      Math.floor((color2[1] - color1[1]) * (scrollY / window.innerHeight));
-    const blue =
-      color1[2] +
-      Math.floor((color2[2] - color1[2]) * (scrollY / window.innerHeight));
-    //return `rgb(${red}, ${green}, ${blue})
-    return `rgb(${red}, ${green}, ${blue}), #6446fc, #fccf03`;
-  };*/
-
-  /*console.log(
-    "ratio: ",
-    scrollY / (document.body.scrollHeight - window.innerHeight)
-  );*/
-  const getGradientColor = () => {
-    const Lmin = [250, 111, 5]; //orange
-    const Lmax = [186, 2, 199]; //purple
-    const Rmin = [186, 2, 199]; //purple
-    const Rmax = [250, 111, 5]; //orange
-
-    const Lred =
-      Lmin[0] +
-      Math.floor(
-        (Lmax[0] - Lmin[0]) *
-          (scrollY / (document.body.scrollHeight - window.innerHeight))
-      );
-    const Lgreen =
-      Lmin[1] +
-      Math.floor(
-        (Lmax[1] - Lmin[1]) *
-          (scrollY / (document.body.scrollHeight - window.innerHeight))
-      );
-    const Lblue =
-      Lmin[2] +
-      Math.floor(
-        (Lmax[2] - Lmin[2]) *
-          (scrollY / (document.body.scrollHeight - window.innerHeight))
-      );
-
-    const Rred =
-      Rmin[0] +
-      Math.floor(
-        (Rmax[0] - Rmin[0]) *
-          (scrollY / (document.body.scrollHeight - window.innerHeight))
-      );
-    const Rgreen =
-      Rmin[1] +
-      Math.floor(
-        (Rmax[1] - Rmin[1]) *
-          (scrollY / (document.body.scrollHeight - window.innerHeight))
-      );
-    const Rblue =
-      Rmin[2] +
-      Math.floor(
-        (Rmax[2] - Rmin[2]) *
-          (scrollY / (document.body.scrollHeight - window.innerHeight))
-      );
-    //  console.log(`Left: rgb(${Lred},${Lgreen},${Lblue})`);
-    //  console.log(`Right: rgb(${Rred},${Rgreen},${Rblue})`);
-    // console.log(`rgb(${Rred},${Rgreen},${Rblue})`);
-    return `rgb(${Lred},${Lgreen},${Lblue}), #6446fc,#fada07,  #6446fc, rgb(${Rred},${Rgreen},${Rblue})`;
-  };
-
   useEffect(() => {
     const updateStyles = () => {
-      const colorGradient = getGradientColor();
+      const colorGradient = getColorGradientUtil({ scrollY, theme, type });
+
       setStyles(colorGradient);
     };
     updateStyles();
     return () => {
       updateStyles();
     };
-  }, [scrollY]);
+  }, [scrollY, theme]);
 
   return { styles, scrollY };
 };

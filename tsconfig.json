@@ -23,7 +23,6 @@
     "noUnusedLocals": false, //true
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-  
 
   },
   "include": ["src"],

@@ -1,4 +1,4 @@
-import React from "react";
+//import React from "react";
 import { FeaturedProduct } from "../types";
 import { getItemById } from "./getItemById";
 import { FeaturedItemId } from "../types";
@@ -16,7 +16,11 @@ export const getFeaturedProducts: any = (
   const itemsWithFeaturedPrice: any = itemIds.map((itemId: FeaturedItemId) => {
     const item = getItemById(itemId.id);
     if (!item) return null;
-    return { ...item, featuredPrice: itemId.featuredPrice };
+    return {
+      ...item,
+      featuredPrice: itemId.featuredPrice,
+      promo: itemId.promo,
+    };
   });
   // console.log("getting items: ", itemsWithFeaturedPrice);
 

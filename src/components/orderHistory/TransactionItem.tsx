@@ -5,7 +5,7 @@ import { TransactionItemsList } from "./TransactionItemsList";
 import { calculateTotalPrice } from "../../utilities/calculateTotalPrice";
 const TransactionItem: React.FC<TransactionProps> = ({ transaction }) => {
   const { orderId, orderDate, items } = transaction;
-  let transactionListItems = Object.values(items);
+  const transactionListItems = Object.values(items);
   const totalPrice = calculateTotalPrice(transactionListItems);
 
   return (

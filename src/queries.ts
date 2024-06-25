@@ -44,8 +44,8 @@ export const GET_PAGINATED_TRANSACTIONS = gql`
   }
 `;
 export const GET_TRANSACTIONS = gql`
-  query Query {
-    getTransactions {
+  query Query($offset: Int, $limit: Int) {
+    getTransactions(offset: $offset, limit: $limit) {
       items {
         quantity
         id
@@ -53,6 +53,16 @@ export const GET_TRANSACTIONS = gql`
       }
       orderDate
       orderId
+    }
+  }
+`;
+
+export const GET_POSTS = gql`
+  query GetPosts {
+    getPosts {
+      id
+      title
+      content
     }
   }
 `;

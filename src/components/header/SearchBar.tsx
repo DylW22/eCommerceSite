@@ -37,12 +37,12 @@ export function SearchBar() {
         onChange={handleSearchChange}
         className="rounded-pill px-3 w-100"
       />
-      {isLoading && <div>Loading..</div>}
+      {isLoading && <div className="position-absolute">Loading..</div>}
     </Form>
   );
 }
 
-export async function loader({ request }: { request: Request }) {
+export function loader({ request }: { request: Request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q") || "";
   return { q };

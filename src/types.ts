@@ -10,6 +10,7 @@ export interface ActionRequestProps {
 
 //Need to fix
 export type OrderData = {
+  length: any;
   orderDate: string;
   orderId: number;
   items: CartItem[];
@@ -108,7 +109,7 @@ export type StoreItemProps = {
 
 //OrderedItemsList.tsx
 export type OrderedItemsListProps = {
-  items: transactionItem[];
+  items: TransactionItem[];
 };
 
 //TransactionNew.tsx
@@ -143,7 +144,7 @@ export interface ChildRefs {
   //childRefs: HTMLInputElement[]; //React.MutableRefObject<HTMLLIElement[]>;
 }
 
-export type transactionItem = {
+export type TransactionItem = {
   //reduce(arg0: (total: any, item: any) => any, arg1: number): unknown;
   id: number;
   quantity: number;
@@ -158,12 +159,12 @@ export interface IError {
 export type GetCurrentDateBasedOnLocale = (locale: string) => string;
 
 export interface LoginFormProps {
-  isSubmitting: Boolean;
+  isSubmitting: boolean;
   referrer: string[];
 }
 
 export interface RegisterFormProps {
-  isSubmitting: Boolean;
+  isSubmitting: boolean;
 }
 type Rating = 0 | 1 | 2 | 3 | 4 | 5 | number;
 
@@ -178,11 +179,13 @@ export interface TestimonialItem {
 //FeaturedProducts.tsx
 export type FeaturedProduct = StoreItemProps & {
   featuredPrice?: number;
+  promo: string;
 };
 
 export interface FeaturedItemId {
   id: number;
   featuredPrice: number;
+  promo: string;
 }
 
 export interface TestimonialProps {

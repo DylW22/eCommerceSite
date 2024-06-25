@@ -3,7 +3,7 @@ import { TestimonialItem } from "../../types";
 import { Testimonial } from "./Testimonial";
 import sampleData from "../../data/sampleTestimonials.json"; // assert { type: "json" };
 export const Testimonials = () => {
-  let nMax: number = 2;
+  const nMax: number = 2;
   const itemsToDisplay: TestimonialItem[] = useRotatingItems(
     sampleData,
     nMax,

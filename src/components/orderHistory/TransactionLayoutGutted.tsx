@@ -1,28 +1,41 @@
 //import React from "react";
-import { useLoaderData, Outlet, LoaderFunction } from "react-router-dom";
+import {
+  useLoaderData,
+  Outlet,
+  LoaderFunction,
+  useOutletContext,
+} from "react-router-dom";
 import { TransactionsLoaderObject, OrderData } from "../../types";
 import { GET_TRANSACTIONS } from "../../queries";
-import { createQueryPreloader, useReadQuery } from "@apollo/client";
+import { QueryRef, createQueryPreloader, useReadQuery } from "@apollo/client";
 import client from "../../apolloClient";
 import { Col, Row, Container } from "react-bootstrap";
-import { DisplayTransactionsList } from "./DisplayTransactionsList";
+import { DisplayTransactionsList } from "./DisplayTransactionsListNoScroll";
 import { useRef } from "react";
 const preloadQuery = createQueryPreloader(client);
+import { useTransactions } from "../../hooks/useTransactions";
+import { GetTransactionsResponse } from "../../pages/NewHistoryIndex.tsx";
 //console.log("preloadQuery: ", preloadQuery);
 interface QueryDataType {
   getTransactions: OrderData[];
   // Add other properties if needed
 }
 
-export const TransactionLayout = () => {
-  const { data: queryRef } = useLoaderData() as any; //TransactionsLoaderObject; //useLoaderData<TransactionsLoaderObject>();
-  const queryData = useReadQuery<QueryDataType>(queryRef);
-  console.log("queryRef: ", queryData);
-  const transactions = queryData?.data?.getTransactions || [];
+const limit = 2;
+export const TransactionLayoutGutted = () => {
+  const queryRef = useOutletContext<QueryRef<GetTransactionsResponse>>();
+  const { transactions, fetchTransactions, hasMorePosts } = useTransactions(
+    queryRef,
+    limit
+  );
+  //const { data: queryRef } = useLoaderData() as any; //TransactionsLoaderObject; //useLoaderData<TransactionsLoaderObject>();
+  //const queryData = useReadQuery<QueryDataType>(queryRef);
+  //console.log("queryRef: ", queryData);
+  //const transactions = queryData?.data?.getTransactions || [];
 
   //https://github.com/apollographql/apollo-client-nextjs/blob/e7a59cb26716a77bbfac659f435f89f5af8eff61/packages/client-react-streaming/src/registerApolloClient.tsx#L152
 
-  const childRefs = useRef<HTMLElement[]>([]);
+  /*  const childRefs = useRef<HTMLElement[]>([]);
   const scrollDown = (index: number) => {
     if (childRefs.current[index]) {
       //let offset = index == 2 ? "50px" : "70px";
@@ -31,7 +44,7 @@ export const TransactionLayout = () => {
         behavior: "smooth",
       });
     }
-  };
+  };*/
 
   return (
     <Container
@@ -54,12 +67,12 @@ export const TransactionLayout = () => {
         >
           <DisplayTransactionsList
             transactions={transactions}
-            scrollDown={scrollDown}
+            //    scrollDown={scrollDown}
           />
         </Col>
         {
           <Col xs={9} md={9} lg={9}>
-            <Outlet context={childRefs} />
+            <Outlet context={queryRef} /*context={childRefs}*/ />
           </Col>
         }
       </Row>

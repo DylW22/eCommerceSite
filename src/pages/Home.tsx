@@ -1,4 +1,4 @@
-import { Ref, useEffect, useRef, useState, RefObject } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Card,
   CardBody,
@@ -10,21 +10,35 @@ import {
 } from "react-bootstrap";
 import backgroundImg from "../assets/background.jpg";
 import { Testimonials } from "../components/home/Testimonials";
-import { Popover } from "../components/home/Popover";
+import Popover from "../components/home/Popover";
 import { useDynamicBackground } from "../hooks/useDynamicBackground";
 import { FeaturedProducts } from "../components/home/FeaturedProducts";
 import SubscribeNewsletter from "../components/home/SubscribeNewsletter";
 import { CallToAction } from "../components/home/CallToAction";
-//import { useBackgroundQuery } from "@apollo/client";
+import { useBackgroundQuery, useReadQuery } from "@apollo/client";
+import { GET_TRANSACTIONS } from "../queries";
+// import { useSymbol } from "../context/SymbolContext";
 //https://stackoverflow.com/questions/63354927/how-to-fix-the-error-property-contains-doesnt-exist-on-type-refobject-using-t
 //export type PopoverRefType = { current?: HTMLElement | null; [x: string]: any }; //OK
-//import { GET_TRANSACTIONS } from "../queries";
-export function Home() {
+
+function Home() {
   const popoverRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(true);
   const { styles } = useDynamicBackground();
+  /*const [queryRef] = useBackgroundQuery(GET_TRANSACTIONS, {
+    variables: { offset: 0, limit: 5 },
+  });*/
+  //const testData = useReadQuery(queryRef);
+  //console.log(`testData: `, testData);
 
-  //console.log("styles: ", styles);
+  /* const { updateSymbol } = useSymbol();
+
+  const [queryRef] = useBackgroundQuery(GET_TRANSACTIONS);
+
+  useEffect(() => {
+    updateSymbol(queryRef);
+  }, [queryRef]);*/
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -48,7 +62,8 @@ export function Home() {
       style={{
         zIndex: 1,
         //background: `linear-gradient(to right, ${styles}, #6446fc, #fccf03)`, //#423ffb
-        background: `linear-gradient(to right, ${styles})`,
+        background: `${styles}`,
+        // background: `linear-gradient(to right, ${styles})`,
       }}
     >
       {isOpen && <Popover className={"d-none"} ref={popoverRef} />}
@@ -97,3 +112,4 @@ export function Home() {
     </Container>
   );
 }
+export { Home };

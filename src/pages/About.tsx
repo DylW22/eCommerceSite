@@ -1,4 +1,4 @@
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useDynamicBackground } from "../hooks/useDynamicBackground";
 
 export function About() {
@@ -9,8 +9,12 @@ export function About() {
     <Container
       fluid
       style={{
-        height: "calc(100vh - 80px)",
-        background: `linear-gradient(to right, ${styles})`,
+        height: "calc(100vh - 72px)",
+        background: `${styles}`,
+        //backgroundRepeat: "no-repeat",
+        // backgroundAttachment: "fixed",
+        //margin: "0px",
+        //background: `linear-gradient(to right, ${styles})`,
       }}
       className="m-0 p-4 fw-bold fs-1"
     >

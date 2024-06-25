@@ -3,17 +3,17 @@ import { useRotatingItems } from "../../hooks/useRotatingItems";
 
 import { getFeaturedProducts } from "../../utilities/getFeaturedProducts";
 import { FeaturedProductCard } from "./FeaturedProduct";
-import { StoreItemProps } from "../../types";
+//import { StoreItemProps } from "../../types";
 
 import { FeaturedProduct } from "../../types";
 
 export const FeaturedProducts = () => {
-  let nMax: number = 3;
+  const nMax: number = 3;
 
   const featuredProductsId = [
-    { id: 1, featuredPrice: 111 },
-    { id: 2, featuredPrice: 222 },
-    { id: 3, featuredPrice: 333 },
+    { id: 1, featuredPrice: 111, promo: "new product!" },
+    { id: 2, featuredPrice: 222, promo: "great product!" },
+    { id: 3, featuredPrice: 333, promo: "wow" },
   ];
   const featuredProducts = getFeaturedProducts(featuredProductsId);
 

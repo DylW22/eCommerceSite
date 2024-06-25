@@ -6,14 +6,17 @@ import App from "./App.tsx";
 import { AuthProvider } from "./context/AuthContext.tsx";
 import client from "./apolloClient";
 import { ApolloProvider } from "@apollo/client";
+import { SymbolProvider } from "./context/SymbolContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <AuthProvider>
-        <div className="">
-          <App />
-        </div>
+        <SymbolProvider>
+          <div className="">
+            <App />
+          </div>
+        </SymbolProvider>
       </AuthProvider>
     </ApolloProvider>
     {/*<RouterProvider router={router} />*/}

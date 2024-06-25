@@ -6,10 +6,8 @@ export const useRotatingItems = <T,>(
   period: number
 ): T[] => {
   const [currentItems, setCurrentItems] = useState<T[]>(items.slice(0, N));
-  const [index, setIndex] = useState<number>(0);
-
+  const [_index, setIndex] = useState<number>(0);
   useEffect(() => {
-    console.log("Items changing");
     // setCurrentItems(items.slice(0, N));
 
     const interval = setInterval(() => {

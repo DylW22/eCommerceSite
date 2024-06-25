@@ -4,7 +4,7 @@ import { auth } from "./utilities/firebaseConfig.ts"; //"../..//utilities/fireba
 import { onAuthStateChanged } from "firebase/auth";
 //import { AuthContext } from "./context/AuthContext";
 //import { getTokenFromAuthContext } from "./utilities/authUtils.ts";
-import { measureExecutionTime } from "./utilities/measureExecutionTime.ts";
+//import { measureExecutionTime } from "./utilities/measureExecutionTime.ts";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:3000/",
@@ -43,10 +43,29 @@ const authLink = setContext(async (_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache({
+  cache: new InMemoryCache(),
+
+  /*cache: new InMemoryCache({
     typePolicies: {
       Query: {
         fields: {
+          getPosts: {
+            read(existing, _) {
+              // A read function should always return undefined if existing is
+              // undefined. Returning undefined signals that the field is
+              // missing from the cache, which instructs Apollo Client to
+              // fetch its value from your GraphQL server.
+              return;
+              //return existing && existing.slice(offset, offset + limit);
+            },
+            // Don't cache separate results based on
+            // any of this field's arguments.
+            keyArgs: [],
+            merge(existing, incoming, _) {
+              return;
+            },
+          },
+
           feed: {
             read(existing, { args: { offset, limit } }: any) {
               // A read function should always return undefined if existing is
@@ -69,7 +88,7 @@ const client = new ApolloClient({
         },
       },
     },
-  }),
+  }),*/
 });
 
 export default client;

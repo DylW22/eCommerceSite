@@ -1,7 +1,7 @@
 import { ref, get } from "firebase/database";
 import { database } from "./firebaseConfig.ts";
 export const fetchOrderHistory = async () => {
-  let errors: Record<string, string> = {};
+  const errors: Record<string, string> = {};
   try {
     const dbRef = ref(database, "/transactions");
     const snapshot = await get(dbRef);

@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useOutletContext } from "react-router-dom";
 //import { useAuth } from "../context/AuthContext";
 import { useAuth } from "../../context/AuthContext";
 import { useEffect } from "react";
@@ -15,6 +15,7 @@ export function ProtectedRoute() {
   const { emptyCart } = useShoppingCart();
   const location = useLocation();
   const nav = useNavigate();
+  const result = useOutletContext();
 
   useEffect(() => {
     if (
@@ -31,5 +32,5 @@ export function ProtectedRoute() {
     return <Navigate to="/login" state={{ referrer }} replace />;
   }
 
-  return <Outlet />;
+  return <Outlet context={result} />;
 }

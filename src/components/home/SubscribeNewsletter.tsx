@@ -22,7 +22,7 @@ const SubscribeNewsletter = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     //Submit
     e.preventDefault();
-    let isValid = true;
+    const isValid = true;
     if (isValid) {
       console.log("Submitted!");
       setEmail("");

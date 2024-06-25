@@ -4,16 +4,16 @@ import { OrderData } from "../../types";
 
 interface DisplayTransactionsListProps {
   transactions: OrderData[];
-  scrollDown: (index: number) => void;
+  //  scrollDown: (index: number) => void;
 }
 
 export const DisplayTransactionsList: React.FC<
   DisplayTransactionsListProps
-> = ({ transactions, scrollDown }) => {
+> = ({ transactions /* scrollDown*/ }) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const handleItemClick = (index: number) => {
-    scrollDown(index);
+    //  scrollDown(index);
     setActiveIndex(index);
   };
   return (

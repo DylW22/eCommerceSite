@@ -1,14 +1,15 @@
-import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
+import { useTheme } from "../../context/ThemeContext";
 export const CallToAction = () => {
+  const { theme } = useTheme();
   return (
-    <div className="min-height-200 rounded-4 h-100 text-center d-flex">
-      <Link
-        to="/store" //bg-danger
-        className="text-decoration-none h-100 flex-fill rounded-5 d-flex align-items-center justify-content-center cta-link cta-link:hover"
-      >
-        <div className=" fs-1 fw-bold text-white">Shop now!</div>
-      </Link>
-    </div>
+    <Link
+      to="/store" //bg-danger
+      className={`text-decoration-none h-100 flex-fill rounded-4 d-flex align-items-center justify-content-center  ${
+        theme === "light" ? "bg-midnight cta-link-light" : "bg-dusk cta-link"
+      } `}
+    >
+      <div className=" fs-1 fw-bold">Shop now!</div>
+    </Link>
   );
 };
