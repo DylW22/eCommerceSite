@@ -1,14 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "../components/header/Header";
-//import { Container } from "react-bootstrap";
 import { useTheme } from "../context/ThemeContext";
 import { useBackgroundQuery } from "@apollo/client";
 import { GET_TRANSACTIONS } from "../queries";
-// import { useSymbol } from "../context/SymbolContext";
-// import { useEffect, useState } from "react";
+
 export function Root() {
   const { theme } = useTheme();
-  const [result, query] = useBackgroundQuery(GET_TRANSACTIONS, {
+  const [result] = useBackgroundQuery(GET_TRANSACTIONS, {
     variables: { offset: 0, limit: 4 },
   });
 
@@ -45,7 +43,7 @@ export function Root() {
       className={`${theme === "light" ? "bg-white" : "bg-midnight text-white"}`}
     >
       <Header />
-      <Outlet context={result} />
+      <Outlet context={{ reference: result }} />
     </div>
   );
 }

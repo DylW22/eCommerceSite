@@ -11,27 +11,18 @@ import { InvalidPath } from "../pages/InvalidPath";
 import { action as LoginAction } from "../pages/Login";
 import { action as RegisterAction } from "../pages/Register";
 import { ProtectedRoute } from "../components/routing/ProtectedRoute";
-//import { ProtectedRoute } from "../components/ProtectedRoute";
 import { Account } from "../pages/Account";
 import { Checkout } from "../pages/Checkout";
 import { Payment } from "../pages/Payment";
 import { RedirectedRoute } from "../components/routing/RedirectedRoute";
-import {
-  loader as HistoryLayoutLoader,
-  TransactionLayout,
-} from "../components/orderHistory/TransactionLayout";
-//import { OrderHistory, loader as HistoryLoader } from "../pages/OrderHistory";
 import { action as PaymentAction } from "../pages/Payment";
 import { Home } from "../pages/Home";
-//import { Transaction } from "../components/orderHistory/Transaction";
-import { HistoryIndex } from "../pages/HistoryIndex";
+
 import { ActionFunction, RouteObject } from "react-router-dom";
 import { Suspense } from "react";
-import { TransactionLayoutGutted } from "../components/orderHistory/TransactionLayoutGutted";
-import { NewHistoryIndex } from "../pages/NewHistoryIndex.tsx";
-//import { Profiler } from "react";
-//import { onRender } from "../utilities/onRender";
-//22, 23, 24. 78, 79
+import { TransactionLayout } from "../components/orderHistory/TransactionLayout.tsx";
+import { TransactionIndex } from "../pages/TransactionIndex.tsx";
+
 export const RoutesConfig = (appContext: any): RouteObject[] => {
   return [
     {
@@ -66,7 +57,7 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
                 },
                 {
                   element: (
-                    <Suspense fallback={<div>Loading..</div>}>
+                    <Suspense fallback={<div>Yelllow</div>}>
                       <TestPage4 />
                     </Suspense>
                   ),
@@ -104,20 +95,27 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
                     },
                     {
                       element: (
-                        //         <Profiler id="transactionLayout" onRender={onRender}>
-                        <TransactionLayoutGutted />
+                        //       <Suspense fallback={<div>Loading layout</div>}>
+                        <TransactionLayout />
+                        //     </Suspense>
                         //       </Profiler>
                       ),
                       path: "/history",
-                      loader: HistoryLayoutLoader,
+
                       id: "history",
                       children: [
                         {
                           index: true,
+                          errorElement: <div>Error</div>,
                           element: (
                             //         <Profiler id="historyIndex" onRender={onRender}>
                             //<div>Index</div>
-                            <NewHistoryIndex />
+
+                            //                            <Suspense
+                            //                          fallback={<div>Loading TransactionIndex</div>}
+                            //                      >
+                            <TransactionIndex />
+                            //                          </Suspense>
                             //       </Profiler>
                           ),
                         },

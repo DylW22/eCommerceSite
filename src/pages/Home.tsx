@@ -15,8 +15,6 @@ import { useDynamicBackground } from "../hooks/useDynamicBackground";
 import { FeaturedProducts } from "../components/home/FeaturedProducts";
 import SubscribeNewsletter from "../components/home/SubscribeNewsletter";
 import { CallToAction } from "../components/home/CallToAction";
-import { useBackgroundQuery, useReadQuery } from "@apollo/client";
-import { GET_TRANSACTIONS } from "../queries";
 // import { useSymbol } from "../context/SymbolContext";
 //https://stackoverflow.com/questions/63354927/how-to-fix-the-error-property-contains-doesnt-exist-on-type-refobject-using-t
 //export type PopoverRefType = { current?: HTMLElement | null; [x: string]: any }; //OK

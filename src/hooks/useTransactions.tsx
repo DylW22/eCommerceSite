@@ -5,9 +5,12 @@ import { OrderData } from "../types";
 interface GetTransactionsResponse {
   getTransactions: OrderData[];
 }
+export interface CustomQueryRef<T> extends QueryRef<T> {
+  reference: QueryRef<T>;
+}
 
 export const useTransactions = (
-  queryRef: QueryRef<GetTransactionsResponse>,
+  queryRef: CustomQueryRef<GetTransactionsResponse>,
   limit: number
 ) => {
   const [transactions, setTransactions] = useState<OrderData[]>([]);

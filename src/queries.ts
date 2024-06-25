@@ -43,13 +43,14 @@ export const GET_PAGINATED_TRANSACTIONS = gql`
     }
   }
 `;
+
+//itemId removed from GET_TRANSACTIONS
 export const GET_TRANSACTIONS = gql`
   query Query($offset: Int, $limit: Int) {
     getTransactions(offset: $offset, limit: $limit) {
       items {
         quantity
         id
-        itemId
       }
       orderDate
       orderId

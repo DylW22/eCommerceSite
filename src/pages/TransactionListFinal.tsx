@@ -1,4 +1,4 @@
-import { useState, useTransition, useEffect } from "react";
+import { useState, useTransition, useEffect, Suspense } from "react";
 import { ListGroup } from "react-bootstrap";
 import { OrderData } from "../types";
 import TransactionCard from "../components/orderHistory/TransactionCard";
@@ -61,13 +61,15 @@ function TransactionListFinal({
       <button onClick={handleNextClick} disabled={isPending || !hasMorePosts}>
         Next
       </button>
-      <ListGroup className="h-100">
-        {displayedTransactions.map((transaction) => (
-          <ListGroup.Item key={transaction.orderId} className="h-100">
-            <TransactionCard transaction={transaction} />
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
+      <Suspense fallback={<div>Loading list</div>}>
+        <ListGroup className="h-100">
+          {displayedTransactions.map((transaction) => (
+            <ListGroup.Item key={transaction.orderId} className="h-100">
+              <TransactionCard transaction={transaction} loading={false} />
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      </Suspense>
     </>
   );
 }

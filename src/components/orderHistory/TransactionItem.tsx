@@ -1,10 +1,10 @@
 import React from "react";
 import { Col, Row, Container } from "react-bootstrap";
-import { TransactionProps } from "../../types";
+import { OrderData, TransactionProps } from "../../types";
 import { TransactionItemsList } from "./TransactionItemsList";
 import { calculateTotalPrice } from "../../utilities/calculateTotalPrice";
 const TransactionItem: React.FC<TransactionProps> = ({ transaction }) => {
-  const { orderId, orderDate, items } = transaction;
+  const { orderId, orderDate, items } = transaction as OrderData;
   const transactionListItems = Object.values(items);
   const totalPrice = calculateTotalPrice(transactionListItems);
 

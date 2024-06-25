@@ -10,7 +10,7 @@ export interface ActionRequestProps {
 
 //Need to fix
 export type OrderData = {
-  length: any;
+  //length: any;
   orderDate: string;
   orderId: number;
   items: CartItem[];
@@ -114,7 +114,8 @@ export type OrderedItemsListProps = {
 
 //TransactionNew.tsx
 export type TransactionProps = {
-  transaction: OrderData; //OrderData
+  transaction?: OrderData; //OrderData
+  loading: boolean;
 };
 
 //Store.tsx
