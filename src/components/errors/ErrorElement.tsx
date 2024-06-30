@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import { useDynamicBackground } from "../hooks/useDynamicBackground";
+import { useDynamicBackground } from "../../hooks/useDynamicBackground";
 import { Button, Container, NavLink } from "react-bootstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
-export const InvalidPath = () => {
+export const ErrorElement = () => {
   const { styles } = useDynamicBackground();
   return (
     <Container
       fluid
-      className="p-0 m-0 d-flex justify-content-center align-items-center text-black"
+      className="p-0 m-0 d-flex justify-content-center align-items-center"
       style={{ background: styles, height: "100vh" }}
     >
       <Container

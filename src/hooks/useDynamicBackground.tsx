@@ -2,41 +2,31 @@ import { useEffect, useState } from "react";
 import { useDebounce } from "./useDebounce";
 import { useTheme } from "../context/ThemeContext";
 import { getColorGradientUtil } from "../utilities/getColorGradientUtil";
-export const useDynamicBackground = (type = "linear", delay = 100) => {
-  const [styles, setStyles] = useState("");
+export const useDynamicBackground = (type = "linear", delay = 300) => {
+  //const [styles, setStyles] = useState("");
   const [scrollY, setScrollY] = useState(0);
+  //let theme = "light";
   const { theme } = useTheme();
-  //const debouncedScrollY = useDebounce(scrollY, delay);
+  //const debouncedScrollY = useDebounce(scrollY as any, 10000);
 
   const handleScroll = () => {
     setScrollY(window.scrollY);
   };
-  const handleDebouncedScroll = () => {
-    handleScroll();
-  };
-  const debouncedHandleScroll = useDebounce(handleDebouncedScroll, delay);
+
+  const debouncedHandleScroll = useDebounce(handleScroll, delay);
 
   useEffect(() => {
     window.addEventListener("scroll", debouncedHandleScroll);
-    /* if (type === "lineaar") {
-      console.log("Hello");
-    }*/
     return () => {
-      window.removeEventListener("scroll", debouncedHandleScroll);
+      window.addEventListener("scroll", debouncedHandleScroll);
     };
   }, []);
 
-  useEffect(() => {
-    const updateStyles = () => {
-      const colorGradient = getColorGradientUtil({ scrollY, theme, type });
-
-      setStyles(colorGradient);
-    };
-    updateStyles();
-    return () => {
-      updateStyles();
-    };
-  }, [scrollY, theme]);
-
-  return { styles, scrollY };
+  const colorGradient = getColorGradientUtil({
+    scrollY,
+    theme,
+    type,
+  });
+  //console.log("colorGradient: ", colorGradient);
+  return { styles: colorGradient, scrollY };
 };

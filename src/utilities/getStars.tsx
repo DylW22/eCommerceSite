@@ -8,7 +8,11 @@ export const getStars = ({ rating, totalStars }: GetStarsProps) => {
   const stars = [];
   for (let i = 1; i <= totalStars; i++) {
     stars.push(
-      <Col key={i} sm={2}>
+      <Col
+        key={i}
+        sm={2}
+        className="d-flex align-items-center justify-content-center"
+      >
         <img height={"20px"} src={i <= rating ? filledStar : emptyStar} />
       </Col>
     );

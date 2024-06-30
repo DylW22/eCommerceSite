@@ -26,6 +26,6 @@
 
   },
   "include": ["src"],
-  "exclude": ["src/utilities/onRender.ts", "src/pages/tests", "tests/utilities" ,"src/pages/HistoryIndexObs.tsx", "src/pages/TestPage4.tsx",],
+  "exclude": ["src/utilities/onRender.ts", "src/pages/tests", "tests/utilities" ,"src/pages/HistoryIndexObs.tsx", "src/pages/TestPage4Old.tsx",],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

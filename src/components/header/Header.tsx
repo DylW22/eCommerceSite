@@ -11,18 +11,23 @@ import { AccountDropDown } from "./AccountDropdown";
 import { ThemeToggle } from "./ThemeToggle";
 import { Navbar } from "./Navbar";
 import { useTheme } from "../../context/ThemeContext";
+import { useDynamicBackground } from "../../hooks/useDynamicBackground";
 export function Header() {
   const { cartQuantity } = useShoppingCart();
   const { state } = useAuth();
   const { isAuthenticated } = state;
-  const { theme } = useTheme();
+  //const { theme } = useTheme();
+  const { styles } = useDynamicBackground();
+
   return (
-    //mb-3 bg-white px-md-5 //  //{`${theme === "light" ? "bg-white" : "bg-gray"}`}
+    //b-3 bg-white px-md-5 //  //{`${theme === "light" ? "bg-white" : "bg-gray"}`}
     <Container
       fluid
-      className={`${
+      style={{ background: styles }}
+      className={`p-2 sticky-top`}
+      /*className={`p-2 sticky-top ${
         theme === "light" ? "bg-white" : "bg-midnight"
-      } p-2 sticky-top`}
+      } */
     >
       <NavbarBs expand sticky="top" className="">
         <Container fluid className="d-flex justify-content-between">

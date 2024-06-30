@@ -58,6 +58,19 @@ export const GET_TRANSACTIONS = gql`
   }
 `;
 
+export const ADD_TRANSACTION = gql`
+  mutation Mutation($transactionItem: TransactionItemInput) {
+    addTransaction(transactionItem: $transactionItem) {
+      orderDate
+      orderId
+      items {
+        quantity
+        id
+      }
+    }
+  }
+`;
+
 export const GET_POSTS = gql`
   query GetPosts {
     getPosts {

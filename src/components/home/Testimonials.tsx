@@ -11,11 +11,10 @@ export const Testimonials = () => {
   );
 
   return (
-    <div className="p-2 rounded-4">
-      <div className="text-center">
-        <h1 className="text-white">Testimonials</h1>
-      </div>
-      <div className="d-flex flex-md-column flex-fill w-100 text-center px-0 mx-0">
+    <div className=" rounded-4 text-white text-center">
+      <h1>Testimonials</h1>
+
+      <div className="d-flex flex-md-column flex-fill text-center">
         {itemsToDisplay &&
           itemsToDisplay.map((item) => (
             <Testimonial key={item.id} item={item} />

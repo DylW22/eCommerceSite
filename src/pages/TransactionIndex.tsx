@@ -11,8 +11,13 @@ export interface GetTransactionsResponse {
 }
 const limit = 2;
 
+export interface ExtendedOutletContextType extends OutletContextType {
+  transactionsTest: [];
+}
+
 export function TransactionIndex() {
-  const queryRef = useOutletContext<OutletContextType>();
+  const queryRef = useOutletContext<ExtendedOutletContextType>();
+  //console.log("[TransactionIndex]: useOutletContext --", queryRef);
   if (!queryRef) {
     return <TransactionIndexSkeleton />;
   }
@@ -21,7 +26,7 @@ export function TransactionIndex() {
     queryRef.reference,
     limit
   );
-
+  //let testTransactions = queryRef.transactionsTest; //USE THIS
   return (
     <TransactionListContent
       transactions={transactions}

@@ -23,19 +23,6 @@ function Home() {
   const popoverRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(true);
   const { styles } = useDynamicBackground();
-  /*const [queryRef] = useBackgroundQuery(GET_TRANSACTIONS, {
-    variables: { offset: 0, limit: 5 },
-  });*/
-  //const testData = useReadQuery(queryRef);
-  //console.log(`testData: `, testData);
-
-  /* const { updateSymbol } = useSymbol();
-
-  const [queryRef] = useBackgroundQuery(GET_TRANSACTIONS);
-
-  useEffect(() => {
-    updateSymbol(queryRef);
-  }, [queryRef]);*/
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -65,8 +52,8 @@ function Home() {
       }}
     >
       {isOpen && <Popover className={"d-none"} ref={popoverRef} />}
-      <Row className="p-0 m-0">
-        <Col md={6} className="p-4 order-md-2">
+      <Row className="p-0 m-0 mx-2">
+        <Col md={6} className="py-4 px-4 order-md-2">
           <Card className="p-2">
             <img className="" src={backgroundImg} />
 

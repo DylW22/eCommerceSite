@@ -9,7 +9,7 @@ export const CallToAction = () => {
         theme === "light" ? "bg-midnight cta-link-light" : "bg-dusk cta-link"
       } `}
     >
-      <div className=" fs-1 fw-bold">Shop now!</div>
+      <div className="fs-4 fs-md-1 fw-bold">Shop now!</div>
     </Link>
   );
 };

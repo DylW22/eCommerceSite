@@ -4,8 +4,6 @@ import { Outlet } from "react-router-dom";
 import { CustomQueryRef } from "../../hooks/useTransactions";
 import { GetTransactionsResponse } from "../../pages/TransactionIndex";
 import { redirectsConfig } from "../../data/routingPermissions";
-import { formatRouteString } from "../../utilities/formatRouteString";
-import { RouteProps } from "../../types";
 //import { useShoppingCart } from "../context/ShoppingCartContext";
 //stackoverflow.com/questions/69864165/error-privateroute-is-not-a-route-component-all-component-children-of-rou
 //Typescript:
@@ -15,42 +13,48 @@ export type OutletContextType = {
   reference: CustomQueryRef<GetTransactionsResponse>;
 };
 
-export function ProtectedRoute({ children }: RouteProps) {
+export function ProtectedRoute() {
   const { state } = useAuth();
   const { isAuthenticated } = state;
   // const { emptyCart } = useShoppingCart();
   const location = useLocation();
   const result = useOutletContext<OutletContextType>();
-
+  const destinationRoute = location.pathname;
   const originRoute = location?.state?.from;
-  const destinationRoute = formatRouteString(location.pathname);
+
+  if (!isAuthenticated) {
+    const referrer = location?.pathname; //
+    return <Navigate to="/login" state={{ referrer }} replace />;
+  }
+
+  //Need to differentiate between navigating directly to /payment from a route besides /checkout
+  //and from clicking submit on the CONFIRM button
+
+  //OG:
+  /*
+  if (
+    destinationRoute === "/payment" && //location.pathname
+    originRoute !== "/checkout" && //location?.state?.from
+    originRoute !== "/payment" //location?.state?.from
+  ) {
+    return <Navigate to="/" />;
+  }
+
+  //Cannot directly access /success, need to visit /payment first
+  if (
+    destinationRoute === "/success" && //location.pathname
+    originRoute !== "/payment" //location?.state?.from
+  ) {
+    return <Navigate to="/" />;
+  }
+  */
 
   const pathData = redirectsConfig[destinationRoute];
-  const requireAuth = pathData?.requiresAuth;
-
   const originRoutes = pathData?.originRoutes;
   const redirectTo = pathData?.redirectTo;
-
-  //If user is not authenticated, but route requires auth, redirect to /login
-  if (!isAuthenticated && requireAuth) {
-    console.log("This route requires authorizarion.");
-    return (
-      <Navigate to="/login" state={{ referrer: destinationRoute }} replace />
-    );
-  }
-
-  //If route does not requireAuth, redirectTo has been set, but user is already authenticated,
-  //redirect to account
-  if (!requireAuth && redirectTo) {
-    if (isAuthenticated) {
-      return <Navigate to="/account" />;
-    } else {
-      return <>{children}</>;
-    }
-  }
-  if (originRoutes && !originRoutes.includes(originRoute) && redirectTo) {
-    console.log("Statement 3");
+  if (originRoutes && !originRoutes.includes(originRoute)) {
     return <Navigate to={redirectTo} />;
   }
+
   return <Outlet context={{ reference: result.reference }} />;
 }

@@ -21,9 +21,11 @@ export function ProtectedRoute({ children }: RouteProps) {
   // const { emptyCart } = useShoppingCart();
   const location = useLocation();
   const result = useOutletContext<OutletContextType>();
-
+  let destinationRoute = location.pathname;
   const originRoute = location?.state?.from;
-  const destinationRoute = formatRouteString(location.pathname);
+
+  destinationRoute = formatRouteString(destinationRoute);
+  //console.log("destinationRoute: ", destinationRoute);
 
   const pathData = redirectsConfig[destinationRoute];
   const requireAuth = pathData?.requiresAuth;
@@ -33,24 +35,28 @@ export function ProtectedRoute({ children }: RouteProps) {
 
   //If user is not authenticated, but route requires auth, redirect to /login
   if (!isAuthenticated && requireAuth) {
-    console.log("This route requires authorizarion.");
+    console.log("Statement 1");
+    console.log("I should navigate away: ", destinationRoute);
     return (
       <Navigate to="/login" state={{ referrer: destinationRoute }} replace />
     );
-  }
-
-  //If route does not requireAuth, redirectTo has been set, but user is already authenticated,
-  //redirect to account
-  if (!requireAuth && redirectTo) {
-    if (isAuthenticated) {
-      return <Navigate to="/account" />;
-    } else {
-      return <>{children}</>;
-    }
-  }
-  if (originRoutes && !originRoutes.includes(originRoute) && redirectTo) {
+    //If route does not requireAuth, redirectTo has been set, but user is already authenticated,
+    //redirect to account
+  } else if (!requireAuth && redirectTo && isAuthenticated) {
+    //!requireAuth && redirectTo && isAuthenticated
+    //   console.log("Statement 2");
+    // console.log("I am /login OR /register");
+    return <Navigate to="/account" />;
+  } else if (!requireAuth && redirectTo && !isAuthenticated) {
+    return <>{children}</>;
+  } else if (
+    originRoutes &&
+    !originRoutes.includes(originRoute) &&
+    redirectTo
+  ) {
     console.log("Statement 3");
     return <Navigate to={redirectTo} />;
+  } else {
+    return <Outlet context={{ reference: result.reference }} />;
   }
-  return <Outlet context={{ reference: result.reference }} />;
 }

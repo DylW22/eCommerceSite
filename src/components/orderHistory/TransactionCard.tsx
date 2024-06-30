@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Col,
   Row,
@@ -50,7 +50,6 @@ const TransactionCard: React.FC<TransactionProps> = ({
               </Col>
               <Col className="d-flex flex-column">
                 <CardTitle>Purchased items</CardTitle>
-                {/*   <TransactionItemsListV2 items={transactionListItems} /> */}
               </Col>
               <Col className="d-flex flex-column justify-content-between">
                 <Row className="p-0 m-0">
@@ -70,8 +69,12 @@ const TransactionCard: React.FC<TransactionProps> = ({
 
   const { orderId, orderDate, items } = transaction as OrderData;
   const transactionListItems = Object.values(items);
-  console.log("transactionListItems: ", transactionListItems);
-  const totalPrice = calculateTotalPrice(transactionListItems);
+  // console.log("transactionListItems: ", transactionListItems);
+  const totalPrice = useMemo(
+    () => calculateTotalPrice(transactionListItems),
+    [transactionListItems]
+  );
+  // const totalPrice = calculateTotalPrice(transactionListItems)
 
   return (
     <Container

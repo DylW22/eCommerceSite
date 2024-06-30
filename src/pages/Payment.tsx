@@ -1,35 +1,34 @@
-import { Button, Row, Form } from "react-bootstrap";
+import { Button, Row, Form, Nav } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { generateOrderDetails } from "../utilities/generateOrderDetails";
-import { Form as FormRR } from "react-router-dom";
+import {
+  Form as FormRR,
+  Navigate,
+  useActionData,
+  useLocation,
+  useNavigation,
+} from "react-router-dom";
 import { writeToDatabase } from "../utilities/writeTransactions"; //.js
 
 import type { ActionFunction } from "react-router-dom";
 import type { ActionRequestProps } from "../types.js";
+import { ADD_TRANSACTION } from "../queries.js";
+import { useMutation } from "@apollo/client";
+import { useEffect } from "react";
 export function Payment() {
+  const data = useActionData() as any;
+  const status = data?.status;
   const { cartItems } = useShoppingCart();
   const cartItemsJSON = JSON.stringify(cartItems);
-  /*
-  const location = useLocation();
-  const nav = useNavigate();
 
-  
-  useEffect(() => {
-    if (
-      location.pathname === "/payment" &&
-      location?.state?.from !== "/checkout"
-    ) {
-      console.log("Will empty cart");
-      emptyCart();
-      nav("/");
-    }
-  }, [location?.state?.from]);
-*/
   return (
     <div>
       <Row>Hello</Row>
+      {status === "success" && (
+        <Navigate to="/success" state={{ from: "/payment" }} />
+      )}
 
-      <Form as={FormRR} method="post">
+      <Form as={FormRR} method="post" state={{ from: "/payment" }}>
         <Form.Control name="cartItems" readOnly hidden value={cartItemsJSON} />
         <Button type="submit">CONFIRM</Button>
       </Form>
@@ -39,7 +38,7 @@ export function Payment() {
 
 export const action: ActionFunction =
   () =>
-  async ({ request }: ActionRequestProps): Promise<PaymentDetails> => {
+  async ({ request }: ActionRequestProps): Promise<PaymentDetails | any> => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData) as Record<string, string>;
     const cartItemsParsed = JSON.parse(data.cartItems);
@@ -49,6 +48,7 @@ export const action: ActionFunction =
     try {
       //Perform payment action
       //Successful?
+
       await writeToDatabase(order);
       status = "success";
     } catch (error: unknown) {

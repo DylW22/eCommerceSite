@@ -1,5 +1,6 @@
 import { Container } from "react-bootstrap";
 import { useDynamicBackground } from "../hooks/useDynamicBackground";
+import { HeroSection } from "../components/about/HeroSection";
 
 export function About() {
   const { styles } = useDynamicBackground();
@@ -11,14 +12,12 @@ export function About() {
       style={{
         height: "calc(100vh - 72px)",
         background: `${styles}`,
-        //backgroundRepeat: "no-repeat",
-        // backgroundAttachment: "fixed",
-        //margin: "0px",
-        //background: `linear-gradient(to right, ${styles})`,
       }}
-      className="m-0 p-4 fw-bold fs-1"
+      className="m-0 p-4"
     >
-      This is a fake e-commerce site
+      <HeroSection />
+      <h1 className="fw-bold fs-1">This is a fake e-commerce site</h1>
+      <p>Sign up and pretend to buy some fake products. Have fun!</p>
     </Container>
   );
 }

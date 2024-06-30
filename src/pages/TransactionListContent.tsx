@@ -1,4 +1,10 @@
-import { useState, useTransition, useEffect, Suspense } from "react";
+import {
+  useState,
+  useTransition,
+  useEffect,
+  Suspense,
+  useCallback,
+} from "react";
 import { ListGroup } from "react-bootstrap";
 import { OrderData } from "../types";
 import TransactionCard from "../components/orderHistory/TransactionCard";
@@ -21,7 +27,7 @@ function TransactionListContent({
   >([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPending, startTransition] = useTransition();
-
+  //https://chatgpt.com/c/afc059ac-a349-4c29-980e-15219d71cc75
   const updateDisplayedTransactions = () => {
     const newDisplayedTransactions = transactions.slice(
       currentIndex,
@@ -30,7 +36,8 @@ function TransactionListContent({
     setDisplayedTransactions(newDisplayedTransactions);
   };
 
-  const handleNextClick = () => {
+  //Great use of useCallback
+  const handleNextClick = useCallback(() => {
     startTransition(() => {
       const newIndex = currentIndex + limit;
       if (newIndex >= transactions.length - 2 * limit && hasMorePosts) {
@@ -38,13 +45,21 @@ function TransactionListContent({
       }
       setCurrentIndex(newIndex);
     });
-  };
-  const handlePrevClick = () => {
+  }, [
+    currentIndex,
+    limit,
+    transactions.length,
+    hasMorePosts,
+    fetchTransactions,
+    startTransition,
+  ]);
+
+  const handlePrevClick = useCallback(() => {
     startTransition(() => {
       const newIndex = Math.max(currentIndex - limit, 0);
       setCurrentIndex(newIndex);
     });
-  };
+  }, [currentIndex, limit, startTransition]);
 
   useEffect(() => {
     updateDisplayedTransactions();
@@ -65,6 +80,7 @@ function TransactionListContent({
         <ListGroup className="h-100">
           {displayedTransactions.map((transaction) => (
             <ListGroup.Item key={transaction.orderId} className="h-100">
+              {/*     <div>{JSON.stringify(transaction)}</div> */}
               <TransactionCard transaction={transaction} loading={false} />
             </ListGroup.Item>
           ))}

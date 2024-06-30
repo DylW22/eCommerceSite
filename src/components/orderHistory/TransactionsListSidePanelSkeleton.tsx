@@ -1,4 +1,4 @@
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import { DisplayTransactionsList } from "./DisplayTransactionsListNoScroll";
 import { useTheme } from "../../context/ThemeContext";
@@ -20,10 +20,20 @@ export const TransactionsListSidePanelSkeleton = () => {
         md={3}
         lg={3}
       >
-        <DisplayTransactionsList
-          loading={true}
-          //    scrollDown={scrollDown}
-        />
+        <Row className="p-0 m-0 w-100">
+          <DisplayTransactionsList
+            loading={true}
+            //    scrollDown={scrollDown}
+          />
+        </Row>
+        <Row className="d-flex flex-row p-0 m-0 justify-content-center">
+          <Button className="w-25 mx-2" disabled={true}>
+            Next
+          </Button>
+          <Button className="w-25 mx-2" disabled={true}>
+            Prev
+          </Button>
+        </Row>
       </Col>
       <Col xs={9} md={9} lg={9}>
         <Outlet />

@@ -4,7 +4,7 @@ import { Root } from "../pages/Root";
 import { loader as SearchBarLoader } from "../components/header/SearchBar";
 import { Store } from "../pages/Store";
 import { About } from "../pages/About";
-import { TestPage4 } from "../pages/TestPage4";
+import { TestPage4 } from "../pages/TestPage4.tsx";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { InvalidPath } from "../pages/InvalidPath";
@@ -22,6 +22,8 @@ import { ActionFunction, RouteObject } from "react-router-dom";
 import { Suspense } from "react";
 import { TransactionLayout } from "../components/orderHistory/TransactionLayout.tsx";
 import { TransactionIndex } from "../pages/TransactionIndex.tsx";
+import { ErrorElement } from "../components/errors/ErrorElement.tsx";
+import Success from "../pages/Success.tsx";
 
 export const RoutesConfig = (appContext: any): RouteObject[] => {
   return [
@@ -33,11 +35,8 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
           children: [
             {
               path: "/",
-              element: (
-                <div className="">
-                  <Root />
-                </div>
-              ),
+              errorElement: <ErrorElement />,
+              element: <Root />,
               loader: SearchBarLoader,
               id: "root",
 
@@ -66,18 +65,22 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
                 },
                 {
                   element: (
-                    <RedirectedRoute>
+                    //  <RedirectedRoute>
+                    <ProtectedRoute>
                       <Login />
-                    </RedirectedRoute>
+                    </ProtectedRoute>
+                    // </RedirectedRoute>
                   ),
                   path: "/login",
                   action: LoginAction(appContext) as ActionFunction,
                 },
                 {
                   element: (
-                    <RedirectedRoute>
+                    // <RedirectedRoute>
+                    <ProtectedRoute>
                       <Register />
-                    </RedirectedRoute>
+                    </ProtectedRoute>
+                    // </RedirectedRoute>
                   ),
                   path: "/register",
                   action: RegisterAction(appContext) as ActionFunction,
@@ -132,6 +135,10 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
                       element: <Payment />,
                       path: "/payment",
                       action: PaymentAction(appContext) as ActionFunction,
+                    },
+                    {
+                      element: <Success />,
+                      path: "/success",
                     },
                   ],
                 },
