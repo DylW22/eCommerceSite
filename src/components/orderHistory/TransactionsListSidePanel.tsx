@@ -10,7 +10,7 @@ export const TransactionsListSidePanel = () => {
   const { transactions } = useTransactions(queryRef.reference, limit);
   const { theme } = useTheme();
 
-  let sampleTransactions = [
+  const sampleTransactions = [
     {
       items: [
         {

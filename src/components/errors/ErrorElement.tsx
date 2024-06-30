@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useDynamicBackground } from "../../hooks/useDynamicBackground";
 import { Button, Container, NavLink } from "react-bootstrap";
 import { NavLink as RRNavLink } from "react-router-dom";

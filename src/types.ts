@@ -72,7 +72,7 @@ export interface LoaderData {
 
 //RedirectedRoute.tsx
 export interface RouteProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 //CartItem.tsx

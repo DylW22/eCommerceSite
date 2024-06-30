@@ -14,7 +14,7 @@ import { ProtectedRoute } from "../components/routing/ProtectedRoute";
 import { Account } from "../pages/Account";
 import { Checkout } from "../pages/Checkout";
 import { Payment } from "../pages/Payment";
-import { RedirectedRoute } from "../components/routing/RedirectedRoute";
+//import { RedirectedRoute } from "../components/routing/RedirectedRoute";
 import { action as PaymentAction } from "../pages/Payment";
 import { Home } from "../pages/Home";
 

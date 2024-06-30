@@ -10,7 +10,6 @@ import { SearchBar } from "./SearchBar";
 import { AccountDropDown } from "./AccountDropdown";
 import { ThemeToggle } from "./ThemeToggle";
 import { Navbar } from "./Navbar";
-import { useTheme } from "../../context/ThemeContext";
 import { useDynamicBackground } from "../../hooks/useDynamicBackground";
 export function Header() {
   const { cartQuantity } = useShoppingCart();

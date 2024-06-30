@@ -1,20 +1,14 @@
-import { Button, Row, Form, Nav } from "react-bootstrap";
+import { Button, Row, Form } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { generateOrderDetails } from "../utilities/generateOrderDetails";
-import {
-  Form as FormRR,
-  Navigate,
-  useActionData,
-  useLocation,
-  useNavigation,
-} from "react-router-dom";
+import { Form as FormRR, Navigate, useActionData } from "react-router-dom";
 import { writeToDatabase } from "../utilities/writeTransactions"; //.js
 
 import type { ActionFunction } from "react-router-dom";
 import type { ActionRequestProps } from "../types.js";
-import { ADD_TRANSACTION } from "../queries.js";
-import { useMutation } from "@apollo/client";
-import { useEffect } from "react";
+//import { ADD_TRANSACTION } from "../queries.js";
+//import { useMutation } from "@apollo/client";
+//import { useEffect } from "react";
 export function Payment() {
   const data = useActionData() as any;
   const status = data?.status;
