@@ -1,15 +1,13 @@
 import { Row, Col, Button } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import { DisplayTransactionsList } from "./DisplayTransactionsListNoScroll";
-import { useTheme } from "../../context/ThemeContext";
+//import { useTheme } from "../../context/ThemeContext";
 export const TransactionsListSidePanelSkeleton = () => {
-  const { theme } = useTheme();
+  //const { theme } = useTheme();
   return (
     <Row className="h-100" style={{ padding: 0, margin: 0 }}>
       <Col
-        className={`shadow-lg sticky-top ${
-          theme === "dark" ? "bg-midnight" : "bg-white "
-        }`}
+        className={`shadow-lg sticky-top`}
         style={{
           top: "72px",
           padding: "0",

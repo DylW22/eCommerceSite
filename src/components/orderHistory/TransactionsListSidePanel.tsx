@@ -3,12 +3,14 @@ import { useOutletContext, Outlet } from "react-router-dom";
 import { OutletContextType } from "../routing/ProtectedRoute";
 import { useTransactions } from "../../hooks/useTransactions";
 import { DisplayTransactionsList } from "./DisplayTransactionsListNoScroll";
-import { useTheme } from "../../context/ThemeContext";
+import { useDynamicBackground } from "../../hooks/useDynamicBackground";
+//import { useTheme } from "../../context/ThemeContext";
 const limit = 2;
 export const TransactionsListSidePanel = () => {
   const queryRef = useOutletContext<OutletContextType>();
+  const { styles } = useDynamicBackground();
   const { transactions } = useTransactions(queryRef.reference, limit);
-  const { theme } = useTheme();
+  //const { theme } = useTheme();
 
   const sampleTransactions = [
     {
@@ -34,12 +36,13 @@ export const TransactionsListSidePanel = () => {
   ];
 
   return (
+    //theme === "dark" ? "bg-midnight" : "bg-white "
+
     <Row className="h-100" style={{ padding: 0, margin: 0 }}>
       <Col
-        className={`shadow-lg sticky-top ${
-          theme === "dark" ? "bg-midnight" : "bg-white "
-        }`}
+        className={`shadow-lg sticky-top rounded-2`}
         style={{
+          background: styles,
           top: "72px",
           padding: "0",
           margin: "0",

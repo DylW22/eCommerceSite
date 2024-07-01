@@ -31,10 +31,10 @@ export function Store() {
       className="m-0 p-4 d-flex justify-content-center"
     >
       <Container style={{ margin: "0px" }} className="p-0 m-0 mt-2">
-        <Row md={2} xs={1} lg={3} className="g-3">
+        <Row md={2} xs={1} lg={3} className="g-4 g-md-3">
           {itemsToDisplay.length ? (
             itemsToDisplay.map((item) => (
-              <Col key={item.id} className="w-50">
+              <Col key={item.id} className="">
                 <StoreItem {...item} />
               </Col>
             ))

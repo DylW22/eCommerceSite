@@ -7,7 +7,7 @@ export const TransactionLayout = () => {
   return (
     <Container
       fluid
-      className="shadow-lg h-100"
+      className="shadow-lg h-100 "
       style={{ padding: 0, margin: 0, bottom: "" }}
     >
       <Suspense fallback={<TransactionsListSidePanelSkeleton />}>

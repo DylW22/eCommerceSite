@@ -12,7 +12,10 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
   const quantity = getItemQuantity(id);
 
   return (
-    <Card className="h-100 w-100 p-2" style={{ height: "380px" }}>
+    <Card
+      className="h-100 w-100 p-2"
+      style={{ height: "380px", minHeight: "390px" }}
+    >
       <Card.Img
         variant="top"
         src={imgUrl}
@@ -21,7 +24,7 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
       />
       <Card.Body className="d-flex flex-column">
         <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
-          <span className="fs-2">{name}</span>
+          <span className="fs-3">{name}</span>
           <span className="ms-2 text-muted">{formatCurrency(price)}</span>
         </Card.Title>
         <div className="mt-auto relative">
@@ -31,7 +34,7 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
             </Button>
           ) : (
             <div
-              className="d-flex align-items-center 
+              className="d-flex align-items-center
             flex-column"
               style={{ gap: ".5rem" }}
             >

@@ -3,9 +3,10 @@ import { Header } from "../components/header/Header";
 import { useBackgroundQuery } from "@apollo/client";
 import { GET_TRANSACTIONS } from "../queries";
 import { useDynamicBackground } from "../hooks/useDynamicBackground";
+import { useTheme } from "../context/ThemeContext";
 
 export function Root() {
-  // const { theme } = useTheme();
+  const { theme } = useTheme();
   const [result] = useBackgroundQuery(GET_TRANSACTIONS, {
     variables: { offset: 0, limit: 4 },
   });
@@ -14,6 +15,7 @@ export function Root() {
   return (
     <div //changed from ? "custom-lightGray" : ..
       style={{ background: styles }}
+      className={`${theme === "light" ? "" : "text-white"}`}
       //className={`${theme === "light" ? "bg-white" : "bg-midnight text-white"}`}
     >
       <Header />
