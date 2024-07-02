@@ -60,7 +60,9 @@ color: #FFF;
    background-color: salmon;
     color: #fff; /* Change the text color on hover */
   }
-
+.bg-popover {
+    background-color: #00d4ff;
+}
 
 /*
 .no-scrollbar {

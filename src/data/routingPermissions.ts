@@ -1,3 +1,4 @@
+import { redirectsInterface } from "../types";
 /*const routeConfig = {
   "/login": {
     requiresAuth: false,
@@ -24,13 +25,6 @@
   },
 };
 */
-export interface redirectsInterface {
-  [key: string]: {
-    originRoutes: string[];
-    redirectTo: string;
-    requiresAuth: boolean;
-  };
-}
 
 export const redirectsConfig: redirectsInterface = {
   "/payment": {

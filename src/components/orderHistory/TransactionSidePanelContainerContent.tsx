@@ -1,11 +1,5 @@
-import { OrderData } from "../../types";
+import { TransactionSidePanelContainerContentProps } from "../../types";
 import { ListGroup } from "react-bootstrap";
-
-interface TransactionSidePanelContainerContentProps {
-  transactions: OrderData[] | undefined;
-  handleItemClick: (index: number) => void;
-  activeIndex: number | null;
-}
 
 export const TransactionSidePanelContainerContent: React.FC<
   TransactionSidePanelContainerContentProps

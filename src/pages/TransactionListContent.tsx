@@ -6,15 +6,8 @@ import {
   useCallback,
 } from "react";
 import { ListGroup } from "react-bootstrap";
-import { OrderData } from "../types";
+import { OrderData, TransactionListProps } from "../types";
 import TransactionCard from "../components/orderHistory/TransactionCard";
-
-interface TransactionListProps {
-  transactions: OrderData[];
-  fetchTransactions: () => void;
-  hasMorePosts: boolean;
-  limit: number;
-}
 
 function TransactionListContent({
   transactions,
@@ -80,7 +73,6 @@ function TransactionListContent({
         <ListGroup className="h-100">
           {displayedTransactions.map((transaction) => (
             <ListGroup.Item key={transaction.orderId} className="h-100">
-              {/*     <div>{JSON.stringify(transaction)}</div> */}
               <TransactionCard transaction={transaction} loading={false} />
             </ListGroup.Item>
           ))}

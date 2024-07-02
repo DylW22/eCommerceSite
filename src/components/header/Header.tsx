@@ -10,19 +10,15 @@ import { SearchBar } from "./SearchBar";
 import { AccountDropDown } from "./AccountDropdown";
 import { ThemeToggle } from "./ThemeToggle";
 import { Navbar } from "./Navbar";
-import { useDynamicBackground } from "../../hooks/useDynamicBackground";
 export function Header() {
   const { cartQuantity } = useShoppingCart();
   const { state } = useAuth();
   const { isAuthenticated } = state;
-  //const { theme } = useTheme();
-  const { styles } = useDynamicBackground();
 
   return (
     //b-3 bg-white px-md-5 //  //{`${theme === "light" ? "bg-white" : "bg-gray"}`}
     <Container
       fluid
-      style={{ background: styles }}
       className={`p-2 sticky-top`}
       /*className={`p-2 sticky-top ${
         theme === "light" ? "bg-white" : "bg-midnight"

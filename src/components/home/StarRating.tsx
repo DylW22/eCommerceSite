@@ -1,5 +1,5 @@
 import React from "react";
-import { Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { StarRatingProps } from "../../types";
 import { getStars } from "../../utilities/getStars";
 
@@ -8,9 +8,11 @@ const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
   const stars = getStars({ rating, totalStars });
 
   return (
-    <Row className="d-flex justify-content-center align-items-center">
-      {stars}
-    </Row>
+    <>
+      <Row className="d-flex flex-row justify-content-center align-items-center">
+        {stars}
+      </Row>
+    </>
   );
 };
 

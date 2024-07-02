@@ -5,7 +5,7 @@ import { HeroSection } from "../components/about/HeroSection";
 export function About() {
   const { styles } = useDynamicBackground();
 
-  console.log("styles: ", styles);
+  //console.log("styles: ", styles);
   return (
     <Container
       fluid

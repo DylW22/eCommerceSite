@@ -17,6 +17,7 @@ export const FeaturedProducts = () => {
   ];
   const featuredProducts = getFeaturedProducts(featuredProductsId);
 
+  //console.log("featuredProducts: ", featuredProducts);
   const products: FeaturedProduct[] = useRotatingItems(
     featuredProducts,
     nMax,

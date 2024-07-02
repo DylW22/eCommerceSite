@@ -11,7 +11,6 @@ import {
 import backgroundImg from "../assets/background.jpg";
 import { Testimonials } from "../components/home/Testimonials";
 import Popover from "../components/home/Popover";
-import { useDynamicBackground } from "../hooks/useDynamicBackground";
 import { FeaturedProducts } from "../components/home/FeaturedProducts";
 import SubscribeNewsletter from "../components/home/SubscribeNewsletter";
 import { CallToAction } from "../components/home/CallToAction";
@@ -22,7 +21,6 @@ import { CallToAction } from "../components/home/CallToAction";
 function Home() {
   const popoverRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(true);
-  const { styles } = useDynamicBackground();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -47,7 +45,7 @@ function Home() {
       style={{
         zIndex: 1,
         //background: `linear-gradient(to right, ${styles}, #6446fc, #fccf03)`, //#423ffb
-        background: `${styles}`,
+        //  background: `${styles}`,
         // background: `linear-gradient(to right, ${styles})`,
       }}
     >

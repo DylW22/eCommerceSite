@@ -1,7 +1,6 @@
 import { getItemById } from "../../utilities/getItemById";
 import { Row, Col } from "react-bootstrap";
 import { OrderedItemsListProps } from "../../types";
-//import { useState, useEffect } from "react";
 
 export const TransactionItemsList: React.FC<OrderedItemsListProps> = ({
   items,

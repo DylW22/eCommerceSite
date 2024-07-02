@@ -203,3 +203,34 @@ export interface GetStarsProps {
   rating: number;
   totalStars: number;
 }
+
+export interface TransactionListProps {
+  transactions: OrderData[];
+  fetchTransactions: () => void;
+  hasMorePosts: boolean;
+  limit: number;
+}
+
+export interface DisplayTransactionsListProps {
+  transactions?: OrderData[];
+  loading: boolean;
+  //  scrollDown: (index: number) => void;
+}
+
+export interface PopoverProps {
+  className?: string;
+}
+
+export interface TransactionSidePanelContainerContentProps {
+  transactions: OrderData[] | undefined;
+  handleItemClick: (index: number) => void;
+  activeIndex: number | null;
+}
+
+export interface redirectsInterface {
+  [key: string]: {
+    originRoutes: string[];
+    redirectTo: string;
+    requiresAuth: boolean;
+  };
+}

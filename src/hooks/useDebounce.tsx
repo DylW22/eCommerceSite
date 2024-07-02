@@ -4,7 +4,7 @@ export const useDebounce = <T extends (...args: any[]) => void>(
   delay: number = 2000
 ) => {
   const timeoutRef = useRef<number | null>(null);
-
+  //console.log("useDebounce called");
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {

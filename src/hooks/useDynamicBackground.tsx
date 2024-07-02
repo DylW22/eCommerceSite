@@ -18,7 +18,7 @@ export const useDynamicBackground = (type = "linear", delay = 300) => {
   useEffect(() => {
     window.addEventListener("scroll", debouncedHandleScroll);
     return () => {
-      window.addEventListener("scroll", debouncedHandleScroll);
+      window.removeEventListener("scroll", debouncedHandleScroll);
     };
   }, []);
 

@@ -13,7 +13,11 @@ export const getStars = ({ rating, totalStars }: GetStarsProps) => {
         sm={2}
         className="d-flex align-items-center justify-content-center"
       >
-        <img height={"20px"} src={i <= rating ? filledStar : emptyStar} />
+        <img
+          className=""
+          height={"20px"}
+          src={i <= rating ? filledStar : emptyStar}
+        />
       </Col>
     );
   }

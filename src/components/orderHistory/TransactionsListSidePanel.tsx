@@ -4,40 +4,16 @@ import { OutletContextType } from "../routing/ProtectedRoute";
 import { useTransactions } from "../../hooks/useTransactions";
 import { DisplayTransactionsList } from "./DisplayTransactionsListNoScroll";
 import { useDynamicBackground } from "../../hooks/useDynamicBackground";
-//import { useTheme } from "../../context/ThemeContext";
+import React from "react";
 const limit = 2;
-export const TransactionsListSidePanel = () => {
+export const TransactionsListSidePanel: React.FC<{ loading: boolean }> = ({
+  loading,
+}) => {
   const queryRef = useOutletContext<OutletContextType>();
   const { styles } = useDynamicBackground();
   const { transactions } = useTransactions(queryRef.reference, limit);
-  //const { theme } = useTheme();
-
-  const sampleTransactions = [
-    {
-      items: [
-        {
-          quantity: 11,
-          id: 1,
-        },
-      ],
-      orderDate: "June 26, 2024",
-      orderId: 3,
-    },
-    {
-      items: [
-        {
-          quantity: 6,
-          id: 2,
-        },
-      ],
-      orderDate: "June 26, 2024",
-      orderId: 18,
-    },
-  ];
 
   return (
-    //theme === "dark" ? "bg-midnight" : "bg-white "
-
     <Row className="h-100" style={{ padding: 0, margin: 0 }}>
       <Col
         className={`shadow-lg sticky-top rounded-2`}
@@ -52,22 +28,15 @@ export const TransactionsListSidePanel = () => {
         md={3}
         lg={3}
       >
-        {/*         <DisplayTransactionsList
-          transactions={transactions}
-          loading={false}
-          //    scrollDown={scrollDown}
-        /> */}
-
         <Row className="p-0 m-0 w-100">
           <DisplayTransactionsList
             transactions={transactions}
-            loading={false}
-            //    scrollDown={scrollDown}
+            loading={loading}
           />
         </Row>
-        <Row className="d-flex flex-row p-0 m-0 justify-content-center">
-          <Button className="w-25 mx-2">Next</Button>
-          <Button className="w-25 mx-2">Prev</Button>
+        <Row className="d-flex flex-row p-0 m-0 justify-content-center align-items-center">
+          <Button className="w-25 mx-2">{"<"}</Button>
+          <Button className="w-25 mx-2">{">"}</Button>
         </Row>
       </Col>
       {
@@ -75,11 +44,34 @@ export const TransactionsListSidePanel = () => {
           <Outlet
             context={{
               reference: queryRef.reference,
-              transactionsTest: sampleTransactions,
-            }} /*context={childRefs}*/
+              //   transactionsTest: sampleTransactions,
+            }}
           />
         </Col>
       }
     </Row>
   );
 };
+
+/* const sampleTransactions = [
+  {
+    items: [
+      {
+        quantity: 11,
+        id: 1,
+      },
+    ],
+    orderDate: "June 26, 2024",
+    orderId: 3,
+  },
+  {
+    items: [
+      {
+        quantity: 6,
+        id: 2,
+      },
+    ],
+    orderDate: "June 26, 2024",
+    orderId: 18,
+  },
+]; */

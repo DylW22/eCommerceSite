@@ -11,7 +11,7 @@ export const TransactionLayout = () => {
       style={{ padding: 0, margin: 0, bottom: "" }}
     >
       <Suspense fallback={<TransactionsListSidePanelSkeleton />}>
-        <TransactionsListSidePanel />
+        <TransactionsListSidePanel loading={false} />
       </Suspense>
     </Container>
   );
