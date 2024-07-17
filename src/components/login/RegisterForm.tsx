@@ -3,8 +3,6 @@ import { Form as FormRR } from "react-router-dom";
 import { RegisterFormProps } from "../../types";
 
 export function RegisterForm({ isSubmitting }: RegisterFormProps) {
-  //const navigate = useNavigation();
-  //const isSubmitting = navigate.state === "submitting";
   return (
     <>
       <Form as={FormRR} method="post" role="form">
@@ -35,7 +33,6 @@ export function RegisterForm({ isSubmitting }: RegisterFormProps) {
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
-        {/*<Form.Control name="referrer" readOnly hidden value={referrer} />*/}
         <Button variant="primary" type="submit" role="button">
           {isSubmitting ? "Submitting.." : "Submit"}
         </Button>

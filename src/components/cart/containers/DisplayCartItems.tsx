@@ -24,7 +24,6 @@ export function DisplayCartItems() {
           }, 0)
         )}
       </div>
-      {/*Need to determine how to redirect to /checkout if shopping cart is clicked and already on /checkout */}
       {location.pathname === "/checkout" ? (
         <Button style={{ maxWidth: "200px" }}>
           <Nav.Link

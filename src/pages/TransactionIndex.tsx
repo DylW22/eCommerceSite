@@ -17,16 +17,17 @@ export interface ExtendedOutletContextType extends OutletContextType {
 
 export function TransactionIndex() {
   const queryRef = useOutletContext<ExtendedOutletContextType>();
-  //console.log("[TransactionIndex]: useOutletContext --", queryRef);
   if (!queryRef) {
     return <TransactionIndexSkeleton />;
   }
 
+  //Re-enable
   const { transactions, fetchTransactions, hasMorePosts } = useTransactions(
     queryRef.reference,
     limit
   );
   //let testTransactions = queryRef.transactionsTest; //USE THIS
+
   return (
     <TransactionListContent
       transactions={transactions}

@@ -6,7 +6,7 @@ import { useTheme } from "../../context/ThemeContext";
 export const Testimonial: React.FC<TestimonialProps> = ({ item }) => {
   const { theme } = useTheme();
   return (
-    <Card //mx-2 mx-md-0
+    <Card
       style={{ height: "200px" }}
       className={`mx-2 mx-md-0 flex-fill p-4 ${
         theme === "light" ? "custom-lightGray" : "bg-midnight text-white"

@@ -3,15 +3,13 @@ import { ListGroup } from "react-bootstrap";
 import { DisplayTransactionsListProps } from "../../types";
 import { TransactionSidePanelContainerContent } from "./TransactionSidePanelContainerContent";
 import { TransactionSidePanelContainerSkeleton } from "./TransactionSidePanelContainerSkeleton";
-//import { useDynamicBackground } from "../../hooks/useDynamicBackground";
 
 export const DisplayTransactionsList: React.FC<
   DisplayTransactionsListProps
-> = ({ transactions, loading /* scrollDown*/ }) => {
+> = ({ transactions, loading }) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  //const { styles } = useDynamicBackground();
+
   const handleItemClick = (index: number) => {
-    //  scrollDown(index);
     setActiveIndex(index);
   };
 

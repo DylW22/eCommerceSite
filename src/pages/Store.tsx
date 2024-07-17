@@ -3,15 +3,10 @@ import { StoreItem } from "../components/cart/containers/StoreItem.tsx";
 import { filterByQuery } from "../utilities/filterByQuery.ts";
 import { useRouteLoaderData } from "react-router-dom";
 import { Container } from "react-bootstrap";
-//import { GET_DATA, GetDataQuery } from "../queries.ts";
-//import { useQuery, createQueryPreloader, useReadQuery } from "@apollo/client";
-//import client from "../apolloClient.ts";
+
 import { locationObject } from "../types.ts";
 import "./../assets/styles/styles.css";
 import { useDynamicBackground } from "../hooks/useDynamicBackground.tsx";
-//import { useTheme } from "../context/ThemeContext.tsx";
-//const preloadQuery = createQueryPreloader(client);
-//const preloadedQueryRef = preloadQuery(GET_DATA);
 
 export function Store() {
   const location = useRouteLoaderData("root") as locationObject;
@@ -24,9 +19,8 @@ export function Store() {
       style={{
         //   height: "calc(100vh - 80px)",
         background: `${styles}`,
-        height: "100%",
-        // height: "calc(100vh - 72px)",
-        // background: `linear-gradient(to right, ${styles})`,
+
+        height: location.q ? "calc(100vh - 72px)" : "100%",
       }}
       className="m-0 p-4 d-flex justify-content-center"
     >

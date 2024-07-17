@@ -4,7 +4,6 @@ import { Root } from "../pages/Root";
 import { loader as SearchBarLoader } from "../components/header/SearchBar";
 import { Store } from "../pages/Store";
 import { About } from "../pages/About";
-import { TestPage4 } from "../pages/TestPage4.tsx";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { InvalidPath } from "../pages/InvalidPath";
@@ -14,16 +13,15 @@ import { ProtectedRoute } from "../components/routing/ProtectedRoute";
 import { Account } from "../pages/Account";
 import { Checkout } from "../pages/Checkout";
 import { Payment } from "../pages/Payment";
-//import { RedirectedRoute } from "../components/routing/RedirectedRoute";
 import { action as PaymentAction } from "../pages/Payment";
 import { Home } from "../pages/Home";
-
 import { ActionFunction, RouteObject } from "react-router-dom";
-import { Suspense } from "react";
 import { TransactionLayout } from "../components/orderHistory/TransactionLayout.tsx";
 import { TransactionIndex } from "../pages/TransactionIndex.tsx";
 import { ErrorElement } from "../components/errors/ErrorElement.tsx";
 import Success from "../pages/Success.tsx";
+import { TransactionIndexSkeleton } from "../components/orderHistory/TransactionIndexSkeleton.tsx";
+import { TransactionsListSidePanelSkeleton } from "../components/orderHistory/TransactionsListSidePanelSkeleton.tsx";
 
 export const RoutesConfig = (appContext: any): RouteObject[] => {
   return [
@@ -56,31 +54,18 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
                 },
                 {
                   element: (
-                    <Suspense fallback={<div>Yelllow</div>}>
-                      <TestPage4 />
-                    </Suspense>
-                  ),
-                  path: "/testpage",
-                  //    loader: loader,
-                },
-                {
-                  element: (
-                    //  <RedirectedRoute>
                     <ProtectedRoute>
                       <Login />
                     </ProtectedRoute>
-                    // </RedirectedRoute>
                   ),
                   path: "/login",
                   action: LoginAction(appContext) as ActionFunction,
                 },
                 {
                   element: (
-                    // <RedirectedRoute>
                     <ProtectedRoute>
                       <Register />
                     </ProtectedRoute>
-                    // </RedirectedRoute>
                   ),
                   path: "/register",
                   action: RegisterAction(appContext) as ActionFunction,
@@ -97,38 +82,17 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
                       path: "/account",
                     },
                     {
-                      element: (
-                        //       <Suspense fallback={<div>Loading layout</div>}>
-                        <TransactionLayout />
-                        //     </Suspense>
-                        //       </Profiler>
-                      ),
+                      element: <TransactionLayout />,
                       path: "/history",
-
+                      errorElement: <TransactionsListSidePanelSkeleton />,
                       id: "history",
                       children: [
                         {
                           index: true,
-                          errorElement: <div>Error</div>,
-                          element: (
-                            //         <Profiler id="historyIndex" onRender={onRender}>
-                            //<div>Index</div>
-
-                            //                            <Suspense
-                            //                          fallback={<div>Loading TransactionIndex</div>}
-                            //                      >
-                            <TransactionIndex />
-                            //                          </Suspense>
-                            //       </Profiler>
-                          ),
+                          errorElement: <TransactionIndexSkeleton />,
+                          element: <TransactionIndex />,
                         },
-                        /*    {
-                          path: "/history/:orderId",
-                          element: <Transaction />,
-                        },*/
                       ],
-
-                      //loader: HistoryLoader,
                     },
                     { element: <Checkout />, path: "/checkout" },
                     {

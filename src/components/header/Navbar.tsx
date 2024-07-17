@@ -28,13 +28,6 @@ export const Navbar = () => {
       >
         About
       </Nav.Link>
-      <Nav.Link
-        className={`${theme === "dark" ? "text-white" : ""}`}
-        to="/testpage"
-        as={NavLink}
-      >
-        TestPage
-      </Nav.Link>
     </Nav>
   );
 };

@@ -9,14 +9,13 @@ export function Root() {
   const { theme } = useTheme();
   const [result] = useBackgroundQuery(GET_TRANSACTIONS, {
     variables: { offset: 0, limit: 4 },
+    errorPolicy: "all",
   });
-
   const { styles } = useDynamicBackground();
   return (
-    <div //changed from ? "custom-lightGray" : ..
+    <div
       style={{ background: styles }}
       className={`${theme === "light" ? "" : "text-white"}`}
-      //className={`${theme === "light" ? "bg-white" : "bg-midnight text-white"}`}
     >
       <Header />
       <Outlet context={{ reference: result }} />

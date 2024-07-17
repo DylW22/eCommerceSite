@@ -1,13 +1,18 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import { onError } from "@apollo/client/link/error";
 import { auth } from "./utilities/firebaseConfig.ts"; //"../..//utilities/firebaseConfig.ts";
 import { onAuthStateChanged } from "firebase/auth";
-//import { AuthContext } from "./context/AuthContext";
-//import { getTokenFromAuthContext } from "./utilities/authUtils.ts";
-//import { measureExecutionTime } from "./utilities/measureExecutionTime.ts";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:3000/",
+});
+
+const errorLink = onError(({ networkError }) => {
+  if (networkError) {
+    console.log("Network error", networkError);
+    throw new Error("Network is down.");
+  }
 });
 
 const authLink = setContext(async (_, { headers }) => {
@@ -42,53 +47,8 @@ const authLink = setContext(async (_, { headers }) => {
 });
 
 export const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: authLink.concat(errorLink).concat(httpLink),
   cache: new InMemoryCache(),
-
-  /*cache: new InMemoryCache({
-    typePolicies: {
-      Query: {
-        fields: {
-          getPosts: {
-            read(existing, _) {
-              // A read function should always return undefined if existing is
-              // undefined. Returning undefined signals that the field is
-              // missing from the cache, which instructs Apollo Client to
-              // fetch its value from your GraphQL server.
-              return;
-              //return existing && existing.slice(offset, offset + limit);
-            },
-            // Don't cache separate results based on
-            // any of this field's arguments.
-            keyArgs: [],
-            merge(existing, incoming, _) {
-              return;
-            },
-          },
-
-          feed: {
-            read(existing, { args: { offset, limit } }: any) {
-              // A read function should always return undefined if existing is
-              // undefined. Returning undefined signals that the field is
-              // missing from the cache, which instructs Apollo Client to
-              // fetch its value from your GraphQL server.
-              return existing && existing.slice(offset, offset + limit);
-            },
-            // Don't cache separate results based on
-            // any of this field's arguments.
-            keyArgs: [],
-            merge(existing, incoming, { args: { offset = 0 } }: any) {
-              const merged = existing ? existing.slice(0) : [];
-              for (let i = 0; i < incoming.length; ++i) {
-                merged[offset + i] = incoming[i];
-              }
-              return merged;
-            },
-          },
-        },
-      },
-    },
-  }),*/
 });
 
 export default client;

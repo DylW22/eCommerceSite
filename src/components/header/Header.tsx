@@ -1,28 +1,23 @@
 import { Container, Nav, Navbar as NavbarBs, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
-
 import { NavbarCartButton } from "./NavbarCartButton";
 import { useAuth } from "../../context/AuthContext";
-
 import { SearchBar } from "./SearchBar";
-
 import { AccountDropDown } from "./AccountDropdown";
 import { ThemeToggle } from "./ThemeToggle";
 import { Navbar } from "./Navbar";
+import { useDynamicBackground } from "../../hooks/useDynamicBackground";
 export function Header() {
   const { cartQuantity } = useShoppingCart();
   const { state } = useAuth();
   const { isAuthenticated } = state;
-
+  const { styles } = useDynamicBackground();
   return (
-    //b-3 bg-white px-md-5 //  //{`${theme === "light" ? "bg-white" : "bg-gray"}`}
     <Container
       fluid
-      className={`p-2 sticky-top`}
-      /*className={`p-2 sticky-top ${
-        theme === "light" ? "bg-white" : "bg-midnight"
-      } */
+      className={`p-2 sticky-top `}
+      style={{ background: styles }}
     >
       <NavbarBs expand sticky="top" className="">
         <Container fluid className="d-flex justify-content-between">

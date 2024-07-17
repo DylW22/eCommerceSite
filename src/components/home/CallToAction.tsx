@@ -4,7 +4,7 @@ export const CallToAction = () => {
   const { theme } = useTheme();
   return (
     <Link
-      to="/store" //bg-danger
+      to="/store"
       className={`text-decoration-none h-100 flex-fill rounded-4 d-flex align-items-center justify-content-center  ${
         theme === "light" ? "bg-midnight cta-link-light" : "bg-dusk cta-link"
       } `}

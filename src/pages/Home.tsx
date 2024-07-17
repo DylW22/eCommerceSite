@@ -14,10 +14,6 @@ import Popover from "../components/home/Popover";
 import { FeaturedProducts } from "../components/home/FeaturedProducts";
 import SubscribeNewsletter from "../components/home/SubscribeNewsletter";
 import { CallToAction } from "../components/home/CallToAction";
-// import { useSymbol } from "../context/SymbolContext";
-//https://stackoverflow.com/questions/63354927/how-to-fix-the-error-property-contains-doesnt-exist-on-type-refobject-using-t
-//export type PopoverRefType = { current?: HTMLElement | null; [x: string]: any }; //OK
-
 function Home() {
   const popoverRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(true);
@@ -44,9 +40,6 @@ function Home() {
       fluid
       style={{
         zIndex: 1,
-        //background: `linear-gradient(to right, ${styles}, #6446fc, #fccf03)`, //#423ffb
-        //  background: `${styles}`,
-        // background: `linear-gradient(to right, ${styles})`,
       }}
     >
       {isOpen && <Popover className={"d-none"} ref={popoverRef} />}
@@ -56,11 +49,11 @@ function Home() {
             <img className="" src={backgroundImg} />
 
             <CardBody className="card-body">
-              <CardTitle className="card-title">Image Title</CardTitle>
+              <CardTitle className="card-title">Our brand:</CardTitle>
               <CardText className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
+                veniam laborum exercitationem atque cum corporis, eum assumenda!
+                Molestias, aut reiciendis!
               </CardText>
             </CardBody>
           </Card>

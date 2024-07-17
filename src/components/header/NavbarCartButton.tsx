@@ -1,6 +1,5 @@
 import { Button } from "react-bootstrap";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
-//import { useShoppingCart } from "../context/ShoppingCartContext";
 export function NavbarCartButton() {
   const { openCart, cartQuantity } = useShoppingCart();
   return (

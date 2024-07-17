@@ -10,7 +10,6 @@ interface Errors {
 const SubscribeNewsletter = () => {
   const [email, setEmail] = useState<string>("");
   const [errors, setErrors] = useState<Errors>({});
-  //const [success, setSuccess] = useState(false);
   const { toFade, applyFade } = useFadeout(3000);
   const { theme } = useTheme();
 
@@ -20,7 +19,6 @@ const SubscribeNewsletter = () => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    //Submit
     e.preventDefault();
     const isValid = true;
     if (isValid) {
@@ -37,7 +35,6 @@ const SubscribeNewsletter = () => {
     <>
       <Form
         onSubmit={handleSubmit}
-        //        theme === "light" ? "custom-lightGray" : "bg-midnight text-white"
         className={`p-2 ${
           theme === "light" ? "custom-lightGray" : "bg-midnight text-white"
         } position-relative rounded-5 min-height-200 text-center d-flex flex-column justify-content-center align-items-center`}
@@ -57,7 +54,6 @@ const SubscribeNewsletter = () => {
         {toFade && (
           <Form.Text className="position-absolute bot-10">
             <div className="d-flex justify-content-center align-items-center text-center">
-              {/* <p style={{ height: "30px" }}>Subscribed!</p> */}
               <img className="px-2" height={"30px"} src={greenTickIcon} />
             </div>
           </Form.Text>

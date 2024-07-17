@@ -2,13 +2,6 @@ import { Form, Button } from "react-bootstrap";
 import { Form as FormRR } from "react-router-dom";
 import { LoginFormProps } from "../../types";
 export function LoginForm({ isSubmitting, referrer }: LoginFormProps) {
-  //const location = useLocation();
-  //console.log("LoginForm location: ", location);
-  // const [referrer] = useState(location?.state?.referrer || "");
-
-  // const navigate = useNavigation();
-  // const isSubmitting = navigate.state === "submitting";
-
   return (
     <Form as={FormRR} method="post" role="form">
       <Form.Group className="mb-3" controlId="formBasicEmail">

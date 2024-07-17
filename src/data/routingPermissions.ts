@@ -1,31 +1,4 @@
 import { redirectsInterface } from "../types";
-/*const routeConfig = {
-  "/login": {
-    requiresAuth: false,
-    redirectTo: "/dashboard", // Redirect to dashboard if already logged in
-  },
-  "/account": {
-    requiresAuth: true,
-    redirectTo: "/login", // Redirect to login if not logged in
-  },
-  "/checkout": {
-    requiresAuth: true,
-    redirectTo: "/login",
-  },
-  "/payment": {
-    requiresAuth: true,
-    redirectTo: (currentPath) => {
-      // Custom redirect logic based on currentPath or other conditions
-      if (currentPath === "/checkout") {
-        return null; // Allow access if coming from checkout
-      } else {
-        return "/checkout"; // Redirect to checkout if not coming from there
-      }
-    },
-  },
-};
-*/
-
 export const redirectsConfig: redirectsInterface = {
   "/payment": {
     originRoutes: ["/payment", "/checkout"],

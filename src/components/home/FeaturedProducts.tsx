@@ -1,10 +1,7 @@
 import { Col } from "react-bootstrap";
 import { useRotatingItems } from "../../hooks/useRotatingItems";
-
 import { getFeaturedProducts } from "../../utilities/getFeaturedProducts";
 import { FeaturedProductCard } from "./FeaturedProduct";
-//import { StoreItemProps } from "../../types";
-
 import { FeaturedProduct } from "../../types";
 
 export const FeaturedProducts = () => {
@@ -17,7 +14,6 @@ export const FeaturedProducts = () => {
   ];
   const featuredProducts = getFeaturedProducts(featuredProductsId);
 
-  //console.log("featuredProducts: ", featuredProducts);
   const products: FeaturedProduct[] = useRotatingItems(
     featuredProducts,
     nMax,

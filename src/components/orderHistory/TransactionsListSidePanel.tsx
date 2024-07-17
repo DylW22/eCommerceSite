@@ -12,7 +12,6 @@ export const TransactionsListSidePanel: React.FC<{ loading: boolean }> = ({
   const queryRef = useOutletContext<OutletContextType>();
   const { styles } = useDynamicBackground();
   const { transactions } = useTransactions(queryRef.reference, limit);
-
   return (
     <Row className="h-100" style={{ padding: 0, margin: 0 }}>
       <Col
@@ -44,7 +43,6 @@ export const TransactionsListSidePanel: React.FC<{ loading: boolean }> = ({
           <Outlet
             context={{
               reference: queryRef.reference,
-              //   transactionsTest: sampleTransactions,
             }}
           />
         </Col>
@@ -52,26 +50,3 @@ export const TransactionsListSidePanel: React.FC<{ loading: boolean }> = ({
     </Row>
   );
 };
-
-/* const sampleTransactions = [
-  {
-    items: [
-      {
-        quantity: 11,
-        id: 1,
-      },
-    ],
-    orderDate: "June 26, 2024",
-    orderId: 3,
-  },
-  {
-    items: [
-      {
-        quantity: 6,
-        id: 2,
-      },
-    ],
-    orderDate: "June 26, 2024",
-    orderId: 18,
-  },
-]; */
