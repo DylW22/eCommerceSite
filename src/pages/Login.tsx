@@ -11,13 +11,13 @@ import type { ActionFunction } from "react-router-dom";
 
 import { ActionRequestProps, AppAction } from "../types";
 import { useState } from "react";
-//import { sanitizeInput } from "../utilities/sanitizeCode";
+import { sanitizeInput } from "../utilities/sanitizeCode";
 //import { measureExecutionTime } from "../utilities/measureExecutionTime";
 
 //https://stackoverflow.com/questions/76766824/passing-a-function-to-a-react-router-action-in-typescript
 export function Login() {
   const location = useLocation();
-  console.log("LoginForm location: ", location);
+  //console.log("LoginForm location: ", location);
   const [referrer] = useState(location?.state?.referrer || "");
 
   const navigate = useNavigation();
@@ -46,21 +46,17 @@ export const action =
     const { login } = appContext;
     const formData = await request.formData();
     const data = Object.fromEntries(formData) as Record<string, string>;
-    // const { email, password } = data;
-    // console.log("Dirty: ", email);
-    // console.log("Dirty: ", password);
-    // const cleanEmail = sanitizeInput(email);
-    // const cleanPassword = sanitizeInput(password);
+    const { email, password } = data;
 
-    // console.log(`Clean email:`, cleanEmail);
-    // console.log(`Clean password:`, cleanPassword);
+    const cleanEmail = sanitizeInput(email);
+    const cleanPassword = sanitizeInput(password);
+
+    //console.log(`Clean email:`, cleanEmail);
+    //console.log("typeof: ", typeof cleanEmail);
+    //console.log(`Clean password:`, cleanPassword);
     try {
-      await login("testuser1@gmail.com", "ABC123");
-      /*await measureExecutionTime(
-        async () => await login("testuser1@gmail.com", "ABC123")
-      );*/
-
-      //await login("token", cleanEmail, cleanPassword)
+      //await login("testuser1@gmail.com", "ABC123");
+      await login(cleanEmail, cleanPassword);
       if (data?.referrer) return redirect(data?.referrer);
       return redirect("/account");
     } catch (error: unknown) {

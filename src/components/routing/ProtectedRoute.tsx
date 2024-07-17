@@ -18,7 +18,6 @@ export type OutletContextType = {
 export function ProtectedRoute({ children }: RouteProps) {
   const { state } = useAuth();
   const { isAuthenticated } = state;
-  // const { emptyCart } = useShoppingCart();
   const location = useLocation();
   const result = useOutletContext<OutletContextType>();
 

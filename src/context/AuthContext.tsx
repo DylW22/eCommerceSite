@@ -105,7 +105,7 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
         accessToken: await user.getIdToken(),
         refreshToken: user.refreshToken,
       };
-      console.log("AuthContext login: ", userCredentials);
+      //console.log("AuthContext login: ", userCredentials);
       //  console.log("TOKEN: ", token);
       dispatch({ type: "LOGIN", userData, userTokens });
       return userData;

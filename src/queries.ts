@@ -80,12 +80,3 @@ export const GET_POSTS = gql`
     }
   }
 `;
-/*
-export interface Country {
-  name: String;
-  capital: String;
-}
-
-export interface GetDataQuery {
-  country: Country[];
-}*/
