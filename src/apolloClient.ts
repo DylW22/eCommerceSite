@@ -5,9 +5,10 @@ import { auth } from "./utilities/firebaseConfig.ts"; //"../..//utilities/fireba
 import { onAuthStateChanged } from "firebase/auth";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:3000/",
+  uri: "https://vercel-server-apollo.vercel.app/graphql",
+  //uri: "http://localhost:3000/graphql",
 });
-
+//https://vercel-server-apollo.vercel.app/graphql
 const errorLink = onError(({ networkError }) => {
   if (networkError) {
     console.log("Network error", networkError);
