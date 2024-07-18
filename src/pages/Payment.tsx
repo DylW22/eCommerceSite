@@ -35,8 +35,11 @@ export const action: ActionFunction =
   async ({ request }: ActionRequestProps): Promise<PaymentDetails | any> => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData) as Record<string, string>;
+
     const cartItemsParsed = JSON.parse(data.cartItems);
+
     const order = generateOrderDetails(cartItemsParsed);
+
     const errors: Record<string, string> = {};
     let status: "success" | "failure" = "success";
     try {

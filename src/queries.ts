@@ -57,8 +57,19 @@ export const GET_TRANSACTIONS = gql`
     }
   }
 `;
-
 export const ADD_TRANSACTION = gql`
+  mutation Mutation($transactionItem: TransactionInput) {
+    addTransaction(transactionItem: $transactionItem) {
+      orderDate
+      orderId
+      items {
+        quantity
+        id
+      }
+    }
+  }
+`;
+/*export const ADD_TRANSACTION = gql`
   mutation Mutation($transactionItem: TransactionItemInput) {
     addTransaction(transactionItem: $transactionItem) {
       orderDate
@@ -70,6 +81,7 @@ export const ADD_TRANSACTION = gql`
     }
   }
 `;
+*/
 
 export const GET_POSTS = gql`
   query GetPosts {

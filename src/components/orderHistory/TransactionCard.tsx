@@ -34,11 +34,13 @@ const TransactionCard: React.FC<TransactionProps> = ({
 
   const { orderId, orderDate, items } = transaction as OrderData;
   const transactionListItems = Object.values(items);
-  const totalPrice = useMemo(
+
+  /*const totalPrice = useMemo(
     () => calculateTotalPrice(transactionListItems),
     [transactionListItems]
-  );
-
+  );*/
+  const totalPrice =
+    Math.round(100 * calculateTotalPrice(transactionListItems)) / 100;
   return (
     <Container
       fluid

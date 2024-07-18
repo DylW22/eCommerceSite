@@ -5,6 +5,8 @@ import client from "../apolloClient";
 import { ADD_TRANSACTION } from "../queries.js";
 
 export const writeToDatabase = async (incomingData: OrderData) => {
+  console.log("About to mutate");
+  console.log("Incoming data: ", incomingData);
   try {
     await client.mutate({
       mutation: ADD_TRANSACTION,
