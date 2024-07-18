@@ -28,6 +28,7 @@ export default [
       "run-component-test.js",
       "babel.config.cjs",
       ".eslintrc.cjs",
+      "coverage/",
     ],
   },
   {

@@ -1,4 +1,4 @@
-import { Card, CardBody, CardTitle, CardText, CardImg } from "react-bootstrap";
+import { Card, CardBody, CardTitle, CardText } from "react-bootstrap";
 import { FeaturedProduct } from "../../types";
 export const FeaturedProductCard = (product: FeaturedProduct) => {
   return (
