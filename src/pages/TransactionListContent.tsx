@@ -5,9 +5,10 @@ import {
   Suspense,
   useCallback,
 } from "react";
-import { ListGroup } from "react-bootstrap";
+import { Button, ListGroup, NavLink } from "react-bootstrap";
 import { OrderData, TransactionListProps } from "../types";
 import TransactionCard from "../components/orderHistory/TransactionCard";
+import { NavLink as RRNavLink } from "react-router-dom";
 
 function TransactionListContent({
   transactions,
@@ -57,7 +58,6 @@ function TransactionListContent({
   useEffect(() => {
     updateDisplayedTransactions();
   }, [transactions, currentIndex]);
-
   return (
     <>
       <button
@@ -70,16 +70,45 @@ function TransactionListContent({
         Next
       </button>
       <Suspense fallback={<div>Loading list</div>}>
-        <ListGroup className="h-100">
-          {displayedTransactions.map((transaction) => (
-            <ListGroup.Item key={transaction.orderId} className="h-100">
-              <TransactionCard transaction={transaction} loading={false} />
-            </ListGroup.Item>
-          ))}
-        </ListGroup>
+        {displayedTransactions.length > 0 ? (
+          <ListGroup className="h-100">
+            {displayedTransactions.map((transaction) => (
+              <ListGroup.Item key={transaction.orderId} className="h-100">
+                <TransactionCard transaction={transaction} loading={false} />
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        ) : (
+          <div className="fs-2 d-flex flex-column justify-content-center align-items-center">
+            <div>You have not purchased anything!</div>
+            <Button className="w-20">
+              <NavLink as={RRNavLink} to="/store">
+                Visit the store
+              </NavLink>
+            </Button>
+          </div>
+        )}
       </Suspense>
     </>
   );
 }
 
 export default TransactionListContent;
+
+//Within Suspense:
+/*
+      <Suspense fallback={<div>Loading list</div>}>
+        <ListGroup className="h-100">
+          {displayedTransactions.length > 0 ? (
+            displayedTransactions.map((transaction) => (
+              <ListGroup.Item key={transaction.orderId} className="h-100">
+                <TransactionCard transaction={transaction} loading={false} />
+              </ListGroup.Item>
+            ))
+          ) : (
+            <div>You have not purchased anything!</div>
+          )}
+        </ListGroup>
+      </Suspense>
+
+*/

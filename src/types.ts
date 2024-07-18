@@ -1,3 +1,5 @@
+import { pathData } from "./data/pathData";
+import { TitleChanger } from "./hooks/TitleChanger";
 import { ReactNode } from "react";
 export type CartItem = {
   id: number;
@@ -84,6 +86,16 @@ export type CartItemsProps = {
 //ShoppingCart.tsx
 export type ShoppingCartProps = {
   isOpen: boolean;
+};
+
+//TitleChanger.ts
+export interface TitleChangerProps {
+  children?: ReactNode;
+}
+
+export type ValidPath = keyof typeof pathData;
+export type PathData = {
+  [key: string]: string;
 };
 
 export type ShoppingCartContextType = {

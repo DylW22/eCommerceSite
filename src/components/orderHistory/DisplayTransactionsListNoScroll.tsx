@@ -19,7 +19,7 @@ export const DisplayTransactionsList: React.FC<
         Transactions
       </h1>
       <ListGroup defaultActiveKey={``} className="h-100 p-2">
-        {loading ? (
+        {loading || transactions?.length === 0 ? (
           <TransactionSidePanelContainerSkeleton />
         ) : (
           <TransactionSidePanelContainerContent

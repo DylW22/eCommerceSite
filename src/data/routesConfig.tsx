@@ -22,6 +22,7 @@ import { ErrorElement } from "../components/errors/ErrorElement.tsx";
 import Success from "../pages/Success.tsx";
 import { TransactionIndexSkeleton } from "../components/orderHistory/TransactionIndexSkeleton.tsx";
 import { TransactionsListSidePanelSkeleton } from "../components/orderHistory/TransactionsListSidePanelSkeleton.tsx";
+import { TitleChanger } from "../hooks/TitleChanger.tsx";
 
 export const RoutesConfig = (appContext: any): RouteObject[] => {
   return [
@@ -34,7 +35,11 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
             {
               path: "/",
               errorElement: <ErrorElement />,
-              element: <Root />,
+              element: (
+                <TitleChanger>
+                  <Root />
+                </TitleChanger>
+              ),
               loader: SearchBarLoader,
               id: "root",
 
