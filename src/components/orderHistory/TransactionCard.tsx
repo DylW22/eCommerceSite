@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import {
   Col,
   Row,
@@ -20,7 +20,7 @@ const TransactionCard: React.FC<TransactionProps> = ({
       <Container
         fluid
         className="shadow-lg d-flex flex-column h-100 p-0 m-0"
-        style={{ minHeight: "calc(50vh - 56px)" }}
+        style={{ minHeight: "calc(50vh - 80px)" }}
       >
         <Card className="flex-grow-1 d-flex flex-column h-100 flex-fill  p-0 m-0">
           <CardBody className="d-flex flex-column p-0 m-0">
@@ -35,17 +35,13 @@ const TransactionCard: React.FC<TransactionProps> = ({
   const { orderId, orderDate, items } = transaction as OrderData;
   const transactionListItems = Object.values(items);
 
-  /*const totalPrice = useMemo(
-    () => calculateTotalPrice(transactionListItems),
-    [transactionListItems]
-  );*/
   const totalPrice =
     Math.round(100 * calculateTotalPrice(transactionListItems)) / 100;
   return (
     <Container
       fluid
       className="shadow-lg d-flex flex-column h-100 p-0 m-0"
-      style={{ minHeight: "calc(50vh - 56px)" }}
+      style={{ minHeight: "calc(50vh - 80px)" }}
     >
       <Card className="flex-grow-1 d-flex flex-column h-100 flex-fill  p-0 m-0">
         <CardBody className="d-flex flex-column p-0 m-0">
@@ -98,10 +94,7 @@ const BodySection: React.FC<{
       <Col className="d-flex flex-column justify-content-between">
         <Row className="p-0 m-0 d-flex align-items-center justify-content-center">
           <Row className="d-flex align-items-center justify-content-center">
-            Delivered: 12-12-2024
-          </Row>
-          <Row className="d-flex align-items-center justify-content-center">
-            Row 2
+            Delivered: TBD
           </Row>
         </Row>
         <Row className="p-0 m-0 d-block text-end p-2">

@@ -4,8 +4,9 @@ import { Button, Stack } from "react-bootstrap";
 import { formatCurrency } from "../../../utilities/formatCurrency";
 import { CartItemsProps } from "../../../types";
 
-export function CartItem({ id, quantity }: CartItemsProps) {
+export function CartItem({ id, quantity, checkout }: CartItemsProps) {
   const { removeFromCart } = useShoppingCart();
+
   const item = storeItems.find((i) => i.id === id);
   if (!item) return null;
   return (
@@ -19,7 +20,7 @@ export function CartItem({ id, quantity }: CartItemsProps) {
         style={{ width: "125px", height: "75px", objectFit: "cover" }}
       />
       <div className="me-auto">
-        <div>
+        <div className={checkout ? "fw-bold" : ""}>
           {item.name}{" "}
           {quantity > 1 && (
             <span className="text-muted" style={{ fontSize: ".65rem" }}>
@@ -27,11 +28,11 @@ export function CartItem({ id, quantity }: CartItemsProps) {
             </span>
           )}
         </div>
-        <div className="text-muted" style={{ fontSize: ".75rem" }}>
-          {formatCurrency(item.price)}
-        </div>
+        <div style={{ fontSize: ".75rem" }}>{formatCurrency(item.price)}</div>
       </div>
-      <div>{formatCurrency(item.price * quantity)}</div>
+      <div className={`${checkout ? "fw-bold" : ""}`}>
+        {formatCurrency(item.price * quantity)}
+      </div>
       <Button
         variant="outline-danger"
         size="sm"

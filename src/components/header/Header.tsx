@@ -22,10 +22,10 @@ export function Header() {
       <NavbarBs expand sticky="top" className="">
         <Container fluid className="d-flex justify-content-between">
           <Navbar />
+          <ThemeToggle />
           <Container fluid className="p-0">
             <div className="d-flex align-items-center justify-content-end">
               <div className="d-none d-md-flex align-items-center justify-content-end w-100">
-                <ThemeToggle />
                 <SearchBar />
                 {isAuthenticated ? (
                   <AccountDropDown />

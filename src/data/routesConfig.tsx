@@ -17,10 +17,10 @@ import { action as PaymentAction } from "../pages/Payment";
 import { Home } from "../pages/Home";
 import { ActionFunction, RouteObject } from "react-router-dom";
 import { TransactionLayout } from "../components/orderHistory/TransactionLayout.tsx";
-import { TransactionIndex } from "../pages/TransactionIndex.tsx";
+import { TransactionIndex } from "../components/orderHistory/TransactionIndex.tsx";
 import { ErrorElement } from "../components/errors/ErrorElement.tsx";
 import Success from "../pages/Success.tsx";
-import { TransactionIndexSkeleton } from "../components/orderHistory/TransactionIndexSkeleton.tsx";
+import { TransactionListSkeleton } from "../components/orderHistory/TransactionListSkeleton.tsx";
 import { TransactionsListSidePanelSkeleton } from "../components/orderHistory/TransactionsListSidePanelSkeleton.tsx";
 import { TitleChanger } from "../hooks/TitleChanger.tsx";
 
@@ -94,7 +94,7 @@ export const RoutesConfig = (appContext: any): RouteObject[] => {
                       children: [
                         {
                           index: true,
-                          errorElement: <TransactionIndexSkeleton />,
+                          errorElement: <TransactionListSkeleton />,
                           element: <TransactionIndex />,
                         },
                       ],

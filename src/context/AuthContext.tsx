@@ -20,6 +20,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const authReducer = (state: AuthState, action: AuthAction) => {
   switch (action.type) {
     case "LOGIN": {
+      console.log("Login");
       return {
         ...state,
         isAuthenticated: true,
@@ -52,6 +53,12 @@ export const authReducer = (state: AuthState, action: AuthAction) => {
         error: action.error,
       };
     }
+    case "SUBSCRIBE_NEWSLETTER": {
+      return {
+        ...state,
+        newsletterSubscribed: true,
+      };
+    }
     default:
       return state;
   }
@@ -68,6 +75,7 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
       },
       userData: null,
       error: null,
+      newsletterSubscribed: false,
     }
   );
   const [state, dispatch] = useReducer(authReducer, persistedState);
@@ -173,9 +181,13 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
       throw error;
     }
   };
-
+  const subscribeToNewsletter = () => {
+    dispatch({ type: "SUBSCRIBE_NEWSLETTER" });
+  };
   return (
-    <AuthContext.Provider value={{ state, login, logout, createAccount }}>
+    <AuthContext.Provider
+      value={{ state, login, logout, createAccount, subscribeToNewsletter }}
+    >
       {children}
     </AuthContext.Provider>
   );

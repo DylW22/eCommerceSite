@@ -1,5 +1,4 @@
 import { pathData } from "./data/pathData";
-import { TitleChanger } from "./hooks/TitleChanger";
 import { ReactNode } from "react";
 export type CartItem = {
   id: number;
@@ -47,6 +46,7 @@ export type AuthState = {
   token: Tokens;
   userData: UserData | null;
   error: string | null;
+  newsletterSubscribed: boolean;
 };
 
 export type AuthAction =
@@ -54,6 +54,7 @@ export type AuthAction =
   | { type: "LOGOUT" }
   | { type: "REGISTER"; userData: UserData }
   | { type: "SET_ERROR"; error: string }
+  | { type: "SUBSCRIBE_NEWSLETTER" }
   | { type: "DEFAULT" };
 
 export type AuthContextType = {
@@ -65,6 +66,7 @@ export type AuthContextType = {
   ) => void;
   logout: () => void;
   createAccount: (email: string, password: string) => void;
+  subscribeToNewsletter: () => void;
 };
 
 //SearchBar.tsx
@@ -81,6 +83,7 @@ export interface RouteProps {
 export type CartItemsProps = {
   id: number;
   quantity: number;
+  checkout: boolean;
 };
 
 //ShoppingCart.tsx

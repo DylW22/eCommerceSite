@@ -5,9 +5,9 @@ import {
   Suspense,
   useCallback,
 } from "react";
-import { Button, ListGroup, NavLink } from "react-bootstrap";
-import { OrderData, TransactionListProps } from "../types";
-import TransactionCard from "../components/orderHistory/TransactionCard";
+import { Button, ListGroup, NavLink, Row } from "react-bootstrap";
+import { OrderData, TransactionListProps } from "../../types";
+import TransactionCard from "./TransactionCard";
 import { NavLink as RRNavLink } from "react-router-dom";
 
 function TransactionListContent({
@@ -59,21 +59,12 @@ function TransactionListContent({
     updateDisplayedTransactions();
   }, [transactions, currentIndex]);
   return (
-    <>
-      <button
-        onClick={handlePrevClick}
-        disabled={isPending || currentIndex < limit}
-      >
-        Prev
-      </button>
-      <button onClick={handleNextClick} disabled={isPending || !hasMorePosts}>
-        Next
-      </button>
+    <div className="h-100">
       <Suspense fallback={<div>Loading list</div>}>
-        {displayedTransactions.length > 0 ? (
-          <ListGroup className="h-100">
+        {displayedTransactions.length > 0 ? ( //className='h-100'
+          <ListGroup className="">
             {displayedTransactions.map((transaction) => (
-              <ListGroup.Item key={transaction.orderId} className="h-100">
+              <ListGroup.Item key={transaction.orderId} className="">
                 <TransactionCard transaction={transaction} loading={false} />
               </ListGroup.Item>
             ))}
@@ -89,7 +80,23 @@ function TransactionListContent({
           </div>
         )}
       </Suspense>
-    </>
+      <Row className="d-flex flex-row p-0 mt-2 justify-content-center align-items-center">
+        <Button
+          className="w-25 mx-2"
+          onClick={handlePrevClick}
+          disabled={isPending || currentIndex < limit}
+        >
+          {"<"}
+        </Button>
+        <Button
+          className="w-25 mx-2"
+          onClick={handleNextClick}
+          disabled={isPending || !hasMorePosts}
+        >
+          {">"}
+        </Button>
+      </Row>
+    </div>
   );
 }
 

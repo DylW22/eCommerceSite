@@ -10,7 +10,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
         <Offcanvas.Title>Cart</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
-        <DisplayCartItems />
+        <DisplayCartItems checkout={false} />
       </Offcanvas.Body>
     </Offcanvas>
   );

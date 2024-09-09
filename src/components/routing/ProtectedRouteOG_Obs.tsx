@@ -2,7 +2,7 @@ import { Navigate, useLocation, useOutletContext } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { Outlet } from "react-router-dom";
 import { CustomQueryRef } from "../../hooks/useTransactions";
-import { GetTransactionsResponse } from "../../pages/TransactionIndex";
+import { GetTransactionsResponse } from "../orderHistory/TransactionIndex";
 import { redirectsConfig } from "../../data/routingPermissions";
 //import { useShoppingCart } from "../context/ShoppingCartContext";
 //stackoverflow.com/questions/69864165/error-privateroute-is-not-a-route-component-all-component-children-of-rou

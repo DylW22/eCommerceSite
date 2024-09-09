@@ -1,10 +1,10 @@
 import { useOutletContext } from "react-router-dom";
-import { OrderData } from "../types";
+import { OrderData } from "../../types";
 
-import { useTransactions } from "../hooks/useTransactions";
-import { OutletContextType } from "../components/routing/ProtectedRoute";
+import { useTransactions } from "../../hooks/useTransactions";
+import { OutletContextType } from "../routing/ProtectedRoute";
 import TransactionListContent from "./TransactionListContent";
-import { TransactionIndexSkeleton } from "../components/orderHistory/TransactionIndexSkeleton";
+import { TransactionListSkeleton } from "./TransactionListSkeleton";
 
 export interface GetTransactionsResponse {
   getTransactions: OrderData[];
@@ -18,15 +18,13 @@ export interface ExtendedOutletContextType extends OutletContextType {
 export function TransactionIndex() {
   const queryRef = useOutletContext<ExtendedOutletContextType>();
   if (!queryRef) {
-    return <TransactionIndexSkeleton />;
+    return <TransactionListSkeleton />;
   }
 
-  //Re-enable
   const { transactions, fetchTransactions, hasMorePosts } = useTransactions(
     queryRef.reference,
     limit
   );
-  //let testTransactions = queryRef.transactionsTest; //USE THIS
 
   return (
     <TransactionListContent

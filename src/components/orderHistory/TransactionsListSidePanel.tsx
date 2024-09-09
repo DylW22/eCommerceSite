@@ -1,4 +1,4 @@
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { useOutletContext, Outlet } from "react-router-dom";
 import { OutletContextType } from "../routing/ProtectedRoute";
 import { useTransactions } from "../../hooks/useTransactions";
@@ -21,7 +21,7 @@ export const TransactionsListSidePanel: React.FC<{ loading: boolean }> = ({
           top: "72px",
           padding: "0",
           margin: "0",
-          height: "calc(100vh - 72px)", //- 100px
+          height: "calc(100vh - 80px)", //- 100px
         }}
         xs={3}
         md={3}
@@ -32,10 +32,6 @@ export const TransactionsListSidePanel: React.FC<{ loading: boolean }> = ({
             transactions={transactions}
             loading={loading}
           />
-        </Row>
-        <Row className="d-flex flex-row p-0 m-0 justify-content-center align-items-center">
-          <Button className="w-25 mx-2">{"<"}</Button>
-          <Button className="w-25 mx-2">{">"}</Button>
         </Row>
       </Col>
       {

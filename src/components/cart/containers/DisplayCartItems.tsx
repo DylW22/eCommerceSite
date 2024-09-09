@@ -6,16 +6,21 @@ import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-export function DisplayCartItems() {
+interface DisplayCartItemsProps {
+  checkout: boolean;
+}
+export function DisplayCartItems({ checkout }: DisplayCartItemsProps) {
   const { cartItems, closeCart } = useShoppingCart();
   const location = useLocation();
-
+  console.log("checkout: ", checkout);
   return (
     <Stack gap={3}>
-      {cartItems.map((item) => (
-        <CartItem key={item.id} {...item} />
-      ))}
-      <div className="ms-auto fw-bold fs-5">
+      <div>
+        {cartItems.map((item) => (
+          <CartItem checkout={checkout} key={item.id} {...item} />
+        ))}
+      </div>
+      <div className={"ms-auto fw-bold fs-5"}>
         Total{" "}
         {formatCurrency(
           cartItems.reduce((total, cartItem) => {
@@ -24,14 +29,15 @@ export function DisplayCartItems() {
           }, 0)
         )}
       </div>
-      {location.pathname === "/checkout" ? (
+      {checkout ? (
         <Button style={{ maxWidth: "200px" }}>
           <Nav.Link
             to="/payment"
             as={NavLink}
             state={{ from: location?.pathname }}
+            className="fw-bold"
           >
-            Payment
+            Confirm
           </Nav.Link>
         </Button>
       ) : (
