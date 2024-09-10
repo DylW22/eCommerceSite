@@ -14,7 +14,7 @@ export const TransactionsListSidePanelSkeleton: React.FC = () => {
           top: "72px",
           padding: "0",
           margin: "0",
-          height: "calc(100vh - 100px)",
+          height: "calc(100vh - 80px)",
         }}
         xs={3}
         md={3}
