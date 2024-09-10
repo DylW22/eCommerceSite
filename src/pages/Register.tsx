@@ -1,5 +1,10 @@
 import { RegisterForm } from "../components/login/RegisterForm";
-import { ActionFunction, redirect, useNavigation } from "react-router-dom";
+import {
+  ActionFunction,
+  NavLink,
+  redirect,
+  useNavigation,
+} from "react-router-dom";
 import { ActionRequestProps, RegisterAction } from "../types";
 import { isValidRegistration } from "../utilities/registrationValidation";
 import { Container } from "react-bootstrap";
@@ -9,6 +14,9 @@ export function Register() {
   return (
     <Container fluid style={{ height: "calc(100vh - 75px)" }}>
       <RegisterForm isSubmitting={isSubmitting} />
+      <p>
+        Already have an account? Login <NavLink to="/login">here</NavLink>
+      </p>
     </Container>
   );
 }
