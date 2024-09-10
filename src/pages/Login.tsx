@@ -6,23 +6,26 @@ import {
   redirect,
   useLocation,
   useNavigation,
+  useRouteError,
 } from "react-router-dom";
 import type { ActionFunction } from "react-router-dom";
 
 import { ActionRequestProps, AppAction } from "../types";
 import { useState } from "react";
 import { sanitizeInput } from "../utilities/sanitizeCode";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
+import { useAuth } from "../context/AuthContext";
 //import { measureExecutionTime } from "../utilities/measureExecutionTime";
 
 //https://stackoverflow.com/questions/76766824/passing-a-function-to-a-react-router-action-in-typescript
 export function Login() {
   const location = useLocation();
-  //console.log("LoginForm location: ", location);
+  const { state } = useAuth();
   const [referrer] = useState(location?.state?.referrer || "");
 
   const navigate = useNavigation();
   const isSubmitting = navigate.state === "submitting";
+  const { error } = state;
 
   return (
     <Container fluid style={{ height: "calc(100vh - 75px)" }}>
@@ -31,9 +34,28 @@ export function Login() {
         Don&apos;t have an account? Register{" "}
         <NavLink to="/register">here</NavLink>
       </p>
+      {error && (
+        <Row>
+          <ErrorMessage message={error} />
+        </Row>
+      )}
     </Container>
   );
 }
+interface ErrorMessageProps {
+  message: string;
+}
+
+const ErrorMessage = ({ message }: ErrorMessageProps) => {
+  return (
+    <Container
+      fluid
+      className={`bg-danger text-white fw-bold d-flex justify-content-center align-items-center w-50`}
+    >
+      {message}
+    </Container>
+  );
+};
 
 /*
 interface AppContext {
@@ -61,11 +83,12 @@ export const action =
       if (data?.referrer) return redirect(data?.referrer);
       return redirect("/account");
     } catch (error: unknown) {
+      /*console.log("Error Test");
       if (error instanceof Error) {
         console.error(error.message);
       } else {
         console.error("Login error: ", error);
-      }
+      }*/
 
       return redirect("/login");
     }

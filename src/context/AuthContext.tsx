@@ -6,6 +6,7 @@ import {
   signOut,
   createUserWithEmailAndPassword,
   UserCredential,
+  AuthError,
 } from "firebase/auth";
 import { auth } from "../utilities/firebaseConfig.ts";
 import {
@@ -14,13 +15,13 @@ import {
   AuthAction,
   AuthContextType,
 } from "../types.ts";
+import getErrorMessage from "../utilities/getErrorMessage.ts";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const authReducer = (state: AuthState, action: AuthAction) => {
   switch (action.type) {
     case "LOGIN": {
-      console.log("Login");
       return {
         ...state,
         isAuthenticated: true,
@@ -118,9 +119,15 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
       dispatch({ type: "LOGIN", userData, userTokens });
       return userData;
     } catch (error: unknown) {
-      console.log("An error occurred: ", error);
+      //console.log("An error occurred: ", error);
+      const firebaseError = error as AuthError;
+      const errorCode = firebaseError.code;
+
+      console.log("ErrorCode: ", errorCode);
       if (error instanceof Error) {
-        dispatch({ type: "SET_ERROR", error: error.message });
+        //console.log("error.message: ", error);
+        const errorToSet = getErrorMessage(errorCode);
+        dispatch({ type: "SET_ERROR", error: errorToSet });
       } else {
         dispatch({
           type: "SET_ERROR",
