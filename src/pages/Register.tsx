@@ -2,13 +2,14 @@ import { RegisterForm } from "../components/login/RegisterForm";
 import { ActionFunction, redirect, useNavigation } from "react-router-dom";
 import { ActionRequestProps, RegisterAction } from "../types";
 import { isValidRegistration } from "../utilities/registrationValidation";
+import { Container } from "react-bootstrap";
 export function Register() {
   const navigate = useNavigation();
   const isSubmitting = navigate.state === "submitting";
   return (
-    <>
+    <Container fluid style={{ height: "calc(100vh - 75px)" }}>
       <RegisterForm isSubmitting={isSubmitting} />
-    </>
+    </Container>
   );
 }
 
