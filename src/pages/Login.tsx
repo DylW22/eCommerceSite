@@ -12,6 +12,7 @@ import type { ActionFunction } from "react-router-dom";
 import { ActionRequestProps, AppAction } from "../types";
 import { useState } from "react";
 import { sanitizeInput } from "../utilities/sanitizeCode";
+import { Container } from "react-bootstrap";
 //import { measureExecutionTime } from "../utilities/measureExecutionTime";
 
 //https://stackoverflow.com/questions/76766824/passing-a-function-to-a-react-router-action-in-typescript
@@ -24,13 +25,13 @@ export function Login() {
   const isSubmitting = navigate.state === "submitting";
 
   return (
-    <div>
+    <Container fluid style={{ height: "calc(100vh - 75px)" }}>
       <LoginForm isSubmitting={isSubmitting} referrer={referrer} />
       <p>
         Don&apos;t have an account? Register{" "}
         <NavLink to="/register">here</NavLink>
       </p>
-    </div>
+    </Container>
   );
 }
 
