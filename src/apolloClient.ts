@@ -36,7 +36,7 @@ const authLink = setContext(async (_, { headers }) => {
       });
     });
   }
-  //console.log("client side: token: ", token);
+
   return {
     headers: {
       ...headers,
@@ -44,7 +44,6 @@ const authLink = setContext(async (_, { headers }) => {
       authorization: token ? `Bearer ${token}` : "",
     },
   };
-  //const token = user ? wa
 });
 
 export const client = new ApolloClient({

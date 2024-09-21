@@ -1,5 +1,7 @@
+//import { FeaturedItemId } from "./types";
 import { pathData } from "./data/pathData";
 import { ReactNode } from "react";
+
 export type CartItem = {
   id: number;
   quantity: number;
@@ -153,20 +155,14 @@ export interface RegisterAction extends AuthContextType {
 export interface ChildRefsContext {
   current: HTMLLIElement | null;
 }
-
+/*
 export interface ChildRefs {
-  [x: string]: any;
+  [x: string]: unknown; //any
   childRefs: React.MutableRefObject<HTMLInputElement[]>;
   //childRefs: HTMLInputElement[]; //React.MutableRefObject<HTMLLIElement[]>;
 }
-
-export type TransactionItem = {
-  //reduce(arg0: (total: any, item: any) => any, arg1: number): unknown;
-  id: number;
-  quantity: number;
-  //itemId: number;
-};
-
+*/
+export type TransactionItem = CartItem;
 export interface IError {
   message: string;
   code?: string;
@@ -249,3 +245,16 @@ export interface redirectsInterface {
     requiresAuth: boolean;
   };
 }
+
+//Payment.tsx
+export interface PaymentAction {
+  status: "success" | "failure";
+  errors: Record<string, string>;
+}
+
+export type PaymentFormData = {
+  name: string;
+  cardNumber: string;
+  expiryDate: string;
+  cvv: string;
+};

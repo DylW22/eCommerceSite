@@ -7,7 +7,6 @@ export const useDynamicBackground = (type = "linear", delay = 300) => {
   const [scrollY, setScrollY] = useState(0);
   //let theme = "light";
   const { theme } = useTheme();
-  //const debouncedScrollY = useDebounce(scrollY as any, 10000);
 
   const handleScroll = () => {
     setScrollY(window.scrollY);

@@ -3,26 +3,28 @@ import { FeaturedProduct } from "../types";
 import { getItemById } from "./getItemById";
 import { FeaturedItemId } from "../types";
 
-export const getFeaturedProducts: any = (
+export const getFeaturedProducts = (
   itemIds: FeaturedItemId[]
-): FeaturedProduct[] | null => {
-  //(StoreItemProps & { featuredPrice: number })
+): FeaturedProduct[] => {
   if (!Array.isArray(itemIds)) {
     throw new Error("featuredItemIds must be an array!");
   }
 
-  if (!itemIds.length) return null;
+  if (!itemIds.length) return [];
 
-  const itemsWithFeaturedPrice: any = itemIds.map((itemId: FeaturedItemId) => {
-    const item = getItemById(itemId.id);
-    if (!item) return null;
-    return {
-      ...item,
-      featuredPrice: itemId.featuredPrice,
-      promo: itemId.promo,
-    };
-  });
-  // console.log("getting items: ", itemsWithFeaturedPrice);
+  const itemsWithFeaturedPrice: (FeaturedProduct | null)[] = itemIds.map(
+    (itemId: FeaturedItemId) => {
+      const item = getItemById(itemId.id);
+      if (!item) return null;
+      return {
+        ...item,
+        featuredPrice: itemId.featuredPrice,
+        promo: itemId.promo,
+      };
+    }
+  );
 
-  return itemsWithFeaturedPrice;
+  return itemsWithFeaturedPrice.filter(
+    (item): item is FeaturedProduct => item !== null
+  );
 };

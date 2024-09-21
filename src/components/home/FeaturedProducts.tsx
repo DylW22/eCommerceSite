@@ -13,7 +13,7 @@ export const FeaturedProducts = () => {
     { id: 3, featuredPrice: 333, promo: "wow" },
   ];
   const featuredProducts = getFeaturedProducts(featuredProductsId);
-
+  if (!featuredProducts.length) return;
   const products: FeaturedProduct[] = useRotatingItems(
     featuredProducts,
     nMax,

@@ -5,18 +5,15 @@ import { Form as FormRR, Navigate, useActionData } from "react-router-dom";
 import { writeToDatabase } from "../utilities/writeTransactions"; //.js
 
 import type { ActionFunction } from "react-router-dom";
-import type { ActionRequestProps } from "../types.js";
+import type {
+  ActionRequestProps,
+  PaymentAction,
+  PaymentFormData,
+} from "../types.js";
 
 import { useState } from "react";
 import { useFadeout } from "../hooks/useFadeout.js";
 import PaymentSuccess from "../components/payment/PaymentSuccess.js";
-
-type PaymentFormData = {
-  name: string;
-  cardNumber: string;
-  expiryDate: string;
-  cvv: string;
-};
 
 const initialFormData: PaymentFormData = {
   name: "",
@@ -26,14 +23,13 @@ const initialFormData: PaymentFormData = {
 };
 
 export function Payment() {
-  const data = useActionData() as any;
+  const data = useActionData() as PaymentAction;
   const status = data?.status;
   const { toFade, applyFade } = useFadeout(3000);
   const { cartItems } = useShoppingCart();
   const cartItemsJSON = JSON.stringify(cartItems);
 
   const [formData, setFormData] = useState<PaymentFormData>(initialFormData);
-  console.log("status: ", data);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
       ...prev,
@@ -118,14 +114,15 @@ export function Payment() {
 
 export const action: ActionFunction =
   () =>
-  async ({ request }: ActionRequestProps): Promise<PaymentDetails | any> => {
+  async ({ request }: ActionRequestProps): Promise<PaymentAction> => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData) as Record<string, string>;
 
     const cartItemsParsed = JSON.parse(data.cartItems);
 
     const order = generateOrderDetails(cartItemsParsed);
-    console.log("action");
+
+    //USE THE TYPE HERE
     const errors: Record<string, string> = {};
     let status: "success" | "failure" = "success";
     try {
@@ -151,8 +148,3 @@ export const action: ActionFunction =
       errors,
     };
   };
-
-type PaymentDetails = {
-  status: "success" | "failure";
-  errors: Record<string, string>;
-};

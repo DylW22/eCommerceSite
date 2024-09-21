@@ -12,7 +12,7 @@ interface DisplayCartItemsProps {
 export function DisplayCartItems({ checkout }: DisplayCartItemsProps) {
   const { cartItems, closeCart } = useShoppingCart();
   const location = useLocation();
-  console.log("checkout: ", checkout);
+
   return (
     <Stack gap={3}>
       <div>
