@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { createBrowserRouter, Route, RouterProvider } from "react-router-dom";
 import "@testing-library/jest-dom/";
 import React, { act } from "react";
-describe("Registration render", () => {
+describe("RegistrationForm", () => {
   test("should render RegisterForm default, isSubmitting = false", async () => {
     const mockProps = {
       isSubmitting: false,

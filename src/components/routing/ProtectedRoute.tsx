@@ -32,7 +32,7 @@ export function ProtectedRoute({ children }: RouteProps) {
 
   //If user is not authenticated, but route requires auth, redirect to /login
   if (!isAuthenticated && requireAuth) {
-    console.log("This route requires authorizarion.");
+    //console.log("This route requires authorizarion.");
     return (
       <Navigate to="/login" state={{ referrer: destinationRoute }} replace />
     );
@@ -48,7 +48,6 @@ export function ProtectedRoute({ children }: RouteProps) {
     }
   }
   if (originRoutes && !originRoutes.includes(originRoute) && redirectTo) {
-    console.log("Statement 3");
     return <Navigate to={redirectTo} />;
   }
   return <Outlet context={{ reference: result.reference }} />;
