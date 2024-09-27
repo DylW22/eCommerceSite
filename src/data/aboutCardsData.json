@@ -1,0 +1,32 @@
+[
+  {
+    "id": 0,
+    "title": "User authentication",
+    "content": "Using Firebase, users can register or login/logout of their account."
+  },
+  {
+    "id": 1,
+    "title": "Mobile-friendly design",
+    "content": "Responsive layout using Bootstrap to provide a seamless experience across devices."
+  },
+  {
+    "id": 2,
+    "title": "Shopping cart",
+    "content": "Users can add/remove items from their shopping cart or continue on to Checkout."
+  },
+  {
+    "id": 3,
+    "title": "Checkout & Payment",
+    "content": "Users can proceed to a checkout page and can enter their payment details."
+  },
+  {
+    "id": 4,
+    "title": "Order History",
+    "content": "Users can view their order history by quering the Apollo GraphQL server."
+  },
+  {
+    "id": 5,
+    "title": "Testimonials & Promotions",
+    "content": "Homepage has dynamically changing Testimonials & Promotions."
+  }
+]

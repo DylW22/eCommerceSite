@@ -45,7 +45,7 @@ const SubscribeNewsletter = () => {
         } position-relative rounded-5 min-height-200 text-center d-flex flex-column justify-content-center align-items-center`}
       >
         {state.newsletterSubscribed ? (
-          <div className="fw-bold">Already subscribed!</div>
+          <div className="fw-bold fs-4">Already subscribed!</div>
         ) : (
           <>
             <Form.Label>Enter your email address.</Form.Label>

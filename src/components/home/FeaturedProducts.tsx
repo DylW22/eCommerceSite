@@ -8,9 +8,9 @@ export const FeaturedProducts = () => {
   const nMax: number = 3;
 
   const featuredProductsId = [
-    { id: 1, featuredPrice: 111, promo: "new product!" },
-    { id: 2, featuredPrice: 222, promo: "great product!" },
-    { id: 3, featuredPrice: 333, promo: "wow" },
+    { id: 1, featuredPrice: 111, promo: "Awesome products!!" },
+    { id: 2, featuredPrice: 222, promo: "Cheap prices!" },
+    { id: 3, featuredPrice: 333, promo: "Wow" },
   ];
   const featuredProducts = getFeaturedProducts(featuredProductsId);
   if (!featuredProducts.length) return;

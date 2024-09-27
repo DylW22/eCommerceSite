@@ -51,9 +51,7 @@ function Home() {
             <CardBody className="card-body">
               <CardTitle className="card-title">Our brand:</CardTitle>
               <CardText className="card-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
-                veniam laborum exercitationem atque cum corporis, eum assumenda!
-                Molestias, aut reiciendis!
+                Browse mock products on a mock e-commerce website
               </CardText>
             </CardBody>
           </Card>
