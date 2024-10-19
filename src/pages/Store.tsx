@@ -17,7 +17,7 @@ export function Store() {
 
   return (
     <>
-      <Container fluid className="d-none d-sm-block px-5">
+      <Container fluid className="d-none d-sm-block mx-3">
         <Row>
           <Col className="m-0 p-0">
             <FilterDropDown
@@ -25,7 +25,7 @@ export function Store() {
               clearFilter={clearFilter}
             />
           </Col>
-          <Col className="m-0 p-0 d-flex justify-content-end">
+          <Col className="m-0 p-0 d-flex mx-4 justify-content-end">
             <ActiveFilters />
           </Col>
         </Row>

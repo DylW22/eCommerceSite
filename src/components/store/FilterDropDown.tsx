@@ -12,7 +12,7 @@ const FilterDropDown: React.FC<FilterDropDownProps> = ({
   return (
     <Dropdown className="p-0 mb-1">
       <Dropdown.Toggle variant="primary" className="">
-        Choose
+        Filter
       </Dropdown.Toggle>
       <Dropdown.Menu className="p-0 m-0">
         <Dropdown.Item onClick={clearFilter}>Clear</Dropdown.Item>

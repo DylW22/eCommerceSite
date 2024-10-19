@@ -16,10 +16,14 @@ export function Header() {
   return (
     <Container
       fluid
-      className={`p-2 sticky-top `}
+      className={`p-2 sticky-top`}
       style={{ background: styles }}
     >
-      <NavbarBs expand sticky="top" className="">
+      <NavbarBs
+        expand
+        sticky="top"
+        className="d-flex flex-column align-items-start"
+      >
         <Container fluid className="d-flex w-100 m-0 p-0">
           <Container fluid className="d-flex m-0 p-0">
             <Navbar />
@@ -54,6 +58,26 @@ export function Header() {
               style={{ width: "120px", height: "50px" }}
             ></div>
           )}
+        </Container>
+        <Container
+          fluid
+          className="d-flex align-items-center justify-content-center p-0 m-0 mt-2 mx-2"
+        >
+          <Container
+            fluid
+            className="d-block d-md-none w-auto text-end m-0 p-0"
+          >
+            {isAuthenticated ? (
+              <AccountDropDown />
+            ) : (
+              <Nav.Link to="/login" as={NavLink}>
+                <Button>Login</Button>
+              </Nav.Link>
+            )}
+          </Container>
+          <Container fluid className="d-block d-md-none m-0 p-0">
+            <SearchBar />
+          </Container>
         </Container>
       </NavbarBs>
     </Container>
