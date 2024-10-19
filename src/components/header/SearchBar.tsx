@@ -21,7 +21,7 @@ export function SearchBar() {
   );
 
   return (
-    <Form className="px-4 w-50" role="search" method="get" action="/store">
+    <Form className="px-4 w-100" role="search" method="get" action="/store">
       <input
         placeholder="Search"
         type="Search"

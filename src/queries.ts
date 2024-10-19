@@ -28,6 +28,27 @@ export const GET_ITEMS = gql`
   }
 `;
 
+/*
+
+    id: number;
+    name: string;
+    price: number;
+    imgUrl?: string;
+    category?: string;
+*/
+
+export const GET_PRODUCTS = gql`
+  query Query {
+    getProducts {
+      id
+      name
+      price
+      imgUrl
+      category
+    }
+  }
+`;
+
 export const GET_PAGINATED_TRANSACTIONS = gql`
   query GetPaginatedTrans($limit: Int, $startKey: String) {
     getPaginatedTransactions(limit: $limit, startKey: $startKey) {

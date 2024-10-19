@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { AuthProvider } from "./AuthContext";
 import { ShoppingCartProvider } from "./ShoppingCartContext";
 import { ThemeProvider } from "./ThemeContext";
+import { FilterQueryProvider } from "./FilterQueryContext";
 
 export const AuthLayout = () => {
   return (
@@ -24,5 +25,13 @@ export const ThemeProviderLayout = () => {
     <ThemeProvider>
       <Outlet />
     </ThemeProvider>
+  );
+};
+
+export const FilterQueryLayout = () => {
+  return (
+    <FilterQueryProvider>
+      <Outlet />
+    </FilterQueryProvider>
   );
 };

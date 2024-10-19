@@ -82,14 +82,14 @@ function TransactionListContent({
       </Suspense>
       <Row className="d-flex flex-row p-0 mt-2 justify-content-center align-items-center">
         <Button
-          className="w-25 mx-2"
+          className="w-25 mx-2 p-2"
           onClick={handlePrevClick}
           disabled={isPending || currentIndex < limit}
         >
           {"<"}
         </Button>
         <Button
-          className="w-25 mx-2"
+          className="w-25 mx-2 p-2"
           onClick={handleNextClick}
           disabled={isPending || !hasMorePosts}
         >

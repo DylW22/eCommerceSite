@@ -11,7 +11,7 @@ export const Testimonials = () => {
   );
 
   return (
-    <div className=" rounded-4 text-white text-center">
+    <div className="rounded-4 text-white text-center">
       <div className="d-flex flex-md-column flex-fill text-center">
         {itemsToDisplay &&
           itemsToDisplay.map((item) => (

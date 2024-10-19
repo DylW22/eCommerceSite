@@ -1,5 +1,6 @@
 import React, { forwardRef } from "react"; //ForwardedRef, RefObject
 import { PopoverProps } from "../../types";
+import { Link } from "react-router-dom";
 
 export type PopoverRefType2 = HTMLDivElement | null;
 
@@ -11,13 +12,14 @@ function Popover(
   return (
     <div
       ref={ref}
-      className={`position-absolute start-50 translate-middle rounded-5 bg-popover p-4 d-md-flex ${className}`}
+      className={`position-absolute start-50 translate-middle rounded-5 bg-popover p-4 d-md-flex flex-column justify-content-center align-items-center ${className}`}
       style={{ width: "500px", height: "500px", zIndex: 10, top: "360px" }}
     >
-      <div className="flex-grow-1 p-4 fs-1 m-auto text-center">
-        This is a fake promotion! Click out of the popover for it to disappear,
-        magic.
-      </div>
+      <div className="p-4 fs-1 text-center">Browse our products now.</div>
+
+      <Link to="/store" className="btn btn-primary btn-hover">
+        Learn more
+      </Link>
     </div>
   );
 }

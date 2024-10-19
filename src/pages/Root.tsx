@@ -14,8 +14,11 @@ export function Root() {
   const { styles } = useDynamicBackground();
   return (
     <div
-      style={{ background: styles }}
-      className={`${theme === "light" ? "" : "text-white"}`}
+      style={{
+        background: styles,
+        minHeight: "100vh",
+      }}
+      className={`d-flex flex-column ${theme === "light" ? "" : "text-white"}`}
     >
       <Header />
       <Outlet context={{ reference: result }} />

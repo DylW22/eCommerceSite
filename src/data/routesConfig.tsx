@@ -1,4 +1,7 @@
-import { ShoppingCartProviderLayout } from "../context/Layouts";
+import {
+  FilterQueryLayout,
+  ShoppingCartProviderLayout,
+} from "../context/Layouts";
 import { ThemeProviderLayout } from "../context/Layouts";
 import { Root } from "../pages/Root";
 import { loader as SearchBarLoader } from "../components/header/SearchBar";
@@ -27,87 +30,93 @@ import { TitleChanger } from "../hooks/TitleChanger.tsx";
 export const RoutesConfig = (appContext: any): RouteObject[] => {
   return [
     {
-      element: <ShoppingCartProviderLayout />,
+      //FilterQueryLayout
+      element: <FilterQueryLayout />,
       children: [
         {
-          element: <ThemeProviderLayout />,
+          element: <ShoppingCartProviderLayout />,
           children: [
             {
-              path: "/",
-              errorElement: <ErrorElement />,
-              element: (
-                <TitleChanger>
-                  <Root />
-                </TitleChanger>
-              ),
-              loader: SearchBarLoader,
-              id: "root",
-
+              element: <ThemeProviderLayout />,
               children: [
                 {
-                  index: true,
-                  element: <Home />,
-                },
-                {
-                  element: <Store />,
-                  path: "/store",
-                },
+                  path: "/",
+                  errorElement: <ErrorElement />,
+                  element: (
+                    <TitleChanger>
+                      <Root />
+                    </TitleChanger>
+                  ),
+                  loader: SearchBarLoader,
+                  id: "root",
 
-                {
-                  element: <About />,
-                  path: "/about",
-                },
-                {
-                  element: (
-                    <ProtectedRoute>
-                      <Login />
-                    </ProtectedRoute>
-                  ),
-                  path: "/login",
-                  action: LoginAction(appContext) as ActionFunction,
-                },
-                {
-                  element: (
-                    <ProtectedRoute>
-                      <Register />
-                    </ProtectedRoute>
-                  ),
-                  path: "/register",
-                  action: RegisterAction(appContext) as ActionFunction,
-                },
-                {
-                  element: <InvalidPath />,
-                  path: "*",
-                },
-                {
-                  element: <ProtectedRoute />,
                   children: [
                     {
-                      element: <Account />,
-                      path: "/account",
+                      index: true,
+                      element: <Home />,
                     },
                     {
-                      element: <TransactionLayout />,
-                      path: "/history",
-                      errorElement: <TransactionsListSidePanelSkeleton />,
-                      id: "history",
+                      element: <Store />,
+                      path: "/store",
+                    },
+
+                    {
+                      element: <About />,
+                      path: "/about",
+                    },
+                    {
+                      element: (
+                        <ProtectedRoute>
+                          <Login />
+                        </ProtectedRoute>
+                      ),
+                      path: "/login",
+                      action: LoginAction(appContext) as ActionFunction,
+                    },
+                    {
+                      element: (
+                        <ProtectedRoute>
+                          <Register />
+                        </ProtectedRoute>
+                      ),
+                      path: "/register",
+                      action: RegisterAction(appContext) as ActionFunction,
+                    },
+                    {
+                      element: <InvalidPath />,
+                      path: "*",
+                    },
+                    {
+                      element: <ProtectedRoute />,
                       children: [
                         {
-                          index: true,
-                          errorElement: <TransactionListSkeleton />,
-                          element: <TransactionIndex />,
+                          element: <Account />,
+                          path: "/account",
+                        },
+                        {
+                          element: <TransactionLayout />,
+                          path: "/history",
+                          errorElement: <TransactionsListSidePanelSkeleton />,
+                          id: "history",
+                          children: [
+                            {
+                              index: true,
+                              errorElement: <TransactionListSkeleton />,
+                              element: <TransactionIndex />,
+                            },
+                          ],
+                        },
+                        { element: <Checkout />, path: "/checkout" },
+                        {
+                          element: <Payment />,
+                          path: "/payment",
+                          action: PaymentAction(appContext) as ActionFunction,
+                        },
+                        {
+                          element: <Success />,
+                          path: "/success",
                         },
                       ],
-                    },
-                    { element: <Checkout />, path: "/checkout" },
-                    {
-                      element: <Payment />,
-                      path: "/payment",
-                      action: PaymentAction(appContext) as ActionFunction,
-                    },
-                    {
-                      element: <Success />,
-                      path: "/success",
                     },
                   ],
                 },

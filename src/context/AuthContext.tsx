@@ -114,18 +114,14 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
         accessToken: await user.getIdToken(),
         refreshToken: user.refreshToken,
       };
-      //console.log("AuthContext login: ", userCredentials);
-      //  console.log("TOKEN: ", token);
+
       dispatch({ type: "LOGIN", userData, userTokens });
       return userData;
     } catch (error: unknown) {
-      //console.log("An error occurred: ", error);
       const firebaseError = error as AuthError;
       const errorCode = firebaseError.code;
 
-      console.log("ErrorCode: ", errorCode);
       if (error instanceof Error) {
-        //console.log("error.message: ", error);
         const errorToSet = getErrorMessage(errorCode);
         dispatch({ type: "SET_ERROR", error: errorToSet });
       } else {

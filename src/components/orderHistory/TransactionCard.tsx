@@ -59,14 +59,18 @@ const HeaderSection: React.FC<{
   orderDate: string;
 }> = ({ orderId, orderDate }) => {
   return (
-    <Row className="d-flex flex-row justify-items-between bg-light px-2 py-4   m-0">
+    <Row className="d-flex flex-column flex-md-row justify-items-between bg-light py-4 m-0">
       <Col>
-        <CardTitle className="card-title">Order ID #{orderId}</CardTitle>
+        <CardTitle className="card-title text-center">
+          Order ID #{orderId}
+        </CardTitle>
       </Col>
-      <Col className="text-end">
-        <CardTitle className="card-title ">Order date: {orderDate}</CardTitle>
+      <Col className="">
+        <CardTitle className="card-title text-center">
+          Date: {orderDate}
+        </CardTitle>
       </Col>
-      <CardText className="text-muted d-none d-md-block px-4">
+      <CardText className="text-muted d-none d-md-block px-3 mx-2">
         This is a wider card with supporting text below as a natural lead-in.
       </CardText>
     </Row>
@@ -80,25 +84,20 @@ const BodySection: React.FC<{
 }> = ({ totalPrice, items }) => {
   return (
     <Row className="h-100 py-2">
-      <Col
-        sm={2}
-        md={3}
-        className="d-none d-md-flex flex-column h-100 justify-content-center align-items-center"
-      >
-        Col 1
-      </Col>
-      <Col className="d-none d-md-flex flex-column mx-2">
+      <Col className="d-none d-md-flex flex-column mx-5">
         <CardTitle>Purchased items</CardTitle>
         {items && <TransactionItemsList items={items} />}
       </Col>
-      <Col className="d-flex flex-column justify-content-between">
-        <Row className="p-0 m-0 d-flex align-items-center justify-content-center">
-          <Row className="d-flex align-items-center justify-content-center">
-            Delivered: TBD
-          </Row>
+      <Col className="d-flex flex-column justify-content-center align-items-left mx-5">
+        <Row className="m-0 p-0 text-center">
+          <p className="m-0 p-0">
+            Delivered: <span className="">TBD</span>
+          </p>
         </Row>
-        <Row className="p-0 m-0 d-block text-end p-2">
-          Total price: <span className="fw-bold fs-4">${totalPrice}</span>
+        <Row className="m-0 p-0 text-center">
+          <p className="m-0 p-0">
+            Total price: <span className="fw-bold fs-4">${totalPrice}</span>
+          </p>
         </Row>
       </Col>
     </Row>

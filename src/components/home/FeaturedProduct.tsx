@@ -1,18 +1,20 @@
-import { Card, CardBody, CardTitle, CardText } from "react-bootstrap";
+import { Card, CardBody, CardTitle, CardText, CardImg } from "react-bootstrap";
 import { FeaturedProduct } from "../../types";
 export const FeaturedProductCard = (product: FeaturedProduct) => {
   return (
-    <Card className="py-5 px-2 m-0 w-100 h-100 bg-warning">
-      <CardTitle className="fw-bold">{product.name}</CardTitle>
-      <CardBody className="fw-bold">{product.promo}</CardBody>
-      <img
-        className="m-auto"
+    //bg-custom1
+    <Card className="p-2 m-0 w-100 h-100 shake-item">
+      <CardTitle className="fw-bold p-0 m-0">{product.name}</CardTitle>
+      <CardBody className="fw-bold py-1">{product.promo}</CardBody>
+      <CardImg
+        style={{ width: "120px", height: "120px" }}
+        className="mx-auto"
         src={product.imgUrl}
-        width={"100px"}
-        height={"100px"}
+        alt={product.name}
       />
-      <CardText>
-        <span className="fw-bold">Special price: </span>${product.featuredPrice}
+
+      <CardText className="fw-bold my-3 p-0">
+        <span className="m-0 p-0">Special price: </span>${product.featuredPrice}
       </CardText>
     </Card>
   );

@@ -1,13 +1,16 @@
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
-import storeItems from "../../../data/items.json";
+//import storeItems from "../../../data/items.json";
 import { Button, Stack } from "react-bootstrap";
 import { formatCurrency } from "../../../utilities/formatCurrency";
 import { CartItemsProps } from "../../../types";
+import { useQueryFilterContext } from "../../../context/FilterQueryContext";
 
 export function CartItem({ id, quantity, checkout }: CartItemsProps) {
   const { removeFromCart } = useShoppingCart();
+  const { items: newItems } = useQueryFilterContext();
+  //storeItems
+  const item = newItems.find((i) => i.id === id);
 
-  const item = storeItems.find((i) => i.id === id);
   if (!item) return null;
   return (
     <Stack

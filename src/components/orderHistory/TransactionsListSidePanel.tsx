@@ -23,11 +23,8 @@ export const TransactionsListSidePanel: React.FC<{ loading: boolean }> = ({
           margin: "0",
           height: "calc(100vh - 80px)", //- 100px
         }}
-        xs={3}
-        md={3}
-        lg={3}
       >
-        <Row className="p-0 m-0 w-100">
+        <Row className="p-0 d-none d-md-block m-0 w-100">
           <DisplayTransactionsList
             transactions={transactions}
             loading={loading}
@@ -35,7 +32,7 @@ export const TransactionsListSidePanel: React.FC<{ loading: boolean }> = ({
         </Row>
       </Col>
       {
-        <Col xs={9} md={9} lg={9}>
+        <Col xs={12} md={9} lg={9}>
           <Outlet
             context={{
               reference: queryRef.reference,

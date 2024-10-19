@@ -14,7 +14,7 @@ export const getFeaturedProducts = (
 
   const itemsWithFeaturedPrice: (FeaturedProduct | null)[] = itemIds.map(
     (itemId: FeaturedItemId) => {
-      const item = getItemById(itemId.id);
+      const item = getItemById(String(itemId.id));
       if (!item) return null;
       return {
         ...item,

@@ -8,21 +8,21 @@ export const Navbar = () => {
   return (
     <Nav className="fw-bold">
       <Nav.Link
-        className={`${theme === "dark" ? "text-white" : ""}`}
+        className={`navlink ${theme === "dark" ? "text-white" : ""}`}
         to="/"
         as={NavLink}
       >
         Home
       </Nav.Link>
       <Nav.Link
-        className={`${theme === "dark" ? "text-white" : ""}`}
+        className={`navlink ${theme === "dark" ? "text-white" : ""}`}
         to="/store"
         as={NavLink}
       >
         Store
       </Nav.Link>
       <Nav.Link
-        className={`${theme === "dark" ? "text-white" : ""}`}
+        className={`navlink ${theme === "dark" ? "text-white" : ""}`}
         to="/about"
         as={NavLink}
       >

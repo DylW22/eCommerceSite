@@ -25,7 +25,7 @@ export function NavbarCartButton() {
           position: "absolute",
           bottom: 0,
           right: 0,
-          transform: "translate(25%, 25%)",
+          transform: "translate(40%, 40%)",
         }}
       >
         {cartQuantity}

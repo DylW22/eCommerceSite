@@ -30,6 +30,9 @@ color: #FFF;
     background-color: #d4d4d4;
     color: black;
 }
+.bg-custom1 {
+    background-color: #92dbdb;
+}
 
 .text-midnight {
     color: #4d4d4d;
@@ -71,6 +74,200 @@ color: #FFF;
 .bg-popover {
     background-color: #00d4ff;
 }
+
+.btn-hover {
+    transition: all 500ms ease;
+}
+.btn-hover:hover {
+    background-color: rgb(16, 147, 255);
+    color: rgba(244, 244, 244, 0.747);
+    font-weight: bold;
+}
+
+.navlink:hover {
+    text-decoration: underline;
+}
+
+.dropdown-item:hover {
+    font-weight: bold;
+    background-color: lightblue;
+}
+
+.rotate-arrow {
+    transform: rotate(90deg);
+}
+
+.about-card {
+    overflow: hidden;
+
+  }
+  
+  .about-card.expanded {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+.fixed-button {
+    width: 120px;
+}
+
+.filter-item {
+    background-color: rgb(0, 179, 255);
+}
+
+.filter-item :nth-child(1)::first-letter {
+    text-transform: uppercase;
+}
+.filter-item :nth-child(2) {
+    cursor: pointer;
+}
+
+.filter-item:hover :nth-child(2){
+    font-weight: bold
+}
+
+.product-skeleton img {
+    background-color: lightgray;
+}
+.product-skeleton-text {
+    width: 120px;
+    height: 20px;
+    background-color: lightgray;
+    border-radius: 4px;
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 500ms ease-in; 
+  }
+  
+  .fade-in.show {
+    opacity: 1;
+  }
+
+  .zoomIn-left {
+    position: relative;
+    animation: zoomInFromLeft 5000ms forwards ease;
+  }
+  .zoomIn-right {
+    position: relative;
+    animation: zoomInFromRight 5000ms forwards ease;
+  }
+
+  .shake-item {
+ 
+    animation: shakeOdd 5000ms forwards ease;
+  }
+
+  .shake-container:nth-child(even) > .shake-item {
+    animation: shakeEven 5000ms forwards ease;
+  }
+
+
+  @keyframes zoomInFromLeft {
+    0% {
+        transform: translateX(-50px);
+    }
+    25% {
+        transform: translateX(50px);
+    }
+    50% {
+        transform: translateX(-50px);
+    }
+    75% {
+        transform: translateX(50px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+  }
+
+  @keyframes zoomInFromRight {
+    0% {
+        transform: translateX(100px);
+    }
+    25% {
+        transform: translateX(-100px);
+    }
+    50% {
+        transform: translateX(100px);
+    }
+    75% {
+        transform: translateX(-100px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+  }
+
+
+  @keyframes shakeOdd {
+    0% {
+        transform: translateX(-50px);
+    }
+    25% {
+        transform: translateX(50px);
+    }
+    50% {
+        transform: translateX(-50px);
+    }
+    75% {
+        transform: translateX(50px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+  }
+
+  @keyframes shakeEven {
+    0% {
+        transform: translateX(50px);
+    }
+    25% {
+        transform: translateX(-50px);
+    }
+    50% {
+        transform: translateX(50px);
+    }
+    75% {
+        transform: translateX(-50px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+  }
+
+  @keyframes bounce {
+    0% {
+        transform: translateY(-80px);
+    }
+    20% {
+        transform: translateY(0px);
+    }
+    40% {
+        transform: translateY(-50px);
+    }
+    60% {
+        transform: translateY(0px);
+    }
+    80% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+  }
+
+
+@media (min-width: 768px) {
+    .shake-item {
+        animation: bounce 1000ms forwards ease;
+      }
+    
+      .shake-container:nth-child(even) > .shake-item {
+        animation: bounce 1000ms forwards ease;
+      }
+}
+
 
 /*
 .no-scrollbar {

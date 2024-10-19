@@ -19,7 +19,7 @@ export const InvalidPath = () => {
             Return home
           </NavLink>
         </Button>
-        <div>Oops you found an error!</div>
+        <div>Oops you found an an invalid path!</div>
       </Container>
     </Container>
   );

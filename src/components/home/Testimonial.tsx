@@ -8,9 +8,9 @@ export const Testimonial: React.FC<TestimonialProps> = ({ item }) => {
   return (
     <Card
       style={{ height: "200px" }}
-      className={`mx-2 mx-md-0 flex-fill p-4 ${
+      className={`mx-2 mx-md-0 flex-fill p-2 ${
         theme === "light" ? "custom-lightGray" : "bg-midnight text-white"
-      } my-md-2 d-flex flex-column justify-content-center align-items-center`}
+      } my-md-2 d-flex flex-column justify-content-center align-items-center zoomIn-left`}
     >
       <CardTitle className="fw-bold fs-4 text-decoration-underline">
         {item.title}

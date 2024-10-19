@@ -57,12 +57,6 @@ export const getColorGradientUtil = ({
         (scrollY / (document.body.scrollHeight || 255 - window.innerHeight))
     );
 
-  /*   console.group();
-  console.log("Rmax[0]: ", Rmax[0]);
-  console.log("Rmin[0]", Rmin[0]);
-  console.log("scrollY", scrollY);
-  console.log("scrollHeight:", document.body.scrollHeight);
-  console.groupEnd; */
   const Rgreen =
     Rmin[1] +
     Math.floor(

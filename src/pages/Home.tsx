@@ -16,7 +16,15 @@ import SubscribeNewsletter from "../components/home/SubscribeNewsletter";
 import { CallToAction } from "../components/home/CallToAction";
 function Home() {
   const popoverRef = useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -42,7 +50,12 @@ function Home() {
         zIndex: 1,
       }}
     >
-      {isOpen && <Popover className={"d-none"} ref={popoverRef} />}
+      {
+        <Popover
+          className={`d-none fade-in ${isOpen ? "show" : ""}`}
+          ref={popoverRef}
+        />
+      }
       <Row className="p-0 m-0 mx-2">
         <Col md={6} className="py-4 px-4 order-md-2">
           <Card className="p-2">
@@ -51,7 +64,8 @@ function Home() {
             <CardBody className="card-body">
               <CardTitle className="card-title">Our brand:</CardTitle>
               <CardText className="card-text">
-                Browse mock products on a mock e-commerce website
+                Our prices are low, our quality is high and our deliveries are
+                fast. What more do you need?
               </CardText>
             </CardBody>
           </Card>
@@ -75,7 +89,7 @@ function Home() {
           <Testimonials />
         </Col>
       </Row>
-      <Row className="text-center d-flex flex-column flex-md-row justify-content-evenly p-0 mx-5 order-md-1">
+      <Row className="text-center d-flex flex-column flex-md-row justify-content-evenly p-0 mx-5 mx-md-0 order-md-1">
         <FeaturedProducts />
       </Row>
       <Row className="d-flex d-md-none p-0 m-0">

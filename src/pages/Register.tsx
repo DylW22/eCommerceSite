@@ -38,7 +38,7 @@ export const action = (appContext: RegisterAction): ActionFunction => {
       password2,
     });
     if (!isValid) {
-      return;
+      return errorMessage;
     }
     await createAccount(email, password1);
     //let success = true;

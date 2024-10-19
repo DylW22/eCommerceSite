@@ -1,45 +1,47 @@
 import { useState } from "react";
-import downArrow from "../../assets/down-arrow.svg";
-import rightArrow from "../../assets/right-arrow.svg";
+import { Card, CardFooter } from "react-bootstrap";
+import { Link } from "react-router-dom";
 interface AboutCardProps {
   title: string;
   content: string;
 }
 
-export const AboutCard: React.FC<AboutCardProps> = ({ title, content }) => {
+export const AboutCard: React.FC<AboutCardProps> = ({
+  title,
+  content,
+}: AboutCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleOpen = () => {
+  const handleClick = () => {
     setIsOpen((prev) => !prev);
   };
+
   return (
-    <div
-      style={{ cursor: "pointer", minHeight: isOpen ? "150px" : "50px" }}
-      onClick={toggleOpen} //d-flex flex-column justify-content-center align-items-center
-      className={`mb-3 border border-secondary bg-white p-3 rounded flex-fill text-midnight position-relative`}
+    <Card
+      onClick={handleClick}
+      className="w-100 p-0 m-0 position-relative"
+      style={{
+        height: isOpen ? "200px" : "50px",
+        transition: "all 300ms ease-in-out",
+        cursor: "pointer",
+        overflow: "hidden",
+      }}
     >
-      <h3 className="text-center">{title}</h3>
-      <div className="position-absolute" style={{ top: "10%", right: "5%" }}>
-        <img
-          style={{ height: "20px" }}
-          className=""
-          src={isOpen ? rightArrow : downArrow}
-        />
-      </div>
-      {/*<p
-        className="position-absolute top-0 fs-1 fw-bold"
-        style={{ right: "2%" }}
+      <Card.Body className="text-center">
+        <Card.Title>{title}</Card.Title>
+        <Card.Text>{content}</Card.Text>
+      </Card.Body>
+      <Card.Text
+        className={`position-absolute ${isOpen ? "rotate-arrow" : ""}`}
+        style={{ top: "10px", right: "20px" }}
       >
-        {`${isOpen ? "Down" : ">"}`}
-      </p>*/}
-      <div
-        style={{
-          height: isOpen ? "auto" : "0",
-          overflow: "hidden",
-        }}
-      >
-        {isOpen && <p className="text-center mt-2">{content}</p>}
-      </div>
-    </div>
+        &#10148;
+      </Card.Text>
+      <CardFooter className="text-center">
+        <Link to="/" className="btn btn-primary">
+          Learn more
+        </Link>
+      </CardFooter>
+    </Card>
   );
 };

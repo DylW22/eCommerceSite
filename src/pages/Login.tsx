@@ -6,7 +6,6 @@ import {
   redirect,
   useLocation,
   useNavigation,
-  useRouteError,
 } from "react-router-dom";
 import type { ActionFunction } from "react-router-dom";
 
@@ -74,9 +73,6 @@ export const action =
     const cleanEmail = sanitizeInput(email);
     const cleanPassword = sanitizeInput(password);
 
-    //console.log(`Clean email:`, cleanEmail);
-    //console.log("typeof: ", typeof cleanEmail);
-    //console.log(`Clean password:`, cleanPassword);
     try {
       //await login("testuser1@gmail.com", "ABC123");
       await login(cleanEmail, cleanPassword);

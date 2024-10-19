@@ -20,35 +20,40 @@ export function Header() {
       style={{ background: styles }}
     >
       <NavbarBs expand sticky="top" className="">
-        <Container fluid className="d-flex justify-content-between">
-          <Navbar />
-          <ThemeToggle />
-          <Container fluid className="p-0">
-            <div className="d-flex align-items-center justify-content-end">
-              <div className="d-none d-md-flex align-items-center justify-content-end w-100">
-                <SearchBar />
-                {isAuthenticated ? (
-                  <AccountDropDown />
-                ) : (
-                  <Nav.Link to="/login" as={NavLink}>
-                    <Button>Login</Button>
-                  </Nav.Link>
-                )}
-              </div>
-              <div className="text-black">
-                {cartQuantity > 0 ? (
-                  <div
-                    style={{ width: "80px", height: "20px" }}
-                    className="d-flex align-items-center px-2"
-                  >
-                    <NavbarCartButton />
-                  </div>
-                ) : (
-                  <div style={{ width: "80px" }}></div>
-                )}
-              </div>
-            </div>
+        <Container fluid className="d-flex w-100 m-0 p-0">
+          <Container fluid className="d-flex m-0 p-0">
+            <Navbar />
+            <ThemeToggle />
           </Container>
+          <Container
+            fluid
+            className="d-none d-md-flex m-0 p-0 flex-grow-1 w-100"
+          >
+            <SearchBar />
+          </Container>
+          <Container fluid className="d-none d-md-flex w-auto text-end m-0 p-0">
+            {isAuthenticated ? (
+              <AccountDropDown />
+            ) : (
+              <Nav.Link to="/login" as={NavLink}>
+                <Button>Login</Button>
+              </Nav.Link>
+            )}
+          </Container>
+
+          {cartQuantity > 0 ? (
+            <div
+              className="text-end ms-2 me-4 p-0"
+              style={{ width: "120px", height: "50px" }}
+            >
+              <NavbarCartButton />
+            </div>
+          ) : (
+            <div
+              className="ms-2 me-3 p-0"
+              style={{ width: "120px", height: "50px" }}
+            ></div>
+          )}
         </Container>
       </NavbarBs>
     </Container>

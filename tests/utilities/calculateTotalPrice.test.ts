@@ -10,12 +10,12 @@ describe("calculateTotalPrice function", () => {
   });
   it("should calculate total price correctly", () => {
     let items: TransactionItem[] = [
-      { id: 1, quantity: 2 },
-      { id: 2, quantity: 1 },
+      { id: "1", quantity: 2 },
+      { id: "2", quantity: 1 },
     ];
     (getItemById as jest.Mock).mockImplementation((id) => {
-      if (id === 1) return { id: 1, price: 100 };
-      if (id === 2) return { id: 2, price: 200 };
+      if (id === "1") return { id: "1", price: 100 };
+      if (id === "2") return { id: "2", price: 200 };
     });
 
     let total = 400;
@@ -26,10 +26,10 @@ describe("calculateTotalPrice function", () => {
   it("should return 0 if no items are found", () => {
     const items: TransactionItem[] = [
       {
-        id: 5,
+        id: "5",
         quantity: 2,
       },
-      { id: 6, quantity: 1 },
+      { id: "6", quantity: 1 },
     ];
 
     (getItemById as jest.Mock).mockImplementation(() => {
@@ -42,8 +42,8 @@ describe("calculateTotalPrice function", () => {
 
   it("should skip items that are not found", () => {
     const items: TransactionItem[] = [
-      { id: 1, quantity: 2 },
-      { id: 3, quantity: 1 },
+      { id: "1", quantity: 2 },
+      { id: "3", quantity: 1 },
     ];
     (getItemById as jest.Mock).mockImplementation((id) => {
       if (id === 1) return { id: 1, price: 100 };

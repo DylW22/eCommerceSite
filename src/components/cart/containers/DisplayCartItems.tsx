@@ -1,16 +1,18 @@
 import { Stack, Button, Nav } from "react-bootstrap";
 import { CartItem } from "./CartItem";
 import { formatCurrency } from "../../../utilities/formatCurrency";
-import storeItems from "../../../data/items.json";
+//import storeItems from "../../../data/items.json";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { useQueryFilterContext } from "../../../context/FilterQueryContext";
 
 interface DisplayCartItemsProps {
   checkout: boolean;
 }
 export function DisplayCartItems({ checkout }: DisplayCartItemsProps) {
   const { cartItems, closeCart } = useShoppingCart();
+  const { items: allItems } = useQueryFilterContext();
   const location = useLocation();
 
   return (
@@ -24,7 +26,7 @@ export function DisplayCartItems({ checkout }: DisplayCartItemsProps) {
         Total{" "}
         {formatCurrency(
           cartItems.reduce((total, cartItem) => {
-            const item = storeItems.find((i) => i.id === cartItem.id);
+            const item = allItems.find((i) => i.id === cartItem.id);
             return total + (item?.price || 0) * cartItem.quantity;
           }, 0)
         )}

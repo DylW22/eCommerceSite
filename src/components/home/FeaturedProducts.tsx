@@ -8,9 +8,17 @@ export const FeaturedProducts = () => {
   const nMax: number = 3;
 
   const featuredProductsId = [
-    { id: 1, featuredPrice: 111, promo: "Awesome products!!" },
-    { id: 2, featuredPrice: 222, promo: "Cheap prices!" },
-    { id: 3, featuredPrice: 333, promo: "Wow" },
+    {
+      id: 1,
+      featuredPrice: 11.1,
+      promo: "A fun-filled book for all the family.",
+    },
+    { id: 2, featuredPrice: 222, promo: "A simple, cheap computer." },
+    {
+      id: 3,
+      featuredPrice: 333,
+      promo: "Get your high-quality, fresh bananas here.",
+    },
   ];
   const featuredProducts = getFeaturedProducts(featuredProductsId);
   if (!featuredProducts.length) return;
@@ -27,14 +35,14 @@ export const FeaturedProducts = () => {
             key={index}
             sm={12}
             md={3}
-            className="rounded-4 my-3 my-md-0 mb-md-4"
+            className="rounded-4 my-3 my-md-0 mb-md-4 shake-container"
           >
-            <div
+            {/* <div
               className="d-flex justify-content-center align-items-center"
               style={{ height: "300px" }}
-            >
-              <FeaturedProductCard {...product} />
-            </div>
+            > */}
+            <FeaturedProductCard {...product} />
+            {/* </div> */}
           </Col>
         ))}
     </>

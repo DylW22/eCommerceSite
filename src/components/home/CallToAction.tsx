@@ -14,7 +14,7 @@ export const CallToAction = () => {
         to="/store"
         className={`text-decoration-none h-100  d-flex align-items-center justify-content-center`}
       >
-        <div className="fs-2 fs-md-1 fw-bold">Shop now!</div>
+        <div className="fs-2 fs-md-1 fw-bold text-center">Shop now!</div>
       </Link>
     </Container>
   );

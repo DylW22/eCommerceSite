@@ -2,8 +2,9 @@
 import { pathData } from "./data/pathData";
 import { ReactNode } from "react";
 
+//Oct19
 export type CartItem = {
-  id: number;
+  id: string;
   quantity: number;
 };
 
@@ -83,7 +84,7 @@ export interface RouteProps {
 
 //CartItem.tsx
 export type CartItemsProps = {
-  id: number;
+  id: string;
   quantity: number;
   checkout: boolean;
 };
@@ -106,18 +107,19 @@ export type PathData = {
 export type ShoppingCartContextType = {
   openCart: () => void;
   closeCart: () => void;
-  getItemQuantity: (id: number) => number;
-  increaseCartQuantity: (id: number) => void;
-  decreaseCartQuantity: (id: number) => void;
-  removeFromCart: (id: number) => void;
+  getItemQuantity: (id: string) => number;
+  increaseCartQuantity: (id: string) => void;
+  decreaseCartQuantity: (id: string) => void;
+  removeFromCart: (id: string) => void;
   emptyCart: () => void;
   cartQuantity: number;
   cartItems: CartItem[];
 };
 
 //StoreItem.tsx
+//Oct19
 export type StoreItemProps = {
-  id: number;
+  id: string;
   name: string;
   price: number;
   imgUrl?: string;

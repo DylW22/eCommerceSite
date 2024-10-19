@@ -1,42 +1,49 @@
 import { Row, Col } from "react-bootstrap";
-import { StoreItem } from "../components/cart/containers/StoreItem.tsx";
-import { filterByQuery } from "../utilities/filterByQuery.ts";
-import { useRouteLoaderData } from "react-router-dom";
+// import { useRouteLoaderData } from "react-router-dom";
 import { Container } from "react-bootstrap";
-
-import { locationObject } from "../types.ts";
+// import { locationObject } from "../types.ts";
 import "./../assets/styles/styles.css";
 import { useDynamicBackground } from "../hooks/useDynamicBackground.tsx";
 
+import FilterDropDown from "../components/store/FilterDropDown.tsx";
+import ActiveFilters from "../components/store/ActiveFilters.tsx";
+import { ProductList } from "../components/store/ProductList.tsx";
+import { useQueryFilterContext } from "../context/FilterQueryContext.tsx";
+
 export function Store() {
-  const location = useRouteLoaderData("root") as locationObject;
-  const itemsToDisplay = filterByQuery(location.q);
   const { styles } = useDynamicBackground("linear", 50);
 
-  return (
-    <Container
-      fluid
-      style={{
-        //   height: "calc(100vh - 80px)",
-        background: `${styles}`,
+  const { toggleFilter, clearFilter } = useQueryFilterContext();
 
-        height: location.q ? "calc(100vh - 72px)" : "100%",
-      }}
-      className="m-0 p-4 d-flex justify-content-center"
-    >
-      <Container style={{ margin: "0px" }} className="p-0 m-0 mt-2">
-        <Row md={2} xs={1} lg={3} className="g-4 g-md-3">
-          {itemsToDisplay.length ? (
-            itemsToDisplay.map((item) => (
-              <Col key={item.id} className="">
-                <StoreItem {...item} />
-              </Col>
-            ))
-          ) : (
-            <div>No items to display</div>
-          )}
+  return (
+    <>
+      <Container fluid className="d-none d-sm-block px-5">
+        <Row>
+          <Col className="m-0 p-0">
+            <FilterDropDown
+              toggleFilter={toggleFilter}
+              clearFilter={clearFilter}
+            />
+          </Col>
+          <Col className="m-0 p-0 d-flex justify-content-end">
+            <ActiveFilters />
+          </Col>
         </Row>
       </Container>
-    </Container>
+      <Container
+        fluid
+        style={{
+          //   height: "calc(100vh - 80px)",
+          background: `${styles}`,
+
+          // height: location.q ? "calc(100vh - 72px)" : "100%",
+        }}
+        className="m-0 p-4 d-flex flex-column justify-content-center"
+      >
+        <Container className="p-0 m-0 mt-2 mx-auto">
+          <ProductList />
+        </Container>
+      </Container>
+    </>
   );
 }

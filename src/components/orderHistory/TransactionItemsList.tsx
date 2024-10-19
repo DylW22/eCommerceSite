@@ -5,8 +5,9 @@ import { OrderedItemsListProps } from "../../types";
 export const TransactionItemsList: React.FC<OrderedItemsListProps> = ({
   items,
 }) => {
+  // const { items: allItems } = useQueryFilterContext();
   return items.map((item) => {
-    const foundItem = getItemById(item.id);
+    const foundItem = getItemById(String(item.id));
     if (!foundItem) return null;
     const { name } = foundItem;
     return (

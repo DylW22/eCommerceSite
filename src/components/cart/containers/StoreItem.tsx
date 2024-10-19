@@ -10,7 +10,6 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
     removeFromCart,
   } = useShoppingCart();
   const quantity = getItemQuantity(id);
-
   return (
     <Card
       className="h-100 w-100 p-2"
