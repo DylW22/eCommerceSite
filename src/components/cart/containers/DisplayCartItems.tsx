@@ -1,10 +1,11 @@
 import { Stack, Button, Nav } from "react-bootstrap";
 import { CartItem } from "./CartItem";
 import { formatCurrency } from "../../../utilities/formatCurrency";
-//import storeItems from "../../../data/items.json";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+
+import CartItemSkeletonList from "./CartItemSkeletonList";
 import { useQueryFilterContext } from "../../../context/FilterQueryContext";
 
 interface DisplayCartItemsProps {
@@ -12,21 +13,25 @@ interface DisplayCartItemsProps {
 }
 export function DisplayCartItems({ checkout }: DisplayCartItemsProps) {
   const { cartItems, closeCart } = useShoppingCart();
-  const { items: allItems } = useQueryFilterContext();
+  const { products } = useQueryFilterContext();
   const location = useLocation();
 
   return (
     <Stack gap={3}>
       <div>
-        {cartItems.map((item) => (
-          <CartItem checkout={checkout} key={item.id} {...item} />
-        ))}
+        {cartItems.length > 0 ? (
+          cartItems.map((item) => (
+            <CartItem checkout={checkout} key={item.id} {...item} />
+          ))
+        ) : (
+          <CartItemSkeletonList count={3} />
+        )}
       </div>
       <div className={"ms-auto fw-bold fs-5"}>
         Total{" "}
         {formatCurrency(
           cartItems.reduce((total, cartItem) => {
-            const item = allItems.find((i) => i.id === cartItem.id);
+            const item = products.find((i) => i.id === cartItem.id);
             return total + (item?.price || 0) * cartItem.quantity;
           }, 0)
         )}

@@ -20,7 +20,14 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     []
   );
 
-  //Method 2
+  // const mappedItems = cartItems
+  //   .map((item) => {
+  //     const storeItem = getItemById(item.id); // Retrieve item from store
+
+  //     return storeItem ? { ...storeItem, quantity: item.quantity } : null;
+  //   })
+  //   .filter((item) => item !== null) as CartItem[];
+
   const location = useLocation();
 
   function getItemQuantity(id: string) {
@@ -66,7 +73,6 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     setCartItems([]);
   }
   const openCart = () => {
-    //Method 2:
     if (location.pathname === "/checkout") return;
     setIsOpen(true);
   };

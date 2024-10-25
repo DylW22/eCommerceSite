@@ -8,6 +8,7 @@ import { AccountDropDown } from "./AccountDropdown";
 import { ThemeToggle } from "./ThemeToggle";
 import { Navbar } from "./Navbar";
 import { useDynamicBackground } from "../../hooks/useDynamicBackground";
+
 export function Header() {
   const { cartQuantity } = useShoppingCart();
   const { state } = useAuth();
@@ -33,7 +34,7 @@ export function Header() {
           </Container>
           <Container
             fluid
-            className="d-none d-md-flex m-0 p-0 flex-grow-1 w-100"
+            className="d-none d-md-flex m-0 p-0 flex-grow-1 w-100 position-relative"
           >
             <SearchBar />
           </Container>

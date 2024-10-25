@@ -1,33 +1,13 @@
-import { useQuery } from "@apollo/client";
-import React, { useEffect } from "react";
-import { GET_PRODUCTS } from "../../queries";
-
-import { locationObject, StoreItemProps } from "../../types";
+import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { StoreItem } from "../cart/containers/StoreItem";
 import EmptyStore from "./EmptyStore";
-import { useRouteLoaderData } from "react-router-dom";
 import { StoreItemSkeletonList } from "../cart/containers/StoreItemSkeletonList";
 import { useQueryFilterContext } from "../../context/FilterQueryContext";
 
-type QueryType = {
-  getProducts: StoreItemProps[];
-};
-
 export const ProductList: React.FC = () => {
-  const location = useRouteLoaderData("root") as locationObject;
-  const { loading, data, error } = useQuery<QueryType>(GET_PRODUCTS);
-  const { filteredItems, setItems, setQuery } = useQueryFilterContext();
-
-  useEffect(() => {
-    if (data?.getProducts) {
-      setItems(data?.getProducts);
-    }
-    setQuery(location.q);
-  }, [data, location]);
-
-  if (loading) return <StoreItemSkeletonList count={6} />;
-  if (error) return <div>Error</div>;
+  const { filteredItems } = useQueryFilterContext();
+  if (filteredItems.length === 0) return <StoreItemSkeletonList count={6} />;
 
   return (
     <Row md={2} xs={1} lg={3} className="g-4 g-md-3">

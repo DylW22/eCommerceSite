@@ -4,7 +4,6 @@ import { useTheme } from "../../context/ThemeContext";
 
 export const Navbar = () => {
   const { theme } = useTheme();
-
   return (
     <Nav className="fw-bold">
       <Nav.Link

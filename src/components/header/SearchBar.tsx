@@ -2,12 +2,13 @@ import { Form, useLoaderData, useNavigation } from "react-router-dom";
 import { useSubmit } from "react-router-dom";
 import { useDebounce } from "../../hooks/useDebounce";
 import { LoaderData } from "../../types";
+import { useTheme } from "../../context/ThemeContext";
 
 export function SearchBar() {
   const submit = useSubmit();
   const navigation = useNavigation();
   const { q } = useLoaderData() as LoaderData;
-
+  const { theme } = useTheme();
   const isLoading = navigation.state === "loading";
 
   const handleSearchChange = useDebounce(
@@ -21,17 +22,32 @@ export function SearchBar() {
   );
 
   return (
-    <Form className="px-4 w-100" role="search" method="get" action="/store">
+    <Form
+      className="px-2 w-100 search-box"
+      role="search"
+      method="get"
+      action="/store"
+    >
+      <button
+        aria-label="Search"
+        className={`btn-search ${theme === "dark" ? "dark" : ""}`}
+      >
+        <i className="fas fa-search" aria-hidden="true"></i>
+      </button>
       <input
-        placeholder="Search"
-        type="Search"
+        className={`input-search ${theme === "dark" ? "dark" : ""}`}
+        type="search"
+        placeholder="Search..."
         name="q"
         id="q"
         defaultValue={q}
         onChange={handleSearchChange}
-        className="rounded-pill px-3 py-2 w-100"
       />
-      {isLoading && <div className="position-absolute">Loading..</div>}
+      {isLoading && (
+        <div role="status" aria-live="polite" className="position-absolute">
+          Loading..
+        </div>
+      )}
     </Form>
   );
 }

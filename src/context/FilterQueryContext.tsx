@@ -3,32 +3,23 @@ import { StoreItemProps } from "../types";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import { filterByQuery } from "../utilities/filterByQuery";
+import useProductsFetch from "../hooks/useProducts";
 
+import { FilterQueryContextType } from "../types";
+import { AllowedQueries } from "../types";
 const allowedQueries = ["book", "electronics", "food"];
-export type AllowedQueries = "food" | "electronics" | "book";
-type FilterQueryContextType = {
-  filteredItems: StoreItemProps[];
-  setFilteredItems: (items: StoreItemProps[]) => void;
-  items: StoreItemProps[];
-  setItems: (items: StoreItemProps[]) => void;
-  toggleFilter: (
-    filterValue: StoreItemProps["category"] & AllowedQueries
-  ) => void;
-  clearFilter: () => void;
-  activeFilters: AllowedQueries[];
-  query: string;
-  setQuery: (item: string) => void;
-};
 
 const FilterQueryContext = createContext<FilterQueryContextType | undefined>(
   undefined
 );
 
 const FilterQueryProvider = ({ children }: { children: React.ReactNode }) => {
-  const [items, setItems] = useState<StoreItemProps[]>([]);
   const [filteredItems, setFilteredItems] = useState<StoreItemProps[]>([]);
   const [query, setQuery] = useState("");
   const [activeFilters, setActiveFilters] = useState<AllowedQueries[]>([]);
+
+  const { products, loading, error } = useProductsFetch();
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -67,18 +58,16 @@ const FilterQueryProvider = ({ children }: { children: React.ReactNode }) => {
     setActiveFilters(validFilters);
     setFilteredItems(
       validFilters.length > 0
-        ? items.filter((item) =>
+        ? products.filter((item) =>
             filters.includes(item.category as AllowedQueries)
           )
-        : filterByQuery(query, items)
+        : filterByQuery(query, products)
     );
-  }, [location.search, query, items]);
+  }, [location.search, query, products]);
 
   return (
     <FilterQueryContext.Provider
       value={{
-        items,
-        setItems,
         filteredItems,
         setFilteredItems,
         clearFilter,
@@ -86,6 +75,9 @@ const FilterQueryProvider = ({ children }: { children: React.ReactNode }) => {
         activeFilters,
         query,
         setQuery,
+        products,
+        loading,
+        error,
       }}
     >
       {children}

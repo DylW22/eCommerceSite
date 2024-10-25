@@ -1,4 +1,5 @@
 //import { FeaturedItemId } from "./types";
+import { ApolloError } from "@apollo/client";
 import { pathData } from "./data/pathData";
 import { ReactNode } from "react";
 
@@ -260,3 +261,22 @@ export type PaymentFormData = {
   expiryDate: string;
   cvv: string;
 };
+
+//FilterQueryContext.tsx:
+export type FilterQueryContextType = {
+  filteredItems: StoreItemProps[];
+  setFilteredItems: (items: StoreItemProps[]) => void;
+  toggleFilter: (
+    filterValue: StoreItemProps["category"] & AllowedQueries
+  ) => void;
+  clearFilter: () => void;
+  activeFilters: AllowedQueries[];
+  query: string;
+  setQuery: (item: string) => void;
+  products: StoreItemProps[];
+  loading: boolean;
+  error: ApolloError | undefined;
+};
+
+//
+export type AllowedQueries = "food" | "electronics" | "book";

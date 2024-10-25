@@ -4,10 +4,6 @@ export function useLocalStorage<T>(key: string, initialValue: T | (() => T)) {
   const [value, setValue] = useState<T>(() => {
     const jsonValue = localStorage.getItem(key);
 
-    /*localStorage.setItem(
-      "authState",
-      JSON.stringify({ isAuthenticated: false, token: null })
-    );*/
     if (jsonValue !== null) return JSON.parse(jsonValue);
     if (typeof initialValue === "function") {
       return (initialValue as () => T)();

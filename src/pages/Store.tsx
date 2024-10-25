@@ -16,7 +16,7 @@ export function Store() {
   const { toggleFilter, clearFilter } = useQueryFilterContext();
 
   return (
-    <>
+    <div className="overflow-hidden">
       <Container fluid className="d-none d-sm-block mx-3">
         <Row>
           <Col className="m-0 p-0">
@@ -25,7 +25,7 @@ export function Store() {
               clearFilter={clearFilter}
             />
           </Col>
-          <Col className="m-0 p-0 d-flex mx-4 justify-content-end">
+          <Col className="m-0 p-0 d-flex mx-4 justify-content-end py-2">
             <ActiveFilters />
           </Col>
         </Row>
@@ -33,17 +33,14 @@ export function Store() {
       <Container
         fluid
         style={{
-          //   height: "calc(100vh - 80px)",
           background: `${styles}`,
-
-          // height: location.q ? "calc(100vh - 72px)" : "100%",
         }}
-        className="m-0 p-4 d-flex flex-column justify-content-center"
+        className="m-0 py-2 d-flex flex-column justify-content-center"
       >
         <Container className="p-0 m-0 mt-2 mx-auto">
           <ProductList />
         </Container>
       </Container>
-    </>
+    </div>
   );
 }

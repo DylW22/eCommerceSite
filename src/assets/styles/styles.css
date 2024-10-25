@@ -1,3 +1,4 @@
+
 body, html {
     margin: 0;
     height: 100%;
@@ -102,7 +103,7 @@ color: #FFF;
 
   }
   
-  .about-card.expanded {
+.about-card.expanded {
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
   }
   
@@ -112,6 +113,7 @@ color: #FFF;
 
 .filter-item {
     background-color: rgb(0, 179, 255);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .filter-item :nth-child(1)::first-letter {
@@ -267,6 +269,121 @@ color: #FFF;
         animation: bounce 1000ms forwards ease;
       }
 }
+
+
+
+
+
+
+
+:root {
+    --cubic-bezier: cubic-bezier(0,1.73,.92, 2);
+    --circleWidth: 50px;
+  }
+  
+
+
+  .search-box {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    justify-content: end;
+    border-radius: 8px;
+  }
+  
+  .btn-search {
+    width: var(--circleWidth);
+    height: var(--circleWidth);
+    border-radius: var(--circleWidth);
+    outline: none;
+    border-style: none;
+    cursor: pointer;
+    pointer-events: painted;
+    position: absolute;
+    color: black;
+    background-color: transparent;
+  }
+  .btn-search.dark {
+    color: white;
+  }
+  
+  .input-search {
+    width: var(--circleWidth);
+    height: var(--circleWidth);
+    border-radius: var(--circleWidth);
+    outline: none;
+    border-style: none;
+    background-color: #22a6b3;
+    transition: all 500ms ease-in-out;
+    padding: 10px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    padding-right: 40px;
+  }
+  
+  .input-search::placeholder {
+    color:rgba(255,255,255,.5);
+    color: black;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+  .input-search.dark::placeholder {
+    color:rgba(255,255,255,.5);
+  }
+
+  .btn-search:focus ~ .input-search, .input-search:focus {
+    width: 220px;
+
+    border-radius: 0px;
+    background-color: transparent; 
+    border-bottom: 2px solid black;
+    transition: all 1000ms var(--cubic-bezier);
+    animation: pulse 2000ms linear infinite;
+  }
+
+  .btn-search.dark:focus ~ .input-search.dark, .input-search.dark:focus {
+    border-bottom: 2px solid white;
+  }
+
+
+
+  .search-box:focus-within .btn-search {
+    animation: pulse 2000ms linear 1000ms infinite;
+    
+  }
+  .btn-search:hover {
+    animation: pulse 2000ms linear infinite;
+  }
+
+
+  @media (min-width: 1024px) {
+    .btn-search:focus ~ .input-search, .input-search:focus {
+        width: 350px;
+      }
+  }
+ 
+
+
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+    }
+    
+    50% {
+      opacity: 0.5;
+    }
+    
+    100% {
+      opacity: 1;
+    }
+  }
+
+
+
+
+
+
 
 
 /*
