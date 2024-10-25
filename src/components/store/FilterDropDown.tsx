@@ -1,5 +1,5 @@
 import { Dropdown } from "react-bootstrap";
-import { AllowedQueries } from "../../context/FilterQueryContext";
+import { AllowedQueries } from "../../types";
 
 interface FilterDropDownProps {
   toggleFilter: (filterValue: AllowedQueries) => void;
