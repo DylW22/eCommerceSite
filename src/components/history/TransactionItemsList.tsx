@@ -1,12 +1,12 @@
 import { getItemById } from "../../utilities/getItemById";
 import { Row, Col } from "react-bootstrap";
-import { OrderedItemsListProps } from "../../types";
+import { TransactionItemsListProps } from "../../types";
 
-export const TransactionItemsList: React.FC<OrderedItemsListProps> = ({
+export const TransactionItemsList: React.FC<TransactionItemsListProps> = ({
   items,
 }) => {
   return items.map((item) => {
-    const foundItem = getItemById(String(item.id));
+    const foundItem = getItemById(item.id); //28.10
     if (!foundItem) return null;
     const { name } = foundItem;
     return (

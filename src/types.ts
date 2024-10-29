@@ -13,16 +13,14 @@ export interface ActionRequestProps {
   request: Request;
 }
 
-//Need to fix
-export type OrderData = {
-  //length: any;
+export type TransactionsData = {
   orderDate: string;
-  orderId: number;
-  items: CartItem[];
+  orderId: string;
+  items: TransactionItem[];
 };
 
 export type TransactionsLoaderObject = {
-  data: [OrderData];
+  data: [TransactionsData];
 };
 
 export type ShoppingCartProviderProps = {
@@ -59,18 +57,17 @@ export type AuthAction =
   | { type: "REGISTER"; userData: UserData }
   | { type: "SET_ERROR"; error: string }
   | { type: "SUBSCRIBE_NEWSLETTER" }
+  | { type: "UNSUBSCRIBE_NEWSLETTER" }
   | { type: "DEFAULT" };
 
 export type AuthContextType = {
   state: AuthState;
   //login: (token: string, username: string, password: string) => void;
-  login: (
-    username: string,
-    password: string /*, authFirebase: string*/
-  ) => void;
+  login: (username: string, password: string) => void;
   logout: () => void;
   createAccount: (email: string, password: string) => void;
   subscribeToNewsletter: () => void;
+  unsubscribeNewsletter: () => void;
 };
 
 //SearchBar.tsx
@@ -128,14 +125,13 @@ export type StoreItemProps = {
 };
 
 //OrderedItemsList.tsx
-export type OrderedItemsListProps = {
+export type TransactionItemsListProps = {
   items: TransactionItem[];
 };
 
-//TransactionNew.tsx
+//TransactionCard.tsx
 export type TransactionProps = {
-  transaction?: OrderData; //OrderData
-  loading: boolean;
+  transaction?: TransactionsData; //TransactionsData
 };
 
 //Store.tsx
@@ -155,16 +151,11 @@ export interface RegisterAction extends AuthContextType {
   createAccount: (email: string, password: string) => Promise<void>;
 }
 
-export interface ChildRefsContext {
-  current: HTMLLIElement | null;
-}
-/*
-export interface ChildRefs {
-  [x: string]: unknown; //any
-  childRefs: React.MutableRefObject<HTMLInputElement[]>;
-  //childRefs: HTMLInputElement[]; //React.MutableRefObject<HTMLLIElement[]>;
-}
-*/
+//28.10
+// export interface ChildRefsContext {
+//   current: HTMLLIElement | null;
+// }
+
 export type TransactionItem = CartItem;
 export interface IError {
   message: string;
@@ -184,7 +175,7 @@ export interface RegisterFormProps {
 type Rating = 0 | 1 | 2 | 3 | 4 | 5 | number;
 
 export interface TestimonialItem {
-  id: number;
+  id: string;
   content: string;
   name: string;
   title: string;
@@ -198,7 +189,7 @@ export type FeaturedProduct = StoreItemProps & {
 };
 
 export interface FeaturedItemId {
-  id: number;
+  id: string;
   featuredPrice: number;
   promo: string;
 }
@@ -218,27 +209,16 @@ export interface GetStarsProps {
   totalStars: number;
 }
 
-export interface TransactionListProps {
-  transactions: OrderData[];
-  fetchTransactions: () => void;
-  hasMorePosts: boolean;
-  limit: number;
-}
-
-export interface DisplayTransactionsListProps {
-  transactions?: OrderData[];
-  loading: boolean;
-  //  scrollDown: (index: number) => void;
-}
+// export interface TransactionListProps {
+//   transactions: TransactionsData[];
+//   fetchTransactions: () => void;
+//   hasMorePosts: boolean;
+//   limit: number;
+// }
 
 export interface PopoverProps {
   className?: string;
-}
-
-export interface TransactionSidePanelContainerContentProps {
-  transactions: OrderData[] | undefined;
-  handleItemClick: (index: number) => void;
-  activeIndex: number | null;
+  setIsOpen: (state: boolean) => void;
 }
 
 export interface redirectsInterface {
@@ -280,3 +260,7 @@ export type FilterQueryContextType = {
 
 //
 export type AllowedQueries = "food" | "electronics" | "book";
+
+export interface GetTransactionsResponse {
+  getTransactions: TransactionsData[];
+}

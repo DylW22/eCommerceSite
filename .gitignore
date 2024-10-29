@@ -26,3 +26,4 @@ coverage
 *.sw?
 .env
 replacements.txt
+__mocks__

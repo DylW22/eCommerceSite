@@ -60,6 +60,13 @@ export const authReducer = (state: AuthState, action: AuthAction) => {
         newsletterSubscribed: true,
       };
     }
+    case "UNSUBSCRIBE_NEWSLETTER": {
+      return {
+        ...state,
+        newsletterSubscribed: false,
+      };
+    }
+
     default:
       return state;
   }
@@ -187,9 +194,20 @@ const AuthProvider = ({ children }: AuthCartProviderProps) => {
   const subscribeToNewsletter = () => {
     dispatch({ type: "SUBSCRIBE_NEWSLETTER" });
   };
+
+  const unsubscribeNewsletter = () => {
+    dispatch({ type: "UNSUBSCRIBE_NEWSLETTER" });
+  };
   return (
     <AuthContext.Provider
-      value={{ state, login, logout, createAccount, subscribeToNewsletter }}
+      value={{
+        state,
+        login,
+        logout,
+        createAccount,
+        subscribeToNewsletter,
+        unsubscribeNewsletter,
+      }}
     >
       {children}
     </AuthContext.Provider>

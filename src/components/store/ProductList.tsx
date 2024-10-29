@@ -7,7 +7,7 @@ import { useQueryFilterContext } from "../../context/FilterQueryContext";
 
 export const ProductList: React.FC = () => {
   const { filteredItems } = useQueryFilterContext();
-  if (filteredItems.length === 0) return <StoreItemSkeletonList count={6} />;
+  //if (filteredItems.length === 0) return <StoreItemSkeletonList count={6} />;
 
   return (
     <Row md={2} xs={1} lg={3} className="g-4 g-md-3">

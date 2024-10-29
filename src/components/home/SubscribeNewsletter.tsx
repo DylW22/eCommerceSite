@@ -11,13 +11,13 @@ interface Errors {
 const SubscribeNewsletter = () => {
   const [email, setEmail] = useState<string>("");
   const [errors, setErrors] = useState<Errors>({});
-  const { state, subscribeToNewsletter } = useAuth();
+  const { state, subscribeToNewsletter, unsubscribeNewsletter } = useAuth();
   const { toFade, applyFade } = useFadeout(3000);
   const { theme } = useTheme();
 
   //console.table(state);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("e.target.value: ", e.target.value);
+    // console.log("e.target.value: ", e.target.value);
     setEmail(e.target.value);
   };
 
@@ -27,7 +27,6 @@ const SubscribeNewsletter = () => {
     console.table(state);
     subscribeToNewsletter();
     if (isValid) {
-      console.log("Submitted!");
       setEmail("");
       applyFade();
       setErrors({});
@@ -35,7 +34,6 @@ const SubscribeNewsletter = () => {
       setErrors((prev) => ({ ...prev, errorMessage: "Hello" }));
     }
   };
-
   return (
     <>
       <Form
@@ -45,14 +43,25 @@ const SubscribeNewsletter = () => {
         } position-relative rounded-5 min-height-200 text-center d-flex flex-column justify-content-center align-items-center`}
       >
         {state.newsletterSubscribed ? (
-          <div className="fw-bold fs-4">Already subscribed!</div>
+          <>
+            <div className="fw-bold fs-4">
+              You are subscribed to our monthly newsletter. Stay tuned!
+            </div>
+            <span onClick={unsubscribeNewsletter} className="text-muted">
+              Click here to unsubscribe
+            </span>
+          </>
         ) : (
           <>
-            <Form.Label>Enter your email address.</Form.Label>
+            <Form.Label>
+              {state?.userData?.email
+                ? "Click to subscribe."
+                : "Enter your email address."}
+            </Form.Label>
             <Form.Control
               name="email"
               placeholder="yourname@example.com"
-              value={email}
+              value={state?.userData?.email || email}
               onChange={handleChange}
               className="rounded-3"
             />

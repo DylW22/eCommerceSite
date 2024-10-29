@@ -1,9 +1,9 @@
 import { filterByQuery } from "../../src/utilities/filterByQuery";
 
 let testItems = [
-  { id: 1, name: "Item 1", price: 10, imgUrl: "test1.png", category: "Book" },
-  { id: 2, name: "Item 2", price: 10, imgUrl: "test2.png", category: "Book" },
-  { id: 3, name: "Item 3", price: 10, imgUrl: "test3.png", category: "Car" },
+  { id: "1", name: "Item 1", price: 10, imgUrl: "test1.png", category: "Book" },
+  { id: "2", name: "Item 2", price: 10, imgUrl: "test2.png", category: "Book" },
+  { id: "3", name: "Item 3", price: 10, imgUrl: "test3.png", category: "Car" },
 ];
 
 describe("filterByQuery function", () => {
@@ -12,21 +12,21 @@ describe("filterByQuery function", () => {
 
     const expectedItems = [
       {
-        id: 1,
+        id: "1",
         name: "Item 1",
         price: 10,
         imgUrl: "test1.png",
         category: "Book",
       },
       {
-        id: 2,
+        id: "2",
         name: "Item 2",
         price: 10,
         imgUrl: "test2.png",
         category: "Book",
       },
       {
-        id: 3,
+        id: "3",
         name: "Item 3",
         price: 10,
         imgUrl: "test3.png",
@@ -42,14 +42,14 @@ describe("filterByQuery function", () => {
 
     const expectedItems = [
       {
-        id: 1,
+        id: "1",
         name: "Item 1",
         price: 10,
         imgUrl: "test1.png",
         category: "Book",
       },
       {
-        id: 2,
+        id: "2",
         name: "Item 2",
         price: 10,
         imgUrl: "test2.png",
@@ -65,7 +65,7 @@ describe("filterByQuery function", () => {
 
     const expectedItems = [
       {
-        id: 3,
+        id: "3",
         name: "Item 3",
         price: 10,
         imgUrl: "test3.png",

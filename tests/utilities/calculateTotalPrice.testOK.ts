@@ -1,6 +1,6 @@
-import { TransactionItem } from "./../../src/types";
-import { getItemById } from "./../../src/utilities/getItemById";
-import { calculateTotalPrice } from "./../../src/utilities/calculateTotalPrice";
+import { TransactionItem } from "../../src/types";
+import { getItemById } from "../../src/utilities/getItemById";
+import { calculateTotalPrice } from "../../src/utilities/calculateTotalPrice";
 
 jest.mock("./../../src/utilities/getItemById");
 
@@ -46,7 +46,7 @@ describe("calculateTotalPrice function", () => {
       { id: "3", quantity: 1 },
     ];
     (getItemById as jest.Mock).mockImplementation((id) => {
-      if (id === 1) return { id: 1, price: 100 };
+      if (id === "1") return { id: "1", price: 100 };
       return null;
     });
     const amount = 200;

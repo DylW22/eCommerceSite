@@ -19,7 +19,7 @@ export const AboutCard: React.FC<AboutCardProps> = ({
   return (
     <Card
       onClick={handleClick}
-      className="w-100 p-0 m-0 position-relative"
+      className={`w-100 p-0 m-0 position-relative`}
       style={{
         height: isOpen ? "200px" : "50px",
         transition: "all 300ms ease-in-out",

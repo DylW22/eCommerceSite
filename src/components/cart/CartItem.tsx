@@ -1,8 +1,8 @@
-import { useShoppingCart } from "../../../context/ShoppingCartContext";
+import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { Button, Stack } from "react-bootstrap";
-import { formatCurrency } from "../../../utilities/formatCurrency";
-import { CartItemsProps } from "../../../types";
-import { useQueryFilterContext } from "../../../context/FilterQueryContext";
+import { formatCurrency } from "../../utilities/formatCurrency";
+import { CartItemsProps } from "../../types";
+import { useQueryFilterContext } from "../../context/FilterQueryContext";
 
 export function CartItem({ id, quantity, checkout }: CartItemsProps) {
   const { removeFromCart } = useShoppingCart();

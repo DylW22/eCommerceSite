@@ -1,41 +1,41 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "content": "The bananas were delicious, 5/5",
     "name": "Bob",
     "title": "Amazing",
     "rating": 5
   },
   {
-    "id": 2,
+    "id": "2",
     "content": "SCRUMPTIOUS BANANAS",
     "name": "Rob",
     "title": "Yummy bananas",
     "rating": 5
   },
   {
-    "id": 3,
+    "id": "3",
     "content": "The bananas were HEAVENLY",
     "name": "Job",
     "title": "Good",
     "rating": 5
   },
   {
-    "id": 4,
+    "id": "4",
     "content": "Good quality, cheap bananas.",
     "name": "Dob",
     "title": "OK",
     "rating": 5
   },
   {
-    "id": 5,
+    "id": "5",
     "content": "I can't stop eating them..",
     "name": "Hob",
     "title": "No title",
     "rating": 4
   },
   {
-    "id": 6,
+    "id": "6",
     "content": "I am allergic to bananas",
     "name": "Steve",
     "title": "Wowee",

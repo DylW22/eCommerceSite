@@ -148,11 +148,11 @@ color: #FFF;
 
   .zoomIn-left {
     position: relative;
-    animation: zoomInFromLeft 5000ms forwards ease;
+    animation: zoomInFromLeft 2000ms forwards ease;
   }
   .zoomIn-right {
     position: relative;
-    animation: zoomInFromRight 5000ms forwards ease;
+    animation: zoomInFromRight 2000ms forwards ease;
   }
 
   .shake-item {
@@ -167,16 +167,16 @@ color: #FFF;
 
   @keyframes zoomInFromLeft {
     0% {
-        transform: translateX(-50px);
+        transform: translateX(-25px);
     }
     25% {
-        transform: translateX(50px);
+        transform: translateX(25px);
     }
     50% {
-        transform: translateX(-50px);
+        transform: translateX(-25px);
     }
     75% {
-        transform: translateX(50px);
+        transform: translateX(25px);
     }
     100% {
         transform: translateX(0px);
@@ -321,6 +321,7 @@ color: #FFF;
     padding-right: 40px;
   }
   
+  
   .input-search::placeholder {
     color:rgba(255,255,255,.5);
     color: black;
@@ -331,7 +332,9 @@ color: #FFF;
   .input-search.dark::placeholder {
     color:rgba(255,255,255,.5);
   }
-
+  .input-search.dark {
+    color: white;
+  }
   .btn-search:focus ~ .input-search, .input-search:focus {
     width: 220px;
 

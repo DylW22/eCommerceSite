@@ -1,5 +1,4 @@
 import { getCurrentDateBasedOnLocale } from "./getCurrentDate";
-//import { CartItem } from "../context/ShoppingCartContext";
 import { CartItem } from "../types";
 export const generateOrderDetails = (cartItems: CartItem[]) => {
   const items = cartItems.map((item) => ({
@@ -8,7 +7,7 @@ export const generateOrderDetails = (cartItems: CartItem[]) => {
   }));
   return {
     orderDate: getCurrentDateBasedOnLocale("en-US"),
-    orderId: Math.round(Math.random() * 100),
+    orderId: `${Math.round(Math.random() * 100)}`, //28.10
     items,
   };
 };

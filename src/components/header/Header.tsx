@@ -13,7 +13,7 @@ export function Header() {
   const { cartQuantity } = useShoppingCart();
   const { state } = useAuth();
   const { isAuthenticated } = state;
-  const { styles } = useDynamicBackground();
+  const { styles } = useDynamicBackground("linear", 50);
   return (
     <Container
       fluid

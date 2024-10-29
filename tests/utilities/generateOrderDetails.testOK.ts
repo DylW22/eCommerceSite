@@ -1,4 +1,4 @@
-import { generateOrderDetails } from "./../../src/utilities/generateOrderDetails";
+import { generateOrderDetails } from "../../src/utilities/generateOrderDetails";
 //import { getCurrentDateBasedOnLocale } from "../../__mocks__/getCurrentDateBasedOnLocale";
 import { getCurrentDateBasedOnLocale } from "../../src/utilities/getCurrentDate";
 import { CartItem } from "../../src/types";
@@ -19,8 +19,9 @@ describe("generateOrderDetails function", () => {
 
     expect(result.orderDate).toBe(mockDate);
     expect(result.items).toEqual([]);
-    expect(result.orderId).toBeGreaterThanOrEqual(0);
-    expect(result.orderId).toBeLessThanOrEqual(100);
+    const resultValue = Number(result.orderId);
+    expect(resultValue).toBeGreaterThanOrEqual(0);
+    expect(resultValue).toBeLessThanOrEqual(100);
   });
 
   it("should generate order details with items when cartItems is provided", () => {
@@ -29,8 +30,8 @@ describe("generateOrderDetails function", () => {
 
     //(getCurrentDateBasedOnLocale as jest.Mock).mockReturnValue(mockDate);
     const cartItems: CartItem[] = [
-      { id: 1, quantity: 2 },
-      { id: 2, quantity: 1 },
+      { id: "1", quantity: 2 },
+      { id: "2", quantity: 1 },
     ];
 
     // Act
@@ -39,10 +40,12 @@ describe("generateOrderDetails function", () => {
     // Assert
     expect(result.orderDate).toBe(mockDate);
     expect(result.items).toEqual([
-      { id: 1, quantity: 2 },
-      { id: 2, quantity: 1 },
+      { id: "1", quantity: 2 },
+      { id: "2", quantity: 1 },
     ]);
-    expect(result.orderId).toBeGreaterThanOrEqual(0);
-    expect(result.orderId).toBeLessThanOrEqual(100);
+
+    const resultValue = Number(result.orderId);
+    expect(resultValue).toBeGreaterThanOrEqual(0);
+    expect(resultValue).toBeLessThanOrEqual(100);
   });
 });

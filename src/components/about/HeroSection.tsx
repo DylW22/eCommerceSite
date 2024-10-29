@@ -6,7 +6,7 @@ export const HeroSection = () => {
       fluid
       className="p-0 m-0 rounded-3 h-25 fw-bold fs-1 d-flex flex-column justify-content-center align-items-center"
     >
-      <Row className="mb-4 w-100">
+      <Row className="mb-2 w-100">
         <Image
           src={HeroImage}
           style={{ height: "200px", objectFit: "contain" }}

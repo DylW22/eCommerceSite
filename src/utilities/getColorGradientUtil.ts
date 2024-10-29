@@ -69,8 +69,6 @@ export const getColorGradientUtil = ({
       (Rmax[2] - Rmin[2]) *
         (scrollY / (document.body.scrollHeight || 255 - window.innerHeight))
     );
-  //linear-gradient(to right, ${styles})
-  //console.log("type: ", type);
   return `${
     type === "linear" ? "linear-gradient(to right, " : "radial-gradient( "
   }${

@@ -27,7 +27,6 @@ const PaymentForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Paid!");
   };
   return (
     <Container className={`mt-5 p-4 rounded bg-midnight text-white`}>

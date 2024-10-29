@@ -7,6 +7,7 @@ describe("authReducer", () => {
     token: { accessToken: null, refreshToken: null },
     userData: null,
     error: null,
+    newsletterSubscribed: false,
   };
 
   const initialStateLoggedIn: AuthState = {
@@ -17,6 +18,7 @@ describe("authReducer", () => {
     },
     userData: { uid: "1", email: "test@test.com", displayName: "Test User" },
     error: null,
+    newsletterSubscribed: false,
   };
 
   it("should handle LOGIN action", () => {

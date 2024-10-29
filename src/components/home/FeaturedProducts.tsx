@@ -9,13 +9,13 @@ export const FeaturedProducts = () => {
 
   const featuredProductsId = [
     {
-      id: 1,
+      id: "1",
       featuredPrice: 11.1,
       promo: "A fun-filled book for all the family.",
     },
-    { id: 2, featuredPrice: 222, promo: "A simple, cheap computer." },
+    { id: "2", featuredPrice: 222, promo: "A simple, cheap computer." },
     {
-      id: 3,
+      id: "3",
       featuredPrice: 333,
       promo: "Get your high-quality, fresh bananas here.",
     },

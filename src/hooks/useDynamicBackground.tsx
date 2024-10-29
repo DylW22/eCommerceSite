@@ -26,6 +26,5 @@ export const useDynamicBackground = (type = "linear", delay = 300) => {
     theme,
     type,
   });
-  //console.log("colorGradient: ", colorGradient);
   return { styles: colorGradient, scrollY };
 };

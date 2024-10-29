@@ -2,7 +2,7 @@ import { Navigate, useLocation, useOutletContext } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { Outlet } from "react-router-dom";
 import { CustomQueryRef } from "../../hooks/useTransactions";
-import { GetTransactionsResponse } from "../orderHistory/TransactionIndex";
+import { GetTransactionsResponse } from "../../types";
 import { redirectsConfig } from "../../data/routingPermissions";
 import { formatRouteString } from "../../utilities/formatRouteString";
 import { RouteProps } from "../../types";
@@ -50,5 +50,15 @@ export function ProtectedRoute({ children }: RouteProps) {
   if (originRoutes && !originRoutes.includes(originRoute) && redirectTo) {
     return <Navigate to={redirectTo} />;
   }
-  return <Outlet context={{ reference: result.reference }} />;
+  return (
+    <div
+      style={{
+        height: "calc(100vh - 82px)",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <Outlet context={{ reference: result.reference }} />
+    </div>
+  );
 }

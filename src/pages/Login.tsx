@@ -49,7 +49,7 @@ const ErrorMessage = ({ message }: ErrorMessageProps) => {
   return (
     <Container
       fluid
-      className={`bg-danger text-white fw-bold d-flex justify-content-center align-items-center w-50`}
+      className={`text-white fw-bold d-flex justify-content-center align-items-center w-50`}
     >
       {message}
     </Container>

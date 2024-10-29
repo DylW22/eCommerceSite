@@ -1,7 +1,6 @@
 import DOMPurify from "dompurify";
 
 export const sanitizeInput = (input: string | null | undefined): string => {
-  //console.log("Raw input: ", input);
   if (!input) return "";
 
   const config = {
@@ -11,6 +10,5 @@ export const sanitizeInput = (input: string | null | undefined): string => {
   };
   const sanitized = DOMPurify.sanitize(input, config);
   if (sanitized !== input) return "";
-  //console.log("Sanitized: ", sanitized);
   return sanitized;
 };

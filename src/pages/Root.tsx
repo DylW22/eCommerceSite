@@ -7,6 +7,7 @@ import { useTheme } from "../context/ThemeContext";
 import { locationObject } from "../types";
 import { useEffect } from "react";
 import { useQueryFilterContext } from "../context/FilterQueryContext";
+import { Container } from "react-bootstrap";
 
 export function Root() {
   const { theme } = useTheme();
@@ -23,15 +24,21 @@ export function Root() {
   }, [location]);
 
   return (
-    <div
+    <Container
+      fluid
       style={{
         background: styles,
+        height: "100%",
         minHeight: "100vh",
       }}
-      className={`d-flex flex-column ${theme === "light" ? "" : "text-white"}`}
+      className={`d-flex flex-column p-0 m-0 ${
+        theme === "light" ? "" : "text-white"
+      }`}
     >
       <Header />
-      <Outlet context={{ reference: result }} />
-    </div>
+      <div className="flex-grow-1">
+        <Outlet context={{ reference: result }} />
+      </div>
+    </Container>
   );
 }

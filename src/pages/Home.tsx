@@ -14,10 +14,13 @@ import Popover from "../components/home/Popover";
 import { FeaturedProducts } from "../components/home/FeaturedProducts";
 import SubscribeNewsletter from "../components/home/SubscribeNewsletter";
 import { CallToAction } from "../components/home/CallToAction";
+
+// import { useDynamicBackground } from "../hooks/useDynamicBackground";
 function Home() {
   const popoverRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
+  // const { styles } = useDynamicBackground("linear", 50);
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsOpen(true);
@@ -44,18 +47,20 @@ function Home() {
 
   return (
     <Container
-      className="relative p-0"
+      className="relative p-0 m-0"
       fluid
       style={{
         zIndex: 1,
+        height: "100%",
+        // background: styles,
       }}
     >
-      {
-        <Popover
-          className={`d-none fade-in ${isOpen ? "show" : ""}`}
-          ref={popoverRef}
-        />
-      }
+      <Popover
+        className={`d-none fade-in ${isOpen ? "show" : ""}`}
+        ref={popoverRef}
+        setIsOpen={setIsOpen}
+      />
+
       <Row className="p-0 m-0 mx-2">
         <Col md={6} className="py-4 px-4 order-md-2">
           <Card className="p-2">

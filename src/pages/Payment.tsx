@@ -14,6 +14,7 @@ import type {
 import { useState } from "react";
 import { useFadeout } from "../hooks/useFadeout.js";
 import PaymentSuccess from "../components/payment/PaymentSuccess.js";
+import handleStripeSession from "../utilities/handleStripeSession.js";
 
 const initialFormData: PaymentFormData = {
   name: "",
@@ -27,6 +28,7 @@ export function Payment() {
   const status = data?.status;
   const { toFade, applyFade } = useFadeout(3000);
   const { cartItems } = useShoppingCart();
+
   const cartItemsJSON = JSON.stringify(cartItems);
 
   const [formData, setFormData] = useState<PaymentFormData>(initialFormData);
@@ -40,7 +42,6 @@ export function Payment() {
   const handleSubmit = () => {
     applyFade();
   };
-
   return (
     <Container className="fluid" style={{ height: "calc(100vh - 72px)" }}>
       {status === "success" && (
@@ -116,8 +117,8 @@ export const action: ActionFunction =
   () =>
   async ({ request }: ActionRequestProps): Promise<PaymentAction> => {
     const formData = await request.formData();
-    const data = Object.fromEntries(formData) as Record<string, string>;
 
+    const data = Object.fromEntries(formData) as Record<string, string>;
     const cartItemsParsed = JSON.parse(data.cartItems);
 
     const order = generateOrderDetails(cartItemsParsed);
@@ -127,10 +128,8 @@ export const action: ActionFunction =
     let status: "success" | "failure" = "success";
     try {
       //Perform payment action
-      //Successful?
-
+      // await handleStripeSession(order);
       await writeToDatabase(order);
-      status = "success";
     } catch (error: unknown) {
       status = "failure";
       if (error instanceof Error) {
